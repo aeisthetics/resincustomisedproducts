@@ -50,7 +50,7 @@ CSS STRUCTURE:
 
 /* Fonts */
 :root {
-  --body-font: "Poppins", sans-serif;
+ 
   --heading-font: "Cinzel", sans-serif;
 }
 
@@ -73,7 +73,7 @@ html {
 }
 
 body {
-  font-family: var(--body-font);
+  font-family:"Cinzel", sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.6;
@@ -173,7 +173,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: var(--heading-font);
+  font-family:var(--heading-font);
 }
 
 /* - Section width
