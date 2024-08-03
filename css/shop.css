@@ -838,10 +838,10 @@ button.shoe-cart:hover {
 .single-right-left h3 {
     text-transform: capitalize;
     font-size: 23px;
-    color: #fb383b;
+    color: #000000;
     margin: 0;
     letter-spacing: 1px;
-    font-weight: 600;
+    font-weight: 800;
 }
 .single-right-left p{
     color: #000;
