@@ -1653,7 +1653,7 @@ p.head_para {
         -moz-background-size: cover;
         -o-background-size: cover;
         -moz-background-size: cover;
-        min-height: 400px;
+        min-height: 230px;
     }
     .error_page form {
         margin: 0 auto;
