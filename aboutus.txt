@@ -9,7 +9,10 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> main
 <section id="brand-collection" class="padding-small border-top border-bottom overflow-hidden margin-large mb-0">
       <div class="container">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
@@ -20,5 +23,9 @@
             <a href="#"><img src="images/brand-logo-5.svg" alt="brand"></a>
         </div>
       </div>
+<<<<<<< HEAD
     </section>
 >>>>>>> master
+=======
+    </section>
+>>>>>>> main
