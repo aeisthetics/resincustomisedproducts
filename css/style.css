@@ -1215,13 +1215,13 @@ color: #2fdab8;
 }
 /*-- //footer --*/
 .banner_top.innerpage {
-    background: url(../img/necklace3.jpg) no-repeat 0px -221px;
+    background: url(../img/gold1.jpg) no-repeat 0px -221px;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
-    min-height: 225px;
+    
 }
 .ads-grid_shop {
     padding: 6em 0;
@@ -1647,7 +1647,7 @@ p.head_para {
         padding: 2em 1em;
     }
     .banner_top.innerpage {
-        background: url(../img/necklace3.jpg) no-repeat 0px -21px;
+        background: url(../img/black1.jpg) no-repeat 0px -21px;
         background-size: cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
