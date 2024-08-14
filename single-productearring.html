@@ -106,9 +106,9 @@
     <header id="header" class="site-header text-black">
       <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
         <div class="container-fluid">
-          <a class="" href="index.html">
+          <a class="navbar-brand" href="index.html">
             <img src="img/logo1.jpg" style="height: 45px; width: 45px; border-radius: 58px; float: left;">
-            <h1 style="font-family: Poppins, sans-serif;font-weight:bolder;font-size: 40px; padding-left: 2px; float: left;">aeisthetics</h1>
+            <h1 style="color: black;font-weight:bolder;font-family: Poppins, sans-serif;padding-left: 2px;"></h1>
           </a>
           <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <svg class="navbar-icon" width="50" height="50">
@@ -119,23 +119,45 @@
             <div class="offcanvas-header px-4 pb-0">
               <a class="navbar-brand" href="index.html">
                 <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-                <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;">aeisthetics</h1>
+                <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;"></h1>
               </a>
               <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
             </div>
             <div class="offcanvas-body">
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                 <li class="nav-item dropdown">
-                  <a class="nav-link me-4" href="#billboard">Home</a>
-                
+                  <a class="nav-link dropdown-toggle" href="#billboard" id="dropdownPages" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">Home</a><ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
+                    <li>
+                      <a href="index.html" class="dropdown-item item-anchor">Homepage</a>
+                    </li>
+            
+                  </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link me-4" href="#about-us">About Us</a>
+                  <a class="nav-link me-4" href="index.html">About Us</a>
                 </li>
                 
                 <li class="nav-item dropdown me-4">
-                  <a class="nav-link me-4" href="#featured-products">products</a>
-                  
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">Products</a>
+                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
+                    <li>
+                      <a href="blog-classic.html" class="dropdown-item item-anchor">Paintings </a>
+                    </li>
+                    <li>
+                      <a href="blog-grid-four-column.html" class="dropdown-item item-anchor">Resin products </a>
+                    </li>
+                    <li>
+                      <a href="blog-with-sidebar.html" class="dropdown-item item-anchor">Bottle art</a>
+                    </li>
+                    <li>
+                      <a href="blog-with-sidebar.html" class="dropdown-item item-anchor">Digital art</a>
+                    </li>
+                    <li>
+                      <a href="blog-with-sidebar.html" class="dropdown-item item-anchor">Crochet</a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
@@ -249,7 +271,7 @@
       
       <ul class="short">
         <li><a href="index.html">Home</a><i>|</i></li>
-        <li>pendant necklace</li>
+        <li>Shop all</li>
       </ul>
     </div>
   </div>
@@ -266,14 +288,14 @@
 
           <ul class="slides">
             <li data-thumb="img/heart.jpg">
-              <div class="thumb-image"> <img src="img/heart.jpg" data-imagezoom="true" class="img-responsive"> </div>
+              <div class="thumb-image"> <img src="img/resinearrings.jpg" data-imagezoom="true" class="img-responsive"> </div>
             </li>
           </ul>
           <div class="clearfix"></div>
         </div>
       </div>
     </div>
-    <h3 class="display-2 text-dark text-uppercase">PENDANT NECKLACE</h3>
+    <h3 class="display-2 text-dark text-uppercase">EARRING</h3>
     <div class="col-md-8 single-right-left simpleCart_shelfItem">
         <div>
           <h1>customise:</h1>
@@ -281,7 +303,7 @@
             <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                <div class="nav-item dropdown">
             <a class="dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">CHAIN</a>
+            aria-haspopup="true" aria-expanded="false">COLOUR</a>
             <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages" >
               <li>
                 <input type="checkbox" style="margin-left: 10px;"> GOLD
@@ -292,33 +314,22 @@
               
             </ul>
             <br><a class="dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">SHAPE</a>
+            aria-haspopup="true" aria-expanded="false">METHOD OF PACKAGING</a>
             <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages" >
               <li>
-                <input type="checkbox" style="margin-left: 10px;"> ROUND
+                <input type="checkbox" style="margin-left: 10px;"> SIMPLE
               </li>
               <li>
-                <input type="checkbox" style="margin-left: 10px;" > SQUARE           
+                <input type="checkbox" style="margin-left: 10px;" > WITH GIFT BOX           
                  </li>
               
             </ul>
-           <br> <a class="dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">FLOWER</a>
-            <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages" >
-              <li>
-                <input type="checkbox" style="margin-left: 10px;"> SMALL
-              </li>
-              <li>
-                <input type="checkbox" style="margin-left: 10px;" > LARGE         
-                 </li>
-              
-            </ul>
-         
 
         </div>
           <p style="font-family: 'Poppins', sans-serif;"><span >450/-</span>
             <del>650/-</del>
           </p>
+          </li>
            </ul>
         
         
@@ -383,9 +394,7 @@
 
             <div class="single_page">
               <h6>About the product</h6>
-              <p>This minimalist pendant necklace features a sleek, understated pendant that adds a touch of elegance to any outfit. The pendant is crafted from high-quality metal and hangs effortlessly from a delicate chain. Its clean, simple design makes it a versatile accessory, perfect for both everyday wear and special occasions.The pendant features a delicate, intricately designed motif that captures light from every angle, creating a subtle shimmer. It acts a versatile accessory that can be worn with both casual and formal attire. The necklace is finished with a secure lobster clasp and an adjustable chain length, allowing for a customized fit.
-                Whether you're dressing up for a special occasion or adding a touch of sophistication to your everyday look, this pendant necklace is a stunning choice that will enhance any outfit with its understated grace.</p>
-              
+              <p>Add a personal touch to your jewelry collection with our Custom Earrings, where elegance meets individuality. These bespoke earrings are designed to reflect your unique style, whether you're marking a special occasion or simply enhancing your everyday look</p>
             </div>
           </div>
           <!--//tab_one-->
@@ -414,10 +423,9 @@
           <div class="tab3">
 
             <div class="single_page">
-              <h6>Pendant Necklace</h6>
-             <p>Size : 18 inch full length</p>
+              <h6>Earrings</h6>
              <p>Occasion : Perfect for daily usage,also suitable as party wear</p>
-             <p>Made from premium quality material,this product assures to remain in its original glory even after years of usage.</p>
+             <p>Comfortable Fit: Designed for all-day wear with secure clasps and a lightweight feel.</p>
             </div>
           </div>
         </div>
