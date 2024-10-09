@@ -1,3 +1,8 @@
+<?php
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -243,341 +248,40 @@
     <!-- /new_arrivals -->
     <div class="product-swiper col-md-12">
         <h3 class="display-2 text-dark text-uppercase">shop all</h3>
-      <!-- /womens -->
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-          <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-              <div class="image-holder">
-                   <div class="product-image img-fluid">
-					<a href="single-product.html" ><img src="img/necklace.jpg" alt=""></a>  
-                      <div class="men-cart-pro">
-                         <div class="inner-men-cart-pro">
-                               <a href="single-product.html" ></a>
-                          </div>
-                     </div>
+       
+      <!-- fetching products-->
+<?php
+$select_query="select * from `categories`";
+$result_query=mysqli_query($con,$select_query);
+//$row=mysqli_fetch_assoc($result_query);
+//echo $row['productname'];
+while($row=mysqli_fetch_assoc($result_query))
+{
+  $productid=$row['productid'];
+  $productname=$row['productname'];
+  $productimage=$row['image'];
+  echo " <div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two'>
+  <div class='product-card image-zoom-effect link-effect d-flex flex-wrap  >
+              <div class='image-holder'>
+                   <div class='product-image img-fluid'>
+				            	<a href='single-product.html' ><img src='img/necklace.jpg' alt=''></a>  
                  </div>
-                   <div class="cart-concern">
-                       <h3 class="card-title text-uppercase pt-3 text-primary">
-                          <a href="single-product.html" class="text-primary">Pendant necklace</a>
+                   <div class='cart-concern'>
+                       <h3 class='card-title text-uppercase pt-3 text-primary'>
+                          <a href='single-product.html' class='text-primary'>Pendant necklace</a>
                        </h3>
-                      <div class="cart-info">
+                      <div class='cart-info'>
                          <a><span>KNOW MORE</span></a>
                        </div>
                    </div>
               </div>
-          </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-          <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-              <div class="image-holder">
-                   <div class="product-image img-fluid">
-					<a href="single-productkeychain.html" ><img src="img/keychain.jpg" alt=""></a>  
-                      <div class="men-cart-pro">
-                         <div class="inner-men-cart-pro">
-                               <a href="single-productkeychain.html" ></a>
-                          </div>
-                     </div>
-                 </div>
-                   <div class="cart-concern">
-                       <h3 class="card-title text-uppercase pt-3 text-primary">
-                          <a href="single-productkeychain.html" class="text-primary">RESIN KEYCHAIN</a>
-                       </h3>
-                      <div class="cart-info">
-                         <a><span>KNOW MORE</span></a>
-                       </div>
-                   </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-        <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-            <div class="image-holder">
-                 <div class="product-image img-fluid">
-        <a href="single-producthairpin.html" ><img src="img/hair pin.jpg" alt=""></a>  
-                    <div class="men-cart-pro">
-                       <div class="inner-men-cart-pro">
-                             <a href="single-producthairpin.html" ></a>
-                        </div>
-                   </div>
-               </div>
-                 <div class="cart-concern">
-                     <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-producthairpin.html" class="text-primary">HAIR PIN</a>
-                     </h3>
-                    <div class="cart-info">
-                       <a><span>KNOW MORE</span></a>
-                     </div>
-                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-      <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-          <div class="image-holder">
-               <div class="product-image img-fluid">
-      <a href="single-productearring.html" ><img src="img/earring.jpg" alt=""></a>  
-                  <div class="men-cart-pro">
-                     <div class="inner-men-cart-pro">
-                           <a href="single-productearring.html" ></a>
-                      </div>
-                 </div>
-             </div>
-               <div class="cart-concern">
-                   <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-productearring.html" class="text-primary">EARRING</a>
-                   </h3>
-                  <div class="cart-info">
-                     <a><span>KNOW MORE</span></a>
-                   </div>
-               </div>
-          </div>
-      </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-    <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-        <div class="image-holder">
-             <div class="product-image img-fluid">
-    <a href="single-productcoaster.html" ><img src="img/hexa.jpg" alt=""></a>  
-                <div class="men-cart-pro">
-                   <div class="inner-men-cart-pro">
-                         <a href="single-productcoaster.html" ></a>
-                    </div>
-               </div>
-           </div>
-             <div class="cart-concern">
-                 <h3 class="card-title text-uppercase pt-3 text-primary">
-                    <a href="single-productcoaster.html" class="text-primary">COASTER</a>
-                 </h3>
-                <div class="cart-info">
-                   <a><span>KNOW MORE</span></a>
-                 </div>
-             </div>
-        </div>
-    </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-      <div class="image-holder">
-           <div class="product-image img-fluid">
-  <a href="single-productbookmark.html" ><img src="img/bookmark.jpg" alt=""></a>  
-              <div class="men-cart-pro">
-                 <div class="inner-men-cart-pro">
-                       <a href="single-productbookmark.html" ></a>
-                  </div>
-             </div>
-         </div>
-           <div class="cart-concern">
-               <h3 class="card-title text-uppercase pt-3 text-primary">
-                  <a href="single-productbookmark.html" class="text-primary">BOOKMARK</a>
-               </h3>
-              <div class="cart-info">
-                 <a><span>KNOW MORE</span></a>
-               </div>
-           </div>
-      </div>
-  </div>
-</div>
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-      <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-          <div class="image-holder">
-               <div class="product-image img-fluid">
-      <a href="single-productbracelet.html" ><img src="img/bracelet.jpg" alt=""></a>  
-                  <div class="men-cart-pro">
-                     <div class="inner-men-cart-pro">
-                           <a href="single-productbracelet.html" ></a>
-                      </div>
-                 </div>
-             </div>
-               <div class="cart-concern">
-                   <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-productbracelet.html" class="text-primary">BRACELET</a>
-                   </h3>
-                  <div class="cart-info">
-                     <a><span>KNOW MORE</span></a>
-                   </div>
-               </div>
-          </div>
-      </div>
-  </div>
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-      <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-          <div class="image-holder">
-               <div class="product-image img-fluid">
-      <a href="single-productring.html" ><img src="img/ring.jpg" alt=""></a>  
-                  <div class="men-cart-pro">
-                     <div class="inner-men-cart-pro">
-                           <a href="single-productring.html" ></a>
-                      </div>
-                 </div>
-             </div>
-               <div class="cart-concern">
-                   <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-productring.html" class="text-primary">RING</a>
-                   </h3>
-                  <div class="cart-info">
-                     <a><span>KNOW MORE</span></a>
-                   </div>
-               </div>
-          </div>
-      </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-    <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-        <div class="image-holder">
-             <div class="product-image img-fluid">
-    <a href="single-productlamp.html" ><img src="img/lamp.jpg" alt=""></a>  
-                <div class="men-cart-pro">
-                   <div class="inner-men-cart-pro">
-                         <a href="single-productlamp.html" ></a>
-                    </div>
-               </div>
-           </div>
-             <div class="cart-concern">
-                 <h3 class="card-title text-uppercase pt-3 text-primary">
-                    <a href="single-productlamp.html" class="text-primary">lamp</a>
-                 </h3>
-                <div class="cart-info">
-                   <a><span>KNOW MORE</span></a>
-                 </div>
-             </div>
-        </div>
-    </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-      <div class="image-holder">
-           <div class="product-image img-fluid">
-  <a href="single-product.html" ><img src="img/pen.jpg" alt=""></a>  
-              <div class="men-cart-pro">
-                 <div class="inner-men-cart-pro">
-                       <a href="single-product.html" ></a>
-                  </div>
-             </div>
-         </div>
-           <div class="cart-concern">
-               <h3 class="card-title text-uppercase pt-3 text-primary">
-                  <a href="single-product.html" class="text-primary">Pen</a>
-               </h3>
-              <div class="cart-info">
-                 <a><span>KNOW MORE</span></a>
-               </div>
-           </div>
-      </div>
-  </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-      <div class="image-holder">
-           <div class="product-image img-fluid">
-  <a href="single-productA4journal.html" ><img src="img/journel.jpg" alt=""></a>  
-              <div class="men-cart-pro">
-                 <div class="inner-men-cart-pro">
-                       <a href="single-productA4journal.html" ></a>
-                  </div>
-             </div>
-         </div>
-           <div class="cart-concern">
-               <h3 class="card-title text-uppercase pt-3 text-primary">
-                  <a href="single-productA4journal.html" class="text-primary">PA4 JOURNEL</a>
-               </h3>
-              <div class="cart-info">
-                 <a><span>KNOW MORE</span></a>
-               </div>
-           </div>
-      </div>
-  </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-      <div class="image-holder">
-           <div class="product-image img-fluid">
-  <a href="single-productphonecase.html" ><img src="img/phne casew.jpg" alt=""></a>  
-              <div class="men-cart-pro">
-                 <div class="inner-men-cart-pro">
-                       <a href="single-productphonecase.html" ></a>
-                  </div>
-             </div>
-         </div>
-           <div class="cart-concern">
-               <h3 class="card-title text-uppercase pt-3 text-primary">
-                  <a href="single-productphonecase.html" class="text-primary">PHONE CASE</a>
-               </h3>
-              <div class="cart-info">
-                 <a><span>KNOW MORE</span></a>
-               </div>
-           </div>
-      </div>
-  </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-      <div class="image-holder">
-           <div class="product-image img-fluid">
-  <a href="single-productpopup.html" ><img src="img/heart pop.jpg" alt=""></a>  
-              <div class="men-cart-pro">
-                 <div class="inner-men-cart-pro">
-                       <a href="single-productpopup.html" ></a>
-                  </div>
-             </div>
-         </div>
-           <div class="cart-concern">
-               <h3 class="card-title text-uppercase pt-3 text-primary">
-                  <a href="single-productpopup.html" class="text-primary">POP UP SOCKET</a>
-               </h3>
-              <div class="cart-info">
-                 <a><span>KNOW MORE</span></a>
-               </div>
-           </div>
-      </div>
-  </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-      <div class="image-holder">
-           <div class="product-image img-fluid">
-  <a href="single-productholder.html" ><img src="img/hd.jpg" alt=""></a>  
-              <div class="men-cart-pro">
-                 <div class="inner-men-cart-pro">
-                       <a href="single-productholder.html" ></a>
-                  </div>
-             </div>
-         </div>
-           <div class="cart-concern">
-               <h3 class="card-title text-uppercase pt-3 text-primary">
-                  <a href="single-productholder.html" class="text-primary">PeN HOLDER</a>
-               </h3>
-              <div class="cart-info">
-                 <a><span>KNOW MORE</span></a>
-               </div>
-           </div>
-      </div>
-  </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two">
-  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-      <div class="image-holder">
-           <div class="product-image img-fluid">
-  <a href="single-productclock.html" ><img src="img/ck.jpg" alt=""></a>  
-              <div class="men-cart-pro">
-                 <div class="inner-men-cart-pro">
-                       <a href="single-productclock.html" ></a>
-                  </div>
-             </div>
-         </div>
-           <div class="cart-concern">
-               <h3 class="card-title text-uppercase pt-3 text-primary">
-                  <a href="single-productclock.html" class="text-primary">CLOCK</a>
-               </h3>
-              <div class="cart-info">
-                 <a><span>KNOW MORE</span></a>
-               </div>
-           </div>
-      </div>
-  </div>
-</div>
+          </div>";
+}
+?>
 
-    
-    
-
+      
+          
+      </div>
 </div>
   
 
