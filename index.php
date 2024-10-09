@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
     <!-- script
     ================================================== -->
     <script src="js/modernizr.js"></script>
@@ -223,6 +223,7 @@
 
     <section >
       <div class="container-fluid">
+
         <div class="row align-items-center justify-content-between g-5">
           <div class="col-lg-6">
             <div class="image-holder mb-4 jarallax">
