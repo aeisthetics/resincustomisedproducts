@@ -3,12 +3,11 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
 
 if (isset($_POST['add'])) {
     $productname = $_POST['productname'];
-
+    $productdescription = $_POST['description'];
+    $productkeyword = $_POST['keywords'];
+    $productprice = $_POST['price'];
     // Check if product name is empty
-    if ($productname == '') {
-        echo "<script>alert('FILL ALL FIELDS')</script>";
-        exit();
-    }
+    
 
     // Check if a file was uploaded
     if (isset($_FILES['productimage'])) {
@@ -20,8 +19,8 @@ if (isset($_POST['add'])) {
             // Move the uploaded file
             if (move_uploaded_file($tmpimage, "./productimages/$productimage")) {
                 // Insert product into the database
-                $insert_products = "INSERT INTO categories (productname, image) VALUES ('$productname', '$productimage')";
-                $res = mysqli_query($con, $insert_products);
+                $add_products = "INSERT INTO products(productname,description,keywords, image,price) VALUES ('$productname','$productdescription','$productkeyword', '$productimage','$productprice')";
+                $res = mysqli_query($con, $add_products);
                 
                 if ($res) {
                     echo "<script>alert('Product inserted')</script>";
@@ -56,20 +55,48 @@ if (isset($_POST['add'])) {
 <body class="bg-body">
 
     <div class="col-md-8 address_form m-auto" style="padding-left: 20px; padding-top:30px">
-        <h2>Add a new category</h2>
+        <h2>Add item</h2>
         <form action="" method="post" enctype="multipart/form-data" class="creditly-card-form agileinfo_form">
             <section class="creditly-wrapper wrapper">
                 <div class="information-wrapper">
                     <div class="first-row form-group">
+                    <div class="controls">
+                   
+                   <select name="productname" id="" class="form-select">
+                                     <option value="" >Product name</option>
+                   <?php
+                                 $select_query="Select * from`categories`";
+                                 $result_query=mysqli_query($con,$select_query);
+                                 while($row=mysqli_fetch_assoc($result_query)){
+                                     $productname=$row['productname'];
+                                     $productid=$row['productid'];
+                                     echo "<option value='$productid'>$productname</option>";
+                                 }
+                                 ?>
+                 </div>
+                    </div>
+                    <div class="first-row form-group">
                         <div class="controls">
-                            <label class="control-label">Product name</label>
-                            <input class="billing-address-name form-control" type="text" name="productname" placeholder="Product name" required>
+                            <label class="control-label">Product description</label>
+                            <input class="billing-address-name form-control" type="text" name="description" placeholder="Product description" required>
+                        </div>
+                    </div>
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Product keywords</label>
+                            <input class="billing-address-name form-control" type="text" name="keywords" placeholder="Productkeywords" required>
                         </div>
                     </div>
                     <div class="first-row form-group">
                         <div class="controls">
                             <label for="productimage" class="control-label">Product Image</label>
                             <input class="form-control" type="file" name="productimage" required>
+                        </div>
+                    </div>
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Product price</label>
+                            <input class="billing-address-name form-control" type="text" name="price" placeholder="Product price" required>
                         </div>
                     </div>
                     <input type="submit" class="submit check_out p-1 my-3" name="add" value="Add item">
