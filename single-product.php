@@ -1,3 +1,8 @@
+<?php
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>

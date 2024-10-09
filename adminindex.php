@@ -72,7 +72,7 @@
         </div>
          <div class="" style="padding-left:20px" >
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?additem">PRODUCT CATEGORIES</a></button>
-       <button style="font-family: Cinzel, sans-serif;"><a href="">VIEW CATEGORIES</a></button>
+       <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?viewcategory">VIEW CATEGORIES</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?customise">ADD ITEM</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="">VIEW ITEM</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="">ALL ORDERS</a></button>
@@ -87,6 +87,10 @@
     <?php
     if(isset($_GET['additem'])){
       include('additem.php');
+      
+    }if(isset($_GET['viewcategory'])){
+      include('extra.php');
+      
     }
     if(isset($_GET['customise'])){
       include('customise.php');
@@ -95,28 +99,6 @@
    </div>
    
    
-
-    <footer id="footer" class="overflow-hidden padding-large" style="padding-top: 100px; position:absolute">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="row d-flex flex-wrap justify-content-between">
-            <div class="col-lg-3 col-sm-6 pb-3 pe-4">
-              <div class="footer-menu">
-               
-                <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-               <br><br> <p>aeisthetics</p>
-              </div>
-              <div class="copyright">
-                <p>©Copyright 2023. 
-                </p>
-              </div>
-            </div>
-           
-         
-          </div>
-        </div>
-      </div>
-    </footer>
 
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
