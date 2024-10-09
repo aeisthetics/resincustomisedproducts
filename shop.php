@@ -264,11 +264,11 @@ while($row=mysqli_fetch_assoc($result_query))
   <div class='product-card image-zoom-effect link-effect d-flex flex-wrap  >
               <div class='image-holder'>
                    <div class='product-image img-fluid'>
-				            	<a href='single-product.html' ><img src='img/necklace.jpg' alt=''></a>  
+				            	<a href='single-product.html' ><img src='./productimages/$productimage' alt=' $productname'></a>  
                  </div>
                    <div class='cart-concern'>
                        <h3 class='card-title text-uppercase pt-3 text-primary'>
-                          <a href='single-product.html' class='text-primary'>Pendant necklace</a>
+                          <a href='single-product.html' class='text-primary'> $productname</a>
                        </h3>
                       <div class='cart-info'>
                          <a><span>KNOW MORE</span></a>
