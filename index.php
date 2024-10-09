@@ -1,3 +1,7 @@
+<?php
+include('C:\xampp\htdocs\aeisthetics\includes\connect.php');
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
     <!-- script
     ================================================== -->
     <script src="js/modernizr.js"></script>
@@ -160,7 +164,7 @@
                         <a href="checkout.html">
                           <svg class="cart" width="18" height="18">
                             <use xlink:href="#cart"></use>
-                          </svg>
+                          </svg><sup>1</sup>
                         </a>
                       </li>
                     </ul>
@@ -271,273 +275,41 @@
             </a>
           </div>
         </div>
-        <div class="row">
-          <div id="featured-swiper" class="product-swiper col-md-12">
-            <div class="swiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                       <a href="single-product.html" ><img src="img/necklace.jpg" alt="product-item" class="product-image img-fluid"></a>
+<?php
+        $select_products="Select * from `products`";
+        $result_products=mysqli_query($con,$select_products);
+        $row_data=mysqli_fetch_assoc($result_products);
+       // echo $row_data['productname'];
+while($row_data=mysqli_fetch_assoc($result_products)){
+  $productname=$row_data['productname'];
+  $productid=$row_data['productid'];
+  echo "<div class='row' style='width:200px; display:grid'>
+            <div id='featured-swiper' class='product-swiper col-md-12'>
+               <div class='swiper'>
+                    <div class='swiper-slide'>
+                        <div class='product-card image-zoom-effect link-effect d-flex flex-wrap'>
+                        <div class='image-holder'>
+                       <a href='index.php?product=$productid' ><img src='img/necklace.jpg' alt='product-item' class='product-image img-fluid'></a>
 
                     </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Pendant necklace</a>
+                    <div class='cart-concern'>
+                      <h3 class='card-title text-uppercase pt-3 text-primary'>
+                        <a href='index.php?product=$productid' class='text-primary'>$productname</a>
 
                       </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="" data-after="know more"><span>299/-</span></a>
-                      </div>
+                    
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productkeychain.html"> <img src="img/keychain.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-productkeychain.html" class="text-primary">Resin keychains</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>200/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-producthairpin.html" > <img src="img/hair pin.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-producthairpin.html" class="text-primary">Hair Pin</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>149/(per pc)-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productearring.html" >  <img src="img/earring.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Earrings</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>199/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productcoaster.html" ><img src="img/hexa.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Coaster</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>789/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productbookmark.html" >  <img src="img/bookmark.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Bookmarks</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>229/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productbracelet.html" >  <img src="img/bracelet.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Bracelets</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>399/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productring.html" ></a><img src="img/ring.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Rings</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>99/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productlamp.html" > <img src="img/lamp.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Lamps</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>2799/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-product.html" ></a><img src="img/pen.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Pen</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>78/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productA4journal.html" > <img src="img/journel.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">A4 journals</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>1249/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div> 
-
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productphonecase.html" > <img src="img/phne case.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Phone Case</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>449/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productpopup.html" > <img src="img/heart pop.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Pop Up Socket</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>249/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productholder.html" > <img src="img/hd.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Pen holder</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>599/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div> <div class="swiper-slide">
-                  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                    <div class="image-holder">
-                      <a href="single-productclock.html" >  <img src="img/ck.jpg" alt="product-item" class="product-image img-fluid">
-                    </div>
-                    <div class="cart-concern">
-                      <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-product.html" class="text-primary">Clock</a>
-                      </h3>
-                      <div class="cart-info">
-                        <a class="pseudo-text-effect" href="#" data-after="know more">
-                          <span>3499/-</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
-            </div>
-            <div class="swiper-pagination text-center mt-5"></div>
           </div>
-        </div>
-      </div>      
-    </section>
+         
+       </div>";
+}
 
+
+        ?>
     <section id="testimonials" class="position-relative">
       <div class="container">
         <div class="row">
