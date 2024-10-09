@@ -45,19 +45,20 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
   <body class="bg-body" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
     
 
-    <!-- /new_arrivals -->
-    <div class="product-swiper col-md-12">
+ 
+       
+  <div class="product-swiper col-md-12">
        
        
-      <!-- fetching products-->
-<?php
-getproducts();
-?>
-
-      
-          
-      </div>
-
+       <!-- fetching products-->
+ <?php
+ getdetails();
+ ?>
+ 
+       
+           
+       </div>
+ 
   
 
 <!-- //top products -->

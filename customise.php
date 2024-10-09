@@ -3,10 +3,10 @@
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
 
 if (isset($_POST['add'])) {
-    $productid = $_POST['productname']; // Holds the selected product's category id
-    $productdescription = $_POST['description'];
-    $productkeyword = $_POST['keywords'];
-    $productprice = $_POST['price'];
+    $productid = mysqli_real_escape_string($con, $_POST['productname']); // Holds the selected product's category id
+    $productdescription = mysqli_real_escape_string($con, $_POST['description']);
+    $productkeyword = mysqli_real_escape_string($con, $_POST['keywords']);
+    $productprice = mysqli_real_escape_string($con, $_POST['price']);
 
     // Check if a file was uploaded
     if (isset($_FILES['productimage'])) {
@@ -18,10 +18,9 @@ if (isset($_POST['add'])) {
             // Move the uploaded file to the specified directory
             if (move_uploaded_file($tmpimage, "./productimages/$productimage")) {
                 // Insert product into the database
-                $add_products = "INSERT INTO products (productname, description,keywords, image, price) VALUES ('$productid', '$productdescription', '$productkeyword','$productimage', '$productprice')";
-                $res = mysqli_query($con, $add_products);
-
-                if ($res) {
+                $add_products = "INSERT INTO products (productname, description, keywords, image, price) VALUES ('$productid', '$productdescription', '$productkeyword', '$productimage', '$productprice')";
+                
+                if (mysqli_query($con, $add_products)) {
                     echo "<script>alert('Product inserted successfully')</script>";
                 } else {
                     echo "<script>alert('Database error: " . mysqli_error($con) . "')</script>";
@@ -59,7 +58,7 @@ if (isset($_POST['add'])) {
                 <div class="information-wrapper">
                     <div class="first-row form-group">
                         <div class="controls">
-                            <select name="productname" id="" class="form-select">
+                            <select name="productname" class="form-select" required>
                                 <option value="">Select Product Name</option>
                                 <?php
                                     // Fetching categories from the database
@@ -67,7 +66,6 @@ if (isset($_POST['add'])) {
                                     $result_query = mysqli_query($con, $select_query);
                                     while($row = mysqli_fetch_assoc($result_query)) {
                                         $productname = $row['productname'];
-                                        $productid = $row['productid'];
                                         echo "<option value='$productname'>$productname</option>";
                                     }
                                 ?>
@@ -83,7 +81,7 @@ if (isset($_POST['add'])) {
                     <div class="first-row form-group">
                         <div class="controls">
                             <label class="control-label">Product keywords</label>
-                            <input class="billing-address-name form-control" type="text" name="keywords" placeholder="Productkeywords" required>
+                            <input class="billing-address-name form-control" type="text" name="keywords" placeholder="Product keywords" required>
                         </div>
                     </div>
                     <div class="first-row form-group">

@@ -1,5 +1,6 @@
 <?php
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 ?>
 
 
@@ -246,6 +247,9 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
 
 <!-- //banner -->
  <!-- top Products -->
+  <?php
+  
+  ?>
  <div class="ads-grid_shop">
   <div class="shop_inner_inf">
     <div class="col-md-4 single-right-left ">

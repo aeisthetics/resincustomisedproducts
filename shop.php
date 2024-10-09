@@ -1,5 +1,6 @@
 <?php
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 ?>
 
 
@@ -251,32 +252,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
        
       <!-- fetching products-->
 <?php
-$select_query="select * from `categories`";
-$result_query=mysqli_query($con,$select_query);
-//$row=mysqli_fetch_assoc($result_query);
-//echo $row['productname'];
-while($row=mysqli_fetch_assoc($result_query))
-{
-  $productid=$row['productid'];
-  $productname=$row['productname'];
-  $productimage=$row['image'];
-  echo " <div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two'>
-  <div class='product-card image-zoom-effect link-effect d-flex flex-wrap  >
-              <div class='image-holder'>
-                   <div class='product-image img-fluid'>
-				            	<a href='single-product.html' ><img src='./productimages/$productimage' alt=' $productname'></a>  
-                 </div>
-                   <div class='cart-concern'>
-                       <h3 class='card-title text-uppercase pt-3 text-primary'>
-                          <a href='single-product.html' class='text-primary'> $productname</a>
-                       </h3>
-                      <div class='cart-info'>
-                         <a><span>KNOW MORE</span></a>
-                       </div>
-                   </div>
-              </div>
-          </div>";
-}
+getproducts();
 ?>
 
       
