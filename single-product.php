@@ -247,109 +247,18 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 
 <!-- //banner -->
  <!-- top Products -->
+ <div class="product-swiper col-md-12">
+       
+       
+       <!-- fetching products-->
+ <?php
+viewdetails();
+ ?>
  
- 
-    <!--//tabs-->
-    <?php
-  getproductdetails();
-  ?>
-
-
-    <!-- /new_arrivals -->
-    <div class="new_arrivals">
-      <h3>also shop</h3>
-      <!-- /womens -->
-      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3 product-men women_two">
-        <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-            <div class="image-holder">
-                 <div class="product-image img-fluid">
-        <a href="single-productkeychain.html" ><img src="img/keychain.jpg" alt=""></a>  
-                    <div class="men-cart-pro">
-                       <div class="inner-men-cart-pro">
-                             <a href="single-productkeychain.html" ></a>
-                        </div>
-                   </div>
-               </div>
-                 <div class="cart-concern">
-                     <h3 class="card-title text-uppercase pt-3 text-primary">
-                        <a href="single-productkeychain.html" class="text-primary">keychains</a>
-                     </h3>
-                    <div class="cart-info">
-                       <a><span>KNOW MORE</span></a>
-                     </div>
-                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3 product-men women_two">
-      <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-          <div class="image-holder">
-               <div class="product-image img-fluid">
-      <a href="single-producthairpin.html" ><img src="img/hair pin.jpg" alt=""></a>  
-                  <div class="men-cart-pro">
-                     <div class="inner-men-cart-pro">
-                           <a href="single-producthairpin.html" ></a>
-                      </div>
-                 </div>
-             </div>
-               <div class="cart-concern">
-                   <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-producthairpin.html" class="text-primary">Hairpins</a>
-                   </h3>
-                  <div class="cart-info">
-                     <a><span>KNOW MORE</span></a>
-                   </div>
-               </div>
-          </div>
-      </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3 product-men women_two">
-    <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-        <div class="image-holder">
-             <div class="product-image img-fluid">
-    <a href="single-productearring.html" ><img src="img/earring.jpg" alt=""></a>  
-                <div class="men-cart-pro">
-                   <div class="inner-men-cart-pro">
-                         <a href="single-productearring.html" ></a>
-                    </div>
-               </div>
-           </div>
-           <div class="cart-concern">
-            <h3 class="card-title text-uppercase pt-3 text-primary">
-              <a href="single-productearring.html" class="text-primary">Earrings</a>
-            </h3>
-            <div class="cart-info">
-              <a >
-                <span>KNOW MORE</span>
-              </a>
-            </div>
-          </div>
-        </div>
-    </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3 product-men women_two">
-  <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-      <div class="image-holder">
-           <div class="product-image img-fluid">
-  <a href="single-productcoaster.html" ><img src="img/hexa.jpg" alt=""></a>  
-              <div class="men-cart-pro">
-                 <div class="inner-men-cart-pro">
-                       <a href="single-productcoaster.html" ></a>
-                  </div>
-             </div>
-         </div>
-           <div class="cart-concern">
-               <h3 class="card-title text-uppercase pt-3 text-primary">
-                  <a href="single-productcoaster.html" class="text-primary">Coaster</a>
-               </h3>
-              <div class="cart-info">
-                 <a ><span>KNOW MORE</span></a>
-               </div>
-           </div>
-      </div>
-  </div>
-</div>
-      
+       
+           
+       </div>
+   
                 
 
       <!-- //womens -->
@@ -364,80 +273,79 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
     
 
  
-<footer id="footer" class="overflow-hidden padding-large">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="row d-flex flex-wrap justify-content-between">
-        <div class="col-lg-3 col-sm-6 pb-3 pe-4">
-          <div class="footer-menu">
-           
-            <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-           <br><br><br>
-            <p>aeisthetics</p>
-          </div>
-          <div class="copyright">
-            <p>© Copyright 2023. 
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-2 col-sm-6 pb-3">
-          <div class="footer-menu text-uppercase">
-            <h5 class="widget-title pb-2">Quick Links</h5>
-            <ul class="menu-list list-unstyled text-uppercase">
-              <li class="menu-item pb-2">
-                <a href="#billboard">Home</a>
-              </li>
-              <li class="menu-item pb-2">
-                <a href="#about-us">About</a>
-              </li>
-              <li class="menu-item pb-2">
-                <a href="#company-services">Services</a>
-              </li>
-              <li class="menu-item pb-2">
-                <a href="#latest-blog">Blogs</a>
-              </li>
-              <li class="menu-item pb-2">
-                <a href="#contact">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-2 col-sm-6 pb-3">
-          <div class="footer-menu text-uppercase">
-            <h5 class="widget-title pb-2">Social</h5>
-            <div class="social-links">
-              <ul class="list-unstyled">
-                <li class="pb-2">
-                  <a href="#">Facebook</a>
-                </li>
-                <li class="pb-2">
-                  <a href="#">Twitter</a>
-                </li>
-                <li class="pb-2">
-                  <a href="#">Pinterest</a>
-                </li>
-                <li class="pb-2">
-                  <a href="https://www.instagram.com/aeisthetics/">Instagram</a>
-                </li>
-                <li>
-                  <a href="#">Youtube</a>
-                </li>
-              </ul>
+<footer id="footer" class="overflow-hidden ">
+      <div class="container-fluid"  >
+        <div class="row">
+          <div class="row d-flex flex-wrap justify-content-between" style="padding-top:70px">
+            <div class="col-lg-3 col-sm-6 pb-3 pe-4">
+              <div class="footer-menu">
+               
+                <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
+               <br><br> <p>aeisthetics</p>
+              </div>
+              <div class="copyright">
+                <p>© Copyright 2023. 
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 pb-3">
+              <div class="footer-menu text-uppercase">
+                <h5 class="widget-title pb-2">Quick Links</h5>
+                <ul class="menu-list list-unstyled text-uppercase">
+                  <li class="menu-item pb-2">
+                    <a href="#billboard">Home</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="#about-us">About</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="#company-services">Services</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="#latest-blog">Blogs</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="#contact">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 pb-3">
+              <div class="footer-menu text-uppercase">
+                <h5 class="widget-title pb-2">Social</h5>
+                <div class="social-links">
+                  <ul class="list-unstyled">
+                    <li class="pb-2">
+                      <a href="#">Facebook</a>
+                    </li>
+                    <li class="pb-2">
+                      <a href="#">Twitter</a>
+                    </li>
+                    <li class="pb-2">
+                      <a href="#">Pinterest</a>
+                    </li>
+                    <li class="pb-2">
+                      <a href="https://www.instagram.com/aeisthetics/">Instagram</a>
+                    </li>
+                    <li>
+                      <a href="#">Youtube</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+           <div class="col-lg-3 col-sm-6">
+              <div class="footer-menu contact-item">
+                <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
+                <p><a href="">+91 7594906015</a></p>
+                <p><a href="mailto:">aeistheticsartworks@gmail.com</a></p>
+                <p>Power House Link Road,Palarivattom<br>Ernakulam,kerala<br>682025<br></p>
+              </div>
             </div>
           </div>
         </div>
-       <div class="col-lg-3 col-sm-6">
-          <div class="footer-menu contact-item">
-            <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
-            <p><a href="">+91 7594906015</a></p>
-            <p><a href="mailto:">aeistheticsartworks@gmail.com</a></p>
-            <p>Power House Link Road,Palarivattom<br>Ernakulam,kerala<br>682025<br></p>
-          </div>
-        </div>
       </div>
-    </div>
-  </div>
-</footer>
+    </footer>
 
 <script src="js/jquery-1.11.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

@@ -252,7 +252,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
        
       <!-- fetching products-->
 <?php
-getproducts();
+getdetails();
 ?>
 
       
@@ -265,17 +265,16 @@ getproducts();
     
 
  
-<section class="col-lg-12 col-sm-6 col-md-12 col-xs-6">
-    <footer id="footer" class="overflow-hidden padding-large">
-      <div class="container-fluid">
+
+<footer id="footer" class="overflow-hidden ">
+      <div class="container-fluid"  >
         <div class="row">
-          <div class="row d-flex flex-wrap justify-content-between">
+          <div class="row d-flex flex-wrap justify-content-between" style="padding-top:70px">
             <div class="col-lg-3 col-sm-6 pb-3 pe-4">
               <div class="footer-menu">
                
                 <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-               <br><br><br>
-                <p>aeisthetics</p>
+               <br><br> <p>aeisthetics</p>
               </div>
               <div class="copyright">
                 <p>© Copyright 2023. 
@@ -340,7 +339,7 @@ getproducts();
         </div>
       </div>
     </footer>
-    </section>
+
     
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

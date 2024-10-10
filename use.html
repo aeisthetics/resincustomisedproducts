@@ -1946,3 +1946,151 @@ function searchproducts()
     }
 }
 }
+
+
+
+
+function viewdetails()
+{
+    global $con;
+    if(isset($_GET['productid'])){
+    if(!isset($_GET['categories'])){
+        if(!isset($_GET['products'])){
+            $idproduct=$_GET['productid'];
+    $select_query = "SELECT * FROM `products` where productid=$idproduct";
+    $result_query = mysqli_query($con, $select_query);
+
+    while ($row = mysqli_fetch_assoc($result_query)) {
+        $productid = $row['productid'];
+        $productname = $row['productname'];
+        $productdescription = isset($row['description']) ? $row['description'] : 'No description available';
+        $productprice = isset($row['price']) ? $row['price'] : 'Price not available';
+        $productimage = $row['image'];
+
+        echo "   <div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two'>
+            <div class='product-card  link-effect d-flex flex-wrap'>
+        <div class='product-details'>
+            <h1 class='product-name'>$productname</h1>
+           
+          <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
+            <p class='product-description'>$productdescription</p>
+            <h2 class='product-price'>Price: $$productprice</h2>
+            <div class='cart-info'>
+                        <a href='single-product.php?productid=<?php echo $productid; ?>'>KNOW MORE</a>
+
+                            
+                        </div>
+        </div>
+        </div>
+        </div>";
+    }
+        
+}
+    }
+}
+}
+
+
+<?php
+// Database connection
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+
+if (isset($_POST['add'])) {
+    $productid = mysqli_real_escape_string($con, $_POST['productid']); // Holds the selected product's category id
+    $productname = mysqli_real_escape_string($con, $_POST['productname']);
+    $productdescription = mysqli_real_escape_string($con, $_POST['description']);
+    $productkeyword = mysqli_real_escape_string($con, $_POST['keywords']);
+    $productprice = mysqli_real_escape_string($con, $_POST['price']);
+
+    // Check if a file was uploaded
+    if (isset($_FILES['productimage'])) {
+        $productimage = $_FILES['productimage']['name'];
+        $tmpimage = $_FILES['productimage']['tmp_name'];
+
+        // Check for upload errors
+        if ($_FILES['productimage']['error'] === UPLOAD_ERR_OK) {
+            // Move the uploaded file to the specified directory
+            if (move_uploaded_file($tmpimage, "./productimages/$productimage")) {
+                // Insert product into the database
+                $add_products = "INSERT INTO products (productname, description, keywords, image, price) VALUES ('$productid', '$productdescription', '$productkeyword', '$productimage', '$productprice')";
+                
+                if (mysqli_query($con, $add_products)) {
+                    echo "<script>alert('Product inserted successfully')</script>";
+                } else {
+                    echo "<script>alert('Database error: " . mysqli_error($con) . "')</script>";
+                }
+            } else {
+                echo "<script>alert('Error moving the uploaded file.')</script>";
+            }
+        } else {
+            echo "<script>alert('File upload error: " . $_FILES['productimage']['error'] . "')</script>";
+        }
+    } else {
+        echo "<script>alert('No file uploaded.')</script>";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aesthetics</title>
+    <link rel="icon" href="img/logo.jpg" type="image/gif" sizes="16x16" style="border-radius:700px;">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script src="js/modernizr.js"></script>
+</head>
+<body class="bg-body">
+    <div class="col-md-8 address_form m-auto" style="padding-left: 20px; padding-top:30px">
+        <h2>Add item</h2>
+        <form action="" method="post" enctype="multipart/form-data" class="creditly-card-form agileinfo_form">
+            <section class="creditly-wrapper wrapper">
+                <div class="information-wrapper">
+                <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Product name</label>
+                            <input class="billing-address-name form-control" type="text" name="name" placeholder="Product name" required>
+                        </div>
+                    </div>
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Product description</label>
+                            <input class="billing-address-name form-control" type="text" name="description" placeholder="Product description" required>
+                        </div>
+                    </div>
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Product keywords</label>
+                            <input class="billing-address-name form-control" type="text" name="keywords" placeholder="Product keywords" required>
+                        </div>
+                    </div>
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label for="productimage" class="control-label">Product Image</label>
+                            <input class="form-control" type="file" name="productimage" required>
+                        </div>
+                    </div>
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Product price</label>
+                            <input class="billing-address-name form-control" type="text" name="price" placeholder="Product price" required>
+                        </div>
+                    </div>
+                    <input type="submit" class="submit check_out p-1 my-3" name="add" value="Add item">
+                </div>
+            </section>
+        </form>
+    </div>
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/plugins.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
+

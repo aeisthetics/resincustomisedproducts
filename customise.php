@@ -3,36 +3,32 @@
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
 
 if (isset($_POST['add'])) {
-    $productid = mysqli_real_escape_string($con, $_POST['productname']); // Holds the selected product's category id
+    // Accessing the correct POST keys based on your form's input names
+    $productname = mysqli_real_escape_string($con, $_POST['name']);
     $productdescription = mysqli_real_escape_string($con, $_POST['description']);
     $productkeyword = mysqli_real_escape_string($con, $_POST['keywords']);
     $productprice = mysqli_real_escape_string($con, $_POST['price']);
 
     // Check if a file was uploaded
-    if (isset($_FILES['productimage'])) {
+    if (isset($_FILES['productimage']) && $_FILES['productimage']['error'] === UPLOAD_ERR_OK) {
         $productimage = $_FILES['productimage']['name'];
         $tmpimage = $_FILES['productimage']['tmp_name'];
 
-        // Check for upload errors
-        if ($_FILES['productimage']['error'] === UPLOAD_ERR_OK) {
-            // Move the uploaded file to the specified directory
-            if (move_uploaded_file($tmpimage, "./productimages/$productimage")) {
-                // Insert product into the database
-                $add_products = "INSERT INTO products (productname, description, keywords, image, price) VALUES ('$productid', '$productdescription', '$productkeyword', '$productimage', '$productprice')";
-                
-                if (mysqli_query($con, $add_products)) {
-                    echo "<script>alert('Product inserted successfully')</script>";
-                } else {
-                    echo "<script>alert('Database error: " . mysqli_error($con) . "')</script>";
-                }
+        // Move the uploaded file to the specified directory
+        if (move_uploaded_file($tmpimage, "./productimages/$productimage")) {
+            // Insert product into the database
+            $add_products = "INSERT INTO products (productname, description, keywords, image, price) VALUES ('$productname', '$productdescription', '$productkeyword', '$productimage', '$productprice')";
+
+            if (mysqli_query($con, $add_products)) {
+                echo "<script>alert('Product inserted successfully')</script>";
             } else {
-                echo "<script>alert('Error moving the uploaded file.')</script>";
+                echo "<script>alert('Database error: " . mysqli_error($con) . "')</script>";
             }
         } else {
-            echo "<script>alert('File upload error: " . $_FILES['productimage']['error'] . "')</script>";
+            echo "<script>alert('Error moving the uploaded file.')</script>";
         }
     } else {
-        echo "<script>alert('No file uploaded.')</script>";
+        echo "<script>alert('File upload error: " . ($_FILES['productimage']['error'] ?? 'No file uploaded.') . "')</script>";
     }
 }
 ?>
@@ -58,18 +54,8 @@ if (isset($_POST['add'])) {
                 <div class="information-wrapper">
                     <div class="first-row form-group">
                         <div class="controls">
-                            <select name="productname" class="form-select" required>
-                                <option value="">Select Product Name</option>
-                                <?php
-                                    // Fetching categories from the database
-                                    $select_query = "SELECT * FROM categories";
-                                    $result_query = mysqli_query($con, $select_query);
-                                    while($row = mysqli_fetch_assoc($result_query)) {
-                                        $productname = $row['productname'];
-                                        echo "<option value='$productname'>$productname</option>";
-                                    }
-                                ?>
-                            </select>
+                            <label class="control-label">Product name</label>
+                            <input class="billing-address-name form-control" type="text" name="name" placeholder="Product name" required>
                         </div>
                     </div>
                     <div class="first-row form-group">

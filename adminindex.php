@@ -65,14 +65,15 @@
     <section  class="product-store position-relative ">
       <div class="container-fluid">
         <div id="featured-products" class="row" style="padding-left: 20px;" >
+        <h1 style="font-family: Cinzel, sans-serif;">ADMIN PANEL</h1> 
           <div class="display-header pb-3 d-flex justify-content-between flex-wrap col-md-12">
-            <h2 style="font-family: Cinzel, sans-serif;">MANAGE DETAILS</h2> 
+          
+           
             
              </div>
         </div>
          <div class="" style="padding-left:20px" >
-       <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?additem">PRODUCT CATEGORIES</a></button>
-       <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?viewcategory">VIEW CATEGORIES</a></button>
+       
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?customise">ADD ITEM</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?viewdetails">VIEW ITEM</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="">ALL ORDERS</a></button>
@@ -85,13 +86,7 @@
 
    <div class="container">
     <?php
-    if(isset($_GET['additem'])){
-      include('additem.php');
-      
-    }if(isset($_GET['viewcategory'])){
-      include('extra.php');
-      
-    }
+    
     if(isset($_GET['customise'])){
       include('customise.php');
     }

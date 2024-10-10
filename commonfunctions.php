@@ -22,7 +22,7 @@ function getproducts()
             <div class='product-card image-zoom-effect link-effect d-flex flex-wrap'>
                 <div class='image-holder'>
                     <div class='product-image img-fluid'>
-                        <a href='single-product.php'>
+                        <a href=''>
                             <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
                         </a>
                     </div>
@@ -31,7 +31,7 @@ function getproducts()
                             <a href='single-product.html' class='text-primary'>$productname</a>
                         </h3>
                         <div class='cart-info'>
-                        <a href='single-product.php?productid=<?php echo $productid; ?>'>KNOW MORE</a>
+                         <a href='single-product.php?productid= $productid'>KNOW MORE</a>
 
                             
                         </div>
@@ -49,10 +49,11 @@ function getproducts()
 function getdetails()
 {
     global $con;
+    
     if(!isset($_GET['categories'])){
         if(!isset($_GET['products'])){
             
-    $select_query = "SELECT * FROM `products`";
+    $select_query = "SELECT * FROM `products` ";
     $result_query = mysqli_query($con, $select_query);
 
     while ($row = mysqli_fetch_assoc($result_query)) {
@@ -68,9 +69,12 @@ function getdetails()
             <h1 class='product-name'>$productname</h1>
            
           <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
-            <p class='product-description'>$productdescription</p>
-            <h2 class='product-price'>Price: $$productprice</h2>
-            <a href='add=$productid' class='btn btn-success'>Add to Cart</a>
+                 
+            <div class='cart-info'>
+                        <a href='single-product.php?productid= $productid'>KNOW MORE</a>
+
+                            
+                        </div>
         </div>
         </div>
         </div>";
@@ -89,7 +93,7 @@ function searchproducts()
     
     if (isset($_GET['searchdataproduct'])) {
         $searchdatavalue = $_GET['searchdata'];
-        $search_query = "SELECT * FROM `categories` WHERE keywords LIKE '%$searchdatavalue%'";
+        $search_query = "SELECT * FROM `products` WHERE keywords LIKE '%$searchdatavalue%'";
         $result_query = mysqli_query($con, $search_query);
 
         // Begin row div for Bootstrap grid system
@@ -108,12 +112,14 @@ function searchproducts()
                     <div class='product-card link-effect d-flex flex-wrap'>
                         <div class='product-details'>
                             <h1 class='product-name'>$productname</h1>
-                            <a href='single-product.php'>
+                            <a href='single-product.php?productid=<?php echo $productid; ?>'>
                             <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
-                        </a>
+                     
+                            </a>
                             <div class='cart-info'>
-                             <a href='single-product.php?productid=$productid'><span>KNOW MORE</span></a>
-                            
+                             
+                            <a href='single-product.php?productid= $productid'>KNOW MORE</a>
+
                         </div>
                            
                         </div>
@@ -133,8 +139,52 @@ function searchproducts()
 
 // Function to display product details
 
+function viewdetails()
+{
+    global $con;
+    if(isset($_GET['productid'])){
+    if(!isset($_GET['categories'])){
+        if(!isset($_GET['products'])){
+            $idproduct=$_GET['productid'];
+    $select_query = "SELECT * FROM `products` where productid=$idproduct";
+    $result_query = mysqli_query($con, $select_query);
+
+    while ($row = mysqli_fetch_assoc($result_query)) {
+        $productid = $row['productid'];
+        $productname = $row['productname'];
+        $productdescription = isset($row['description']) ? $row['description'] : 'No description available';
+        $productprice = isset($row['price']) ? $row['price'] : 'Price not available';
+        $productimage = $row['image'];
+
+        echo "   <div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two'>
+            <div class='product-card  link-effect d-flex flex-wrap'>
+        <div class='product-details'>
+            <h1 class='product-name'>$productname</h1>
+           
+          <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
+            <p class='product-description'>$productdescription</p>
+            <h2 class='product-price'>Price: $$productprice</h2>
+            <div class='cart-info'>
+                        <a href='single-product.php?productid= $productid'>KNOW MORE</a>
+
+                            
+                        </div>
+        </div>
+        </div>
+        </div>";
+    }
+        
+}
+    }
+}
+}
+
+
+
 
 
 ?>
+
+
 
 
