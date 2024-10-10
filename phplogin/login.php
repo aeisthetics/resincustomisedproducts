@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form action="" method="post"> <!-- Form action will point to the same page -->
+        <form action="connectlogin.php" method="post"> <!-- Form action will point to the same page -->
             <h1>Sign in</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>

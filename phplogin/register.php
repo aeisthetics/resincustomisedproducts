@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form action="" method="post"> <!-- Action set to the same page for processing -->
+        <form action="connection.php" method="post"> <!-- Action set to the same page for processing -->
             <h1>Sign up</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
