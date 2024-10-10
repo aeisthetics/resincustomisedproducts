@@ -73,6 +73,7 @@ function getdetails()
           <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
                  
             <div class='cart-info'>
+            
                         <a href='single-product.php?productid= $productid'>KNOW MORE</a>
 
                             
@@ -174,7 +175,9 @@ function viewdetails()
             <p class='product-description'>$productdescription</p>
             <h2 class='product-price'>Price: $$productprice</h2>
             <div class='cart-info'>
-                <a href='single-product.php?productid=$productid'>KNOW MORE</a>
+           <a href='single-product.php?addtocart=$productid' name='submit'  class='button add'> ADD TO CART</a>
+            
+                
             </div>
         </div>
     </div>";
@@ -186,9 +189,48 @@ function viewdetails()
 }
 
 
+//get ip adress function
+
+function getIPAddress() {  
+    //whether ip is from the share internet  
+     if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
+                $ip = $_SERVER['HTTP_CLIENT_IP'];  
+        }  
+    //whether ip is from the proxy  
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
+     }  
+//whether ip is from the remote address  
+    else{  
+             $ip = $_SERVER['REMOTE_ADDR'];  
+     }  
+     return $ip;  
+}  
+//$ip = getIPAddress();  
+//echo 'User Real IP Address - '.$ip;  
 
 
-
+//cartfunction
+function cart()
+{
+if(isset($_GET['addtocart'])){
+    global $con;
+    $ip = getIPAddress();  
+    $getproductid=$_GET['addtocart'];
+    $select_query="select * from `cartdetails` where ipaddress='$ip'and productid=$getproductid";
+    $result_query=mysqli_query($con,$select_query);
+    $numofrows=mysqli_num_rows($result_query);
+    if($numofrows>0){
+        echo "<script>alert('this item is present in db')</script>";
+        echo "<script>window.open('shop.php','_self')</script>";
+    }
+    else{
+    $insert_query="insert into `cartdetils` (productid,ipaddress,quantity) values ($getproductid,'$ip',0)";
+    $result_query=mysqli_query($con,$select_query);
+    echo "<script>window.open('shop.php','_self')</script>";
+    }
+}
+}
 ?>
 
 
