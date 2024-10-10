@@ -1,5 +1,6 @@
 <?php
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -75,11 +76,12 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
             <use xlink:href="#close"></use>
           </svg>
         </div>
-        <form id="search-form" class="text-center pt-3" action="" method="">
+        <form id="search-form" class="text-center pt-3" action="searchproduct.php" method="get">
           <input type="text" class="search-input fs-5 p-4 bg-transparent" placeholder="Search..." name="searchdata">
-          <svg input type="submit" class="search" width="22" height="22" name="searchdataproduct">
+          <button input type="submit" class="search" value="search"  name="searchdataproduct"><svg style="width:20px; height:20px;">
             <use xlink:href="#search"></use>
           </svg>
+       </button>
           
         </form>
       </div>

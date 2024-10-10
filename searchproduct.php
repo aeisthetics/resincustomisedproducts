@@ -1,5 +1,6 @@
 <?php
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -75,11 +76,12 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
             <use xlink:href="#close"></use>
           </svg>
         </div>
-        <form id="search-form" class="text-center pt-3" action="" method="">
+        <form id="search-form" class="text-center pt-3" action="" method="get">
           <input type="text" class="search-input fs-5 p-4 bg-transparent" placeholder="Search..." name="searchdata">
-          <svg input type="submit" class="search" width="22" height="22" name="searchdataproduct">
+          <button input type="submit" class="search" value="search" name="searchdataproduct"><svg style="width:20px; height:20px;">
             <use xlink:href="#search"></use>
           </svg>
+       </button>
           
         </form>
       </div>
@@ -178,144 +180,25 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
       </nav>    
     </header>
 
-    <section id="billboard" class="overflow-hidden">
-      <img src="img/mix2.jpg" style="width: 70%;margin-left: 200px;border-radius: 10px;">
-    </section>
 
-    <section id="company-services" class="padding-large">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 pb-3">
-            <div class="icon-box d-flex align-items-center">
-              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
-                <svg class="shipping-fast">
-                  <use xlink:href="#shipping-fast" />
-                </svg>
-              </div>
-              <div class="icon-box-content ps-3">
-                <h3 class="card-title text-uppercase text-dark">free delivery</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 pb-3">
-            <div class="icon-box d-flex align-items-center">
-              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
-                <svg class="shopping-cart">
-                  <use xlink:href="#shopping-cart" />
-                </svg>
-              </div>
-              <div class="icon-box-content ps-3">
-                <h3 class="card-title text-uppercase text-dark">customization   </h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 pb-3">
-            <div class="icon-box d-flex align-items-center">
-              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
-                <svg class="gift">
-                  <use xlink:href="#gift" />
-                </svg>
-              </div>
-              <div class="icon-box-content ps-3">
-                <h3 class="card-title text-uppercase text-dark">Special Packaging</h3>
-              </div>
-            </div>
-          </div>
+    <div class="product-swiper col-md-12">
+       
+       
+      <!-- fetching products-->
+<?php
+searchproducts();
+?>
+
+      
           
-        </div>
       </div>
-    </section>
-
-    <section >
-      <div class="container-fluid">
-
-        <div class="row align-items-center justify-content-between g-5">
-          <div class="col-lg-6">
-            <div class="image-holder mb-4 jarallax">
-                <img src="img/about us.jpg" alt="single" class="img-fluid jarallax-img">
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="detail p-5">
-              <div class="display-header">
-                <h2 class="display-2 text-uppercase text-dark pb-2" id="about-us">About Us</h2>
-                <p class="pb-3">Welcome to Aeisthetics, your one-stop destination for exquisitely crafted, handmade resin creations. We are a passionate and dedicated to bringing artistry and craftsmanship together to produce unique and beautiful resin crafts that delight and inspire.<br>
-
-                  <h2>Our Story</h2>
-                  
-                  Our journey began with a deep-seated love for art and a fascination with the endless possibilities of resin as a creative medium. What started as a hobby soon transformed into a thriving venture, fueled by our desire to share our handcrafted treasures with the world.
-                  
-                  At Aeisthetics, we believe that every piece of resin craft is more than just an object; it's a piece of art with a story. Our crafts are created with love, attention to detail, and an unwavering commitment to quality.</p>
-                <p><h2>Our Promise</h2>
-
-                  At Aeisthetics, we are committed to providing our customers with an exceptional shopping experience. We take pride in our craftsmanship, and our creations are a testament to our dedication to producing high-quality, handmade resin crafts. We understand the importance of making your spaces beautiful and your gifts memorable, and we're here to help you achieve that with our unique pieces.
-                  
-                  <h2>Contact Us</h2>
-                  
-                  We are thrilled to share our passion for resin crafts with you. Whether you're looking for a personal keepsake, a special gift, or something to adorn your living spaces, we're here to make your creative dreams a reality. If you have any questions, inquiries, or would like to discuss custom orders, please don't hesitate to get in touch with us. We look forward to being a part of your artistic journey.
-                  
-                  Thank you for choosing Aeisthetics </p>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="testimonials" class="position-relative">
-      <div class="container">
-        <div class="row">
-          <div class="review-content position-relative">
-            <div class="swiper-icon swiper-arrow swiper-arrow-prev position-absolute d-flex align-items-center justify-content-center">
-              <svg class="icon-arrow" width="25" height="25">
-                <use xlink:href="#arrow-left" />
-              </svg>
-            </div>
-            <div class="swiper testimonial-swiper">
-              <div class="quotation text-center">
-                <svg class="quote">
-                  <use xlink:href="#quote" />
-                </svg>
-              </div>
-              <div class="swiper-wrapper">
-                <div class="swiper-slide text-center d-flex justify-content-center">
-                  <div class="review-item col-md-10">
-                    <i class="icon icon-review"></i>
-                    <blockquote class="fs-4">“Quick and secure delivery of products.I assure you as a regular customer of this brand.”</blockquote>
-                    <div class="author-detail">
-                      <div class="name text-primary text-uppercase pt-2">Hanna Michael</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide text-center d-flex justify-content-center">
-                  <div class="review-item col-md-10">
-                    <i class="icon icon-review"></i>
-                    <blockquote class="fs-4">“Excellent service and wonderful categories for customisation impressed me a lot.I totally recommend their customised products!”</blockquote>
-                    <div class="author-detail">
-                      <div class="name text-primary text-uppercase pt-2">Jennie Rose</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-icon swiper-arrow swiper-arrow-next position-absolute d-flex align-items-center justify-content-center">
-              <svg class="icon-arrow" width="25" height="25">
-                <use xlink:href="#arrow-right" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>      
-      <div class="swiper-pagination text-center position-absolute"></div>
-    </section>
 
    
 
-    <footer id="footer" class="overflow-hidden padding-large">
-      <div class="container-fluid">
+    <footer id="footer" class="overflow-hidden ">
+      <div class="container-fluid"  >
         <div class="row">
-          <div class="row d-flex flex-wrap justify-content-between">
+          <div class="row d-flex flex-wrap justify-content-between" style="padding-top:70px">
             <div class="col-lg-3 col-sm-6 pb-3 pe-4">
               <div class="footer-menu">
                
