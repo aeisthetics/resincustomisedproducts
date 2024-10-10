@@ -45,6 +45,8 @@ function getproducts()
 }
 }
 
+
+
 // Function to get and display product details
 function getdetails()
 {
@@ -156,22 +158,26 @@ function viewdetails()
         $productprice = isset($row['price']) ? $row['price'] : 'Price not available';
         $productimage = $row['image'];
 
-        echo "   <div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two'>
-            <div class='product-card  link-effect d-flex flex-wrap'>
-        <div class='product-details'>
-            <h1 class='product-name'>$productname</h1>
-           
-          <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
+        echo " <div class='flexslider' style='display: flex; align-items: center;'>
+        <ul class='slides' style='flex: 1; margin-right:-166px; margin-left:66px; margin-top:36px; margin-bottom:36px;'>
+            <li >
+                <div class=''>
+                    <img src='./productimages/$productimage' 
+                         alt='$productname' 
+                         style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
+                </div>
+            </li>
+        </ul>
+
+        <div style='flex: 1; padding-left: 10px;'>
+            <h3 class='display-2 text-dark text-uppercase'>$productname</h3>
             <p class='product-description'>$productdescription</p>
             <h2 class='product-price'>Price: $$productprice</h2>
             <div class='cart-info'>
-                        <a href='single-product.php?productid= $productid'>KNOW MORE</a>
-
-                            
-                        </div>
+                <a href='single-product.php?productid=$productid'>KNOW MORE</a>
+            </div>
         </div>
-        </div>
-        </div>";
+    </div>";
     }
         
 }

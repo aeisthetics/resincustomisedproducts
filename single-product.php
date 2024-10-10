@@ -252,6 +252,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
        
        <!-- fetching products-->
  <?php
+ 
 viewdetails();
  ?>
  
