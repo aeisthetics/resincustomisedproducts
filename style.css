@@ -51,9 +51,11 @@ CSS STRUCTURE:
 /* Fonts */
 :root {
 
+
  
   --body-font: "Poppins", sans-serif;
 
+  --body-font: "Poppins", sans-serif;
   --heading-font: "Cinzel", sans-serif;
 }
 
@@ -76,8 +78,11 @@ html {
 }
 
 body {
+<<<<<<< HEAD
 
   font-family:"Cinzel", sans-serif;
+=======
+>>>>>>> 887aaaadd72dbc26edc8fe0b3a5d86e8d65f12f4
   font-family: var(--body-font);
   font-size: 16px;
   font-weight: 300;
@@ -140,7 +145,7 @@ a:hover {
 }
 
 .padding-large {
-  padding-top: 7em;
+
   padding-bottom: 7em;
 }
 
@@ -178,7 +183,10 @@ h2,
 h3,
 h4,
 h5 {
+<<<<<<< HEAD
   font-family:var(--heading-font);
+=======
+>>>>>>> 887aaaadd72dbc26edc8fe0b3a5d86e8d65f12f4
   font-family: var(--heading-font);
 }
 
