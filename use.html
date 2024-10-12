@@ -2127,3 +2127,241 @@ if (isset($_POST['add'])) {
 
  </div>
   </div>
+
+
+
+
+
+
+
+
+  <div class="col-md-8 address_form">
+    <h1>Add a new Details</h1>
+    <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+      <section class="creditly-wrapper wrapper">
+        <div class="information-wrapper">
+          <div class="first-row form-group">
+            <div class="controls">
+              <label class="control-label">Full name: </label>
+              <input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
+            </div>
+            <div class="card_number_grids">
+              <div class="card_number_grid_left">
+                <div class="controls">
+                  <label class="control-label">Mobile number:</label>
+                  <input class="form-control" type="text" placeholder="Mobile number">
+                </div>
+              </div>
+              <div class="card_number_grid_right">
+                <div class="controls">
+                  <label class="control-label">Landmark: </label>
+                  <input class="form-control" type="text" placeholder="Landmark">
+                </div>
+              </div>
+              <div class="clear"> </div>
+            </div>
+            <div class="controls">
+              <label class="control-label">Town/City: </label>
+              <input class="form-control" type="text" placeholder="Town/City">
+            </div>
+            <div class="controls">
+              <label class="control-label">Address type: </label>
+              <select class="form-control option-w3ls">
+                                      <option>Office</option>
+                                      <option>Home</option>
+                                      <option>Commercial</option>
+      
+                                  </select>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+  <!-- //banner -->
+  <div class="ads-grid_shop">
+    <div class="shop_inner_inf">
+        <div class="privacy about">
+            <h1 class="head" style="float:left;">Cart</h1><br>
+            <div class="checkout-right">
+                <br><h2 style="float: left;">Your shopping cart contains: <span>3 Products</span></h2><br>
+                <form action="" method="post">
+                    <table class="table">
+                        <thead>
+                            <tr style="padding-right: 30px;">
+                                <th>Product Name</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Remove</th>
+                                <th>Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php
+                        $ip = getIPAddress();
+                        $total = 0;
+
+                        // Fetch cart details for the specific user based on IP address
+                        $cart_query = "SELECT * FROM `cartdetails` WHERE ipaddress='$ip'";
+                        $result = mysqli_query($con, $cart_query);
+
+                        while ($row = mysqli_fetch_array($result)) {
+                            $productid = $row['productid'];
+                            $quantity = $row['quantity'];
+
+                            // Fetch product details for each product in the cart
+                            $selectproducts = "SELECT * FROM `products` WHERE productid='$productid'";
+                            $resultproducts = mysqli_query($con, $selectproducts);
+
+                            while ($rowproductprice = mysqli_fetch_array($resultproducts)) {
+                                $productprice = $rowproductprice['price'];
+                                $producttitle = $rowproductprice['productname'];
+                                $productimage = $rowproductprice['image'];
+
+                                // Calculate the total price of the cart
+                                $total += $productprice * $quantity;
+                                ?>
+
+                                <tr class="">
+                                    <td style="font-family:Cinzel, sans-serif; font-size: 20px;"><?php echo $producttitle; ?></td>
+                                    <td><a href="single-productbracelet.html">
+                                        <img src="./productimages/<?php echo $productimage; ?>" alt=" " class="img-responsive" style="height: 120px; width: 149px; border-radius: 7px;">
+                                        </a>
+                                    </td>
+
+                                    <!-- Quantity input, use name as an array with productid as key -->
+                                    <td><input type="number" name="qty[<?php echo $productid; ?>]" value="<?php echo $quantity; ?>" min="1" style="width: 60px;"></td>
+
+                                    <td><?php echo $productprice; ?>/-</td>
+                                    <td><input type="checkbox" name="remove[<?php echo $productid; ?>]"></td>
+
+                                    <td>
+                                        <input type="submit" value="UPDATE CART" class='btn btn-primary submit' name="updatecart" style='width:100px;'>
+                                    </td>
+                                    <td>
+                                      <input type="submit" value="remove" class='btn btn-primary submit' name="updatecart" style='width:100px;'>
+                                  </td>
+                                </tr>
+
+                            <?php
+                            } // End inner product loop
+                        } // End outer cart loop
+                        ?>
+                        </tbody>
+                    </table>
+
+                    <div class="d-flex">
+                        <p style="font-family:Cinzel, sans-serif; font-size: 27px;">CONTINUE TO BASKET : <strong><?php echo $total; ?>/-</strong></p>
+                        <button class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;'>PROCEED</button>
+                        <button class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;'>MAKE PAYMENT</button>
+                    </div>
+                </form>
+
+                <?php
+                // Handle form submission for updating cart
+                if (isset($_POST['updatecart'])) {
+                    // Update the quantity for each product in the cart
+                    if (isset($_POST['qty'])) {
+                        foreach ($_POST['qty'] as $productid => $qty) {
+                            // Ensure the quantity is a valid integer
+                            $qty = intval($qty);
+                            if ($qty > 0) {
+                                // Update the cart quantity for the product
+                                $updatecart = "UPDATE `cartdetails` SET quantity = $qty WHERE ipaddress = '$ip' AND productid = '$productid'";
+                                mysqli_query($con, $updatecart) or die(mysqli_error($con)); // For debugging
+                            }
+                        }
+                    }
+
+                    // Handle product removal if the checkbox is checked
+                    if (isset($_POST['remove'])) {
+                        foreach ($_POST['remove'] as $productid => $checked) {
+                            if ($checked) {
+                                // Delete the product from the cart
+                                $removecart = "DELETE FROM `cartdetails` WHERE ipaddress = '$ip' AND productid = '$productid'";
+                                mysqli_query($con, $removecart) or die(mysqli_error($con)); // For debugging
+                            }
+                        }
+                    }
+					
+					
+                
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<?php
+             
+// Handle product removal if the checkbox is checked
+if (isset($_POST['remove'])) {
+    foreach ($_POST['remove'] as $productid => $checked) {
+        if ($checked) {
+            // Delete the product from the cart
+            $removecart = "DELETE FROM `cartdetails` WHERE ipaddress = '$ip' AND productid = '$productid'";
+            mysqli_query($con, $removecart) or die(mysqli_error($con)); // For debugging
+        }
+    }
+}
+
+// Optionally, you can refresh the cart contents after update/removal
+// This can be done by including the fetching logic again.
+}
+?>
+
+
+<?php
+									  if (isset($_POST['updatecart'])) {
+										// Update the quantity for each product in the cart
+										if (isset($_POST['qty'])) {
+											foreach ($_POST['qty'] as $productid => $qty) {
+												// Ensure the quantity is a valid integer
+												$qty = intval($qty);
+												if ($qty > 0) {
+													// Update the cart quantity for the product
+													$updatecart = "UPDATE `cartdetails` SET quantity = $qty WHERE ipaddress = '$ip' AND productid = '$productid'";
+													mysqli_query($con, $updatecart) or die(mysqli_error($con)); // For debugging
+												}
+											}
+										
+										}
+									 
+									 ?>

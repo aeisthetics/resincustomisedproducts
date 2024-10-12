@@ -1,4 +1,7 @@
-
+<?php
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
+?>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -143,7 +146,7 @@
 						<ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
 						  
 						  <li>
-							<a href="checkout.html" class="dropdown-item item-anchor">Cart</a>
+							<a href="cart.php" class="dropdown-item item-anchor">Cart</a>
 						  </li>
 						  
 						  <li>
@@ -184,7 +187,7 @@
 							  <a href="checkout.html">
 								<svg class="cart" width="18" height="18">
 								  <use xlink:href="#cart"></use>
-								</svg>
+								</svg><sup><?php cartitem(); ?></sup>
 							  </a>
 							</li>
 						  </ul>
@@ -200,12 +203,8 @@
 <div class="banner_top innerpage" id="home">
 	<div class="wrapper_top_w3layouts">
 	  <div class="header_agileits">
-		<div class="logo inner_page_log">
-		  
-		</div>
 		<div class="overlay overlay-contentpush">
 		  <button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
-  
 		  <nav>
 			<ul>
 			  <li><a href="index.html" class="active">Home</a></li>
@@ -218,15 +217,7 @@
 		</div>
 		
 		<!-- cart details -->
-		<div class="top_nav_right">
-		  <div class="shoecart shoecart2 cart cart box_1">
-			<form action="#" method="post" class="last">
-			  <input type="hidden" name="cmd" value="_cart">
-			  <input type="hidden" name="display" value="1">
-			  
-			</form>
-		  </div>
-		</div>
+		
 	  </div>
 	</div>
 	<!-- //cart details -->
@@ -245,247 +236,183 @@
 	<!-- //banner_inner -->
   </div>
   
-  <!-- //banner -->
-<!-- top Products -->
-<div class="ads-grid_shop">
-	<div class="shop_inner_inf">
-		<div class="privacy about">
-			
-			<h1 class="head" style="float:left;">Cart</h1><br>
-			<div class="checkout-right">
-				<br><h2 style="float: left;">Your shopping cart contains: <span>3 Products</span></h2><br>
-				<table class="table">
-					<thead>
-						<tr style="padding-right: 30px;">
-							<th>SL No.			</th>
-							<th>Product 		</th>
-							<th>Quality			</th>
-							<th>Product Name	</th>
+  <div class="ads-grid_shop">
+    <div class="shop_inner_inf">
+        <div class="privacy about">
+            <h1 class="head" style="float:left;">Cart</h1><br>
+            <div class="checkout-right">
+                <br><h2 style="float: left;">Your shopping cart contains: <span>3 Products</span></h2><br>
+                <form action="" method="post">
+                    <table class="table">
+                        <thead>
+                            <tr style="padding-right: 30px;">
+                                <th>Product Name</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Remove</th>
+                                <th>Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-							<th>Price			</th>
-							<th>Remove			</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="rem1">
-							<td class="invert">1</td>
-							<td class="invert-image"><a href="single-productbracelet.html"><img src="img/bracelet (2).jpg" alt=" " class="img-responsive" style="height: 200px;width: 250px;"></a></td>
-							<td class="invert">
-								<div class="quantity">
-									<div class="quantity-select">
-										<div class="entry value-minus">&nbsp;</div>
-										<div class="entry value"><span>1</span></div>
-										<div class="entry value-plus active">&nbsp;</div>
-									</div>
-								</div>
-							</td>
-							<td class="invert">resin bracelet</td>
+                        <?php
+                        $ip = getIPAddress();
+                        $total = 0;
 
-							<td class="invert">275.00/-</td>
-							<td class="invert">
-								<div class="rem">
-									<div class="close1"> </div>
-								</div>
+                        // Fetch cart details for the specific user based on IP address
+                        $cart_query = "SELECT * FROM `cartdetails` WHERE ipaddress='$ip'";
+                        $result = mysqli_query($con, $cart_query);
 
-							</td>
-						</tr>
-						<tr class="rem2">
-							<td class="invert">2</td>
-							<td class="invert-image"><a href="single-productA4journal.html"><img src="img/resinjournal.jpg" alt=" " class="img-responsive" style="height: 200px;width: 250px;"></a></td>
-							<td class="invert">
-								<div class="quantity">
-									<div class="quantity-select">
-										<div class="entry value-minus">&nbsp;</div>
-										<div class="entry value"><span>1</span></div>
-										<div class="entry value-plus active">&nbsp;</div>
-									</div>
-								</div>
-							</td>
-							<td class="invert">a4 journals</td>
+                        while ($row = mysqli_fetch_array($result)) {
+                            $productid = $row['productid'];
+                            $quantity = $row['quantity'];
 
-							<td class="invert">525.00/-</td>
-							<td class="invert">
-								<div class="rem">
-									<div class="close2"> </div>
-								</div>
+                            // Fetch product details for each product in the cart
+                            $selectproducts = "SELECT * FROM `products` WHERE productid='$productid'";
+                            $resultproducts = mysqli_query($con, $selectproducts);
 
-							</td>
-						</tr>
-						<tr class="rem3">
-							<td class="invert">3</td>
-							<td class="invert-image"><a href="single-productbookmark.html"><img src="img/bookmark.jpg" alt=" " class="img-responsive"  style="height: 200px;width: 250px;"></a></td>
-							<td class="invert">
-								<div class="quantity">
-									<div class="quantity-select">
-										<div class="entry value-minus">&nbsp;</div>
-										<div class="entry value"><span>1</span></div>
-										<div class="entry value-plus active">&nbsp;</div>
-									</div>
-								</div>
-							</td>
-							<td class="invert">resin bookmarks</td>
+                            while ($rowproductprice = mysqli_fetch_array($resultproducts)) {
+                                $productprice = $rowproductprice['price'];
+                                $producttitle = $rowproductprice['productname'];
+                                $productimage = $rowproductprice['image'];
 
-							<td class="invert">145.00/-</td>
-							<td class="invert">
-								<div class="rem">
-									<div class="close3"> </div>
-								</div>
+                                // Calculate the total price of the cart
+                                $total += $productprice * $quantity;
+                                ?>
 
-							</td>
-						</tr>
+                                <tr class="">
+                                    <td style="font-family:Cinzel, sans-serif; font-size: 20px;"><?php echo $producttitle; ?></td>
+                                    <td><a href="single-productbracelet.html">
+                                        <img src="./productimages/<?php echo $productimage; ?>" alt=" " class="img-responsive" style="height: 120px; width: 149px; border-radius: 7px;">
+                                        </a>
+                                    </td>
 
-					</tbody>
-				</table>
-			</div>
-			<br><br>
-			<div class="checkout-left">
-				<div class="col-md-4 checkout-left-basket" style="height: 200px;width: 300px;">
-					<h1>Continue to basket</h1>
-					<ul style="list-style-type:none; font-size: 18px;">
-						<li >resin bracelet <i>-</i> <span>275.00/- </span></li>
-						<li>a4 journals<i>-</i> <span>545.00/- </span></li>
-						<li>bookmark <i>-</i> <span>145.00/- </span></li>
-						<li>Service Charges <i>-</i> <span>55.00/-</span></li>
-						<li>Total <i>-</i> <span>1020.00/-</span></li>
-					</ul>
-				</div>
-				<div class="col-md-8 address_form">
-					<h1>Add a new Details</h1>
-					<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
-						<section class="creditly-wrapper wrapper">
-							<div class="information-wrapper">
-								<div class="first-row form-group">
-									<div class="controls">
-										<label class="control-label">Full name: </label>
-										<input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
-									</div>
-									<div class="card_number_grids">
-										<div class="card_number_grid_left">
-											<div class="controls">
-												<label class="control-label">Mobile number:</label>
-												<input class="form-control" type="text" placeholder="Mobile number">
-											</div>
-										</div>
-										<div class="card_number_grid_right">
-											<div class="controls">
-												<label class="control-label">Landmark: </label>
-												<input class="form-control" type="text" placeholder="Landmark">
-											</div>
-										</div>
-										<div class="clear"> </div>
-									</div>
-									<div class="controls">
-										<label class="control-label">Town/City: </label>
-										<input class="form-control" type="text" placeholder="Town/City">
-									</div>
-									<div class="controls">
-										<label class="control-label">Address type: </label>
-										<select class="form-control option-w3ls">
-																						<option>Office</option>
-																						<option>Home</option>
-																						<option>Commercial</option>
-						
-																				</select>
-									</div>
-								</div>
-								<button class="submit check_out">Delivery to this Address</button>
-							</div>
-						</section>
-					</form>
-					<div class="checkout-right-basket">
-						<a href="payment.html">Make a Payment </a>
-					</div>
-				</div>
+                                    <!-- Quantity input, use name as an array with productid as key -->
+                                    <td>
+                                        <input type="number" name="qty[<?php echo $productid; ?>]" value="<?php echo $quantity; ?>" min="1" style="width: 60px;">
+										<?php
+                // Handle form submission for updating cart
+                if (isset($_POST['updatecart'])) {
+                    // Update the quantity for each product in the cart
+                    if (isset($_POST['qty'])) {
+                        foreach ($_POST['qty'] as $productid => $qty) {
+                            // Ensure the quantity is a valid integer
+                            $qty = intval($qty);
+                            if ($qty > 0) {
+                                // Update the cart quantity for the product
+                                $updatecart = "UPDATE `cartdetails` SET quantity = $qty WHERE ipaddress = '$ip' AND productid = '$productid'";
+                                mysqli_query($con, $updatecart) or die(mysqli_error($con)); // For debugging
+                            }
+                        }
+                    }
+				}?>
+									</td>
 
-				<div class="clearfix"> </div>
+                                    <td><?php echo $productprice; ?>/-</td>
+                                    <td><input type="checkbox" name="remove[<?php echo $productid; ?>]"></td>
+
+                                    <td>
+                                        <input type="submit" value="UPDATE CART" class='btn btn-primary submit' name="updatecart" style='width:100px;'>
+                                        <br>
+                                        <input type="submit" value="REMOVE" class='btn btn-primary submit' name="removecart" style='width:100px;'>
+                                    </td>
+                                </tr>
+
+                            <?php
+                            } // End inner product loop
+                        } // End outer cart loop
+                        ?>
+                        </tbody>
+                    </table>
+
+                    <div class="d-flex">
+                        <p style="font-family:Cinzel, sans-serif; font-size: 27px;">CONTINUE TO BASKET : <strong><?php echo $total; ?>/-</strong></p>
+                        <button class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;'>PROCEED</button>
+                        <button class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;'>MAKE PAYMENT</button>
+                    </div>
+                </form>
+
+              
+            </div>
+        </div>
+    </div>
+</div>
 
 
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
-	<!-- //top products -->
-	
-
-
-
-
-
-
-	<footer id="footer" class="overflow-hidden padding-large">
-		<div class="container-fluid">
-		  <div class="row">
-			<div class="row d-flex flex-wrap justify-content-between">
-			  <div class="col-lg-3 col-sm-6 pb-3 pe-4">
-				<div class="footer-menu">
-				 
-				  <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-				 <br><br><br>
-				  <p>aeisthetics</p>
-				</div>
-				<div class="copyright">
-				  <p>© Copyright 2023. 
-				  </p>
-				</div>
-			  </div>
-			  <div class="col-lg-2 col-sm-6 pb-3">
-				<div class="footer-menu text-uppercase">
-				  <h5 class="widget-title pb-2">Quick Links</h5>
-				  <ul class="menu-list list-unstyled text-uppercase">
-					<li class="menu-item pb-2">
-					  <a href="#billboard">Home</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#about-us">About</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#company-services">Services</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#latest-blog">Blogs</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#contact">Contact</a>
-					</li>
-				  </ul>
-				</div>
-			  </div>
-			  <div class="col-lg-2 col-sm-6 pb-3">
-				<div class="footer-menu text-uppercase">
-				  <h5 class="widget-title pb-2">Social</h5>
-				  <div class="social-links">
-					<ul class="list-unstyled">
-					  <li class="pb-2">
-						<a href="#">Facebook</a>
-					  </li>
-					  <li class="pb-2">
-						<a href="#">Twitter</a>
-					  </li>
-					  <li class="pb-2">
-						<a href="#">Pinterest</a>
-					  </li>
-					  <li class="pb-2">
-						<a href="https://www.instagram.com/aeisthetics/">Instagram</a>
-					  </li>
-					  <li>
-						<a href="#">Youtube</a>
-					  </li>
-					</ul>
-				  </div>
-				</div>
-			  </div>
-			 <div class="col-lg-3 col-sm-6">
-				<div class="footer-menu contact-item">
-				  <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
-				  <p><a href="">+91 7594906015</a></p>
-				  <p><a href="mailto:">aeistheticsartworks@gmail.com</a></p>
-				  <p>Power House Link Road,Palarivattom<br>Ernakulam,kerala<br>682025<br></p>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </footer>
+	<footer id="footer" class="overflow-hidden ">
+      <div class="container-fluid"  >
+        <div class="row">
+          <div class="row d-flex flex-wrap justify-content-between" style="padding-top:70px">
+            <div class="col-lg-3 col-sm-6 pb-3 pe-4">
+              <div class="footer-menu">
+               
+                <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
+               <br><br> <p>aeisthetics</p>
+              </div>
+              <div class="copyright">
+                <p>© Copyright 2023. 
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 pb-3">
+              <div class="footer-menu text-uppercase">
+                <h5 class="widget-title pb-2">Quick Links</h5>
+                <ul class="menu-list list-unstyled text-uppercase">
+                  <li class="menu-item pb-2">
+                    <a href="#billboard">Home</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="#about-us">About</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="#company-services">Services</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="#latest-blog">Blogs</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="#contact">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 pb-3">
+              <div class="footer-menu text-uppercase">
+                <h5 class="widget-title pb-2">Social</h5>
+                <div class="social-links">
+                  <ul class="list-unstyled">
+                    <li class="pb-2">
+                      <a href="#">Facebook</a>
+                    </li>
+                    <li class="pb-2">
+                      <a href="#">Twitter</a>
+                    </li>
+                    <li class="pb-2">
+                      <a href="#">Pinterest</a>
+                    </li>
+                    <li class="pb-2">
+                      <a href="https://www.instagram.com/aeisthetics/">Instagram</a>
+                    </li>
+                    <li>
+                      <a href="#">Youtube</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+           <div class="col-lg-3 col-sm-6">
+              <div class="footer-menu contact-item">
+                <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
+                <p><a href="">+91 7594906015</a></p>
+                <p><a href="mailto:">aeistheticsartworks@gmail.com</a></p>
+                <p>Power House Link Road,Palarivattom<br>Ernakulam,kerala<br>682025<br></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 	  
 	  <script src="js/jquery-1.11.0.min.js"></script>
 	  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

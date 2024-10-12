@@ -117,7 +117,11 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                     </li>
 
                 <li class="nav-item dropdown me-4">
-                  <a class="nav-link me-4" href="shop.html">products</a>
+                  <a class="nav-link me-4" href="shop.php">products</a>
+                  
+                </li>
+                <li class="nav-item dropdown me-4">
+                  <a class="nav-link me-4" href="shop.php">total cart price : <?php totalcartprice(); ?>/-</a>
                   
                 </li>
                 <li class="nav-item dropdown">
@@ -164,10 +168,10 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         </a>
                       </li>
                       <li>
-                        <a href="checkout.html">
+                        <a href="cart.php">
                           <svg class="cart" width="18" height="18">
                             <use xlink:href="#cart"></use>
-                          </svg><sup>1</sup>
+                          </svg><sup><?php cartitem(); ?></sup>
                         </a>
                       </li>
                     </ul>

@@ -74,8 +74,8 @@ function getdetails()
                  
             <div class='cart-info'>
             
-                        <a href='single-product.php?productid= $productid'>KNOW MORE</a>
-
+                       
+                        <a href='single-product.php?productid=$productid' >KNOW MORE</a>
                             
                         </div>
         </div>
@@ -122,6 +122,7 @@ function searchproducts()
                             <div class='cart-info'>
                              
                             <a href='single-product.php?productid= $productid'>KNOW MORE</a>
+                            
 
                         </div>
                            
@@ -148,8 +149,8 @@ function viewdetails()
     if(isset($_GET['productid'])){
     if(!isset($_GET['categories'])){
         if(!isset($_GET['products'])){
-            $idproduct=$_GET['productid'];
-    $select_query = "SELECT * FROM `products` where productid=$idproduct";
+            $productid=$_GET['productid'];
+    $select_query = "SELECT * FROM `products` where productid=$productid";
     $result_query = mysqli_query($con, $select_query);
 
     while ($row = mysqli_fetch_assoc($result_query)) {
@@ -173,14 +174,16 @@ function viewdetails()
         <div style='flex: 1; padding-left: 10px;'>
             <h3 class='display-2 text-dark text-uppercase'>$productname</h3>
             <p class='product-description'>$productdescription</p>
-            <h2 class='product-price'>Price: $$productprice</h2>
-            <div class='cart-info'>
-           <a href='single-product.php?addtocart=$productid' name='submit'  class='button add'> ADD TO CART</a>
-            
-                
-            </div>
+            <h2 class='product-price'>Price: $productprice /-</h2>
         </div>
-    </div>";
+         
+    </div>
+   
+   
+         <a href='single-product.php?addtocart=$productid' ><button class='btn btn-primary submit' style='width:100%;  font-family: FontAwesome; border-radius: 14px;   font-size: 22px; height:50px;' >ADD TO CART</button></a>
+
+            
+    ";
     }
         
 }
@@ -225,12 +228,63 @@ if(isset($_GET['addtocart'])){
         echo "<script>window.open('shop.php','_self')</script>";
     }
     else{
-    $insert_query="insert into `cartdetils` (productid,ipaddress,quantity) values ($getproductid,'$ip',0)";
-    $result_query=mysqli_query($con,$select_query);
+    $insert_query="Insert into `cartdetails` (productid,ipaddress,quantity) values ($getproductid,'$ip',0)";
+    $result_query=mysqli_query($con,$insert_query);
+    echo "<script>alert('item is added to cart')</script>";
     echo "<script>window.open('shop.php','_self')</script>";
     }
 }
 }
+
+
+//function to get cart item no.
+function cartitem()
+{
+    if(isset($_GET['addtocart'])){
+        global $con;
+        $ip = getIPAddress();  
+        $select_query="select * from `cartdetails` where ipaddress='$ip'";
+        $result_query=mysqli_query($con,$select_query);
+        $countcartitems=mysqli_num_rows($result_query);
+    }
+        else{
+            global $con;
+            $ip = getIPAddress();  
+            $select_query="select * from `cartdetails` where ipaddress='$ip'";
+            $result_query=mysqli_query($con,$select_query);
+            $countcartitems=mysqli_num_rows($result_query);
+        }
+        echo $countcartitems;
+    }
+    
+    //total cart price
+
+    function totalcartprice()
+    {
+        global $con;
+        $ip = getIPAddress(); 
+        $total=0; 
+       $cart_query="select * from `cartdetails` where ipaddress='$ip'";
+       $result=mysqli_query($con,$cart_query);
+       while($row=mysqli_fetch_array($result)){
+        $productid=$row['productid'];
+        $selectproducts="select * from `products` where productid='$productid'";
+        $resultproducts=mysqli_query($con,$selectproducts);
+        while($rowproductprice=mysqli_fetch_array($resultproducts))
+        {
+        $productprice=array($rowproductprice['price']);
+        $productvalues=array_sum($productprice);
+        $total+=$productvalues;
+        }
+
+       }
+       echo $total;
+    }
+
+
+
+
+
 ?>
 
 

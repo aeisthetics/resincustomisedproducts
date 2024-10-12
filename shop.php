@@ -131,7 +131,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
             <div class="offcanvas-body">
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                 <li class="nav-item dropdown">
-                  <a class="nav-link me-4" href="index.html">Home</a>
+                  <a class="nav-link me-4" href="index.php">Home</a>
                 
                 </li>
             
@@ -182,7 +182,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         <a href="checkout.html">
                           <svg class="cart" width="18" height="18">
                             <use xlink:href="#cart"></use>
-                          </svg>
+                          </svg><sup><?php cartitem(); ?></sup>
                         </a>
                       </li>
                     </ul>
@@ -206,7 +206,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 
         <nav>
           <ul>
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="index.php" class="active">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="404.html">Team</a></li>
             <li><a href="shop.html">Shop Now</a></li>
@@ -247,19 +247,26 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
  
 
     <!-- /new_arrivals -->
-    <div class="product-swiper col-md-12">
-        <h3 class="display-2 text-dark text-uppercase">shop all</h3>
-       
-      <!-- fetching products-->
-<?php
+   
+    <div class="product-swiper col-md-12  m-auto" style="padding-left:46px;">
+    <h3 class="display-2 text-dark text-uppercase">shop all</h3>
+
+
+    <?php
 getdetails();
 cart();
 ?>
 
+       
+       
+      <!-- fetching products-->
+      
+   
+
       
           
       </div>
-</div>
+
   
 
 <!-- //top products -->

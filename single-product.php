@@ -184,7 +184,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         <a href="checkout.html">
                           <svg class="cart" width="18" height="18">
                             <use xlink:href="#cart"></use>
-                          </svg>
+                          </svg><sup><?php cartitem(); ?></sup>
                         </a>
                       </li>
                     </ul>
@@ -253,7 +253,8 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
        <!-- fetching products-->
  <?php
  
-viewdetails();
+ viewdetails();
+ cart();
  ?>
  
        
