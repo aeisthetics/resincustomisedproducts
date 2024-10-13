@@ -1,6 +1,6 @@
 <?php
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
+include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
+include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -110,25 +110,21 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
             <div class="offcanvas-body">
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                 <li class="nav-item dropdown">
-                  <a class="nav-link me-4" href="index.html">Home</a>
+                  <a class="nav-link me-4" href="index.php">Home</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link me-4" href="#about-us">about us</a>
                     </li>
 
                 <li class="nav-item dropdown me-4">
-                  <a class="nav-link me-4" href="shop.html">products</a>
+                  <a class="nav-link me-4" href="shop.php">products</a>
                   
                 </li>
+                
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">Pages</a>
                   <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
-                    
-                    <li>
-                      <a href="checkout.html" class="dropdown-item item-anchor">Cart</a>
-                    </li>
-                    
                     <li>
                       <a href="contact.html" class="dropdown-item item-anchor">Contact </a>
                     </li>
@@ -164,10 +160,10 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         </a>
                       </li>
                       <li>
-                        <a href="checkout.html">
+                        <a href="cart.php">
                           <svg class="cart" width="18" height="18">
                             <use xlink:href="#cart"></use>
-                          </svg><sup>1</sup>
+                          </svg><sup><?php cartitem(); ?></sup>
                         </a>
                       </li>
                     </ul>

@@ -280,7 +280,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p><?php echo htmlspecialchars($successMessage); ?></p>
                 </div>
             <?php endif; ?>
-					<form action="resincustomisedproducts/contactconnection.php" method="POST">
+					<form action="contactconnection.php" method="POST">
 						<div class="col-md-6 col-sm-6 contact_left_grid">
 
 						<input type="text" style="margin-bottom: 10px;" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
@@ -440,4 +440,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
-

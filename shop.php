@@ -1,6 +1,6 @@
 <?php
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
+include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
+include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
 ?>
 
 
@@ -99,11 +99,13 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
             <use xlink:href="#close"></use>
           </svg>
         </div>
-        <form id="search-form" class="text-center pt-3" action="" method="">
-          <input type="text" class="search-input fs-5 p-4 bg-transparent" placeholder="Search...">
-          <svg class="search" width="22" height="22">
+        <form id="search-form" class="text-center pt-3" action="searchproduct.php" method="get">
+          <input type="text" class="search-input fs-5 p-4 bg-transparent" placeholder="Search..." name="searchdata">
+          <button input type="submit" class="search" value="search"  name="searchdataproduct"><svg style="width:20px; height:20px;">
             <use xlink:href="#search"></use>
           </svg>
+       </button>
+          
         </form>
       </div>
     </div> 
@@ -131,7 +133,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
             <div class="offcanvas-body">
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                 <li class="nav-item dropdown">
-                  <a class="nav-link me-4" href="index.html">Home</a>
+                  <a class="nav-link me-4" href="index.php">Home</a>
                 
                 </li>
             
@@ -179,10 +181,10 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         </a>
                       </li>
                       <li>
-                        <a href="checkout.html">
+                      <a href="cart.php">
                           <svg class="cart" width="18" height="18">
                             <use xlink:href="#cart"></use>
-                          </svg>
+                          </svg><sup><?php cartitem(); ?></sup>
                         </a>
                       </li>
                     </ul>
@@ -206,7 +208,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 
         <nav>
           <ul>
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="index.php" class="active">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="404.html">Team</a></li>
             <li><a href="shop.html">Shop Now</a></li>
@@ -247,18 +249,26 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
  
 
     <!-- /new_arrivals -->
-    <div class="product-swiper col-md-12">
-        <h3 class="display-2 text-dark text-uppercase">shop all</h3>
+   
+    <div class="product-swiper col-md-12  m-auto" style="padding-left:46px;">
+    <h3 class="display-2 text-dark text-uppercase">shop all</h3>
+
+
+    <?php
+getdetails();
+cart();
+?>
+
+       
        
       <!-- fetching products-->
-<?php
-getdetails();
-?>
+      
+   
 
       
           
       </div>
-</div>
+
   
 
 <!-- //top products -->

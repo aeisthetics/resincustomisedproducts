@@ -1,6 +1,7 @@
 <?php
 // Database connection
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+
+include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
 
 if (isset($_POST['add'])) {
     // Accessing the correct POST keys based on your form's input names
