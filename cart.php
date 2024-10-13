@@ -40,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
-
 ?>
 
 <!DOCTYPE html>
