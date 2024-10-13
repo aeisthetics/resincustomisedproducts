@@ -134,10 +134,10 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 				  <div class="offcanvas-body">
 					<ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
 					  <li class="nav-item dropdown">
-						<a class="nav-link me-4" href="index.html">Home</a>
+						<a class="nav-link me-4" href="index.php">Home</a>
 	  
 					  <li class="nav-item dropdown me-4">
-						<a class="nav-link me-4" href="shop.html">products</a>
+						<a class="nav-link me-4" href="shop.php">products</a>
 						
 					  </li>
 					  <li class="nav-item dropdown">
@@ -184,7 +184,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 							  </a>
 							</li>
 							<li>
-							  <a href="checkout.html">
+							  <a href="cart.php">
 								<svg class="cart" width="18" height="18">
 								  <use xlink:href="#cart"></use>
 								</svg><sup><?php cartitem(); ?></sup>
@@ -235,17 +235,29 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 	</div>
 	<!-- //banner_inner -->
   </div>
-  
   <div class="ads-grid_shop">
     <div class="shop_inner_inf">
         <div class="privacy about">
-            <h1 class="head" style="float:left;">Cart</h1><br>
-            <div class="checkout-right">
-                <br><h2 style="float: left;">Your shopping cart contains: <span>3 Products</span></h2><br>
-                <form action="" method="post">
-                    <table class="table">
-                        <thead>
-                            <tr style="padding-right: 30px;">
+		<form action='' method='post'>
+                       
+
+                        <?php
+                        $ip = getIPAddress();  // Fetch the IP address of the user
+                        $total = 0;  // Initialize the total cost of the cart
+
+                        // Fetch cart details for the specific user based on IP address
+                        $cart_query = "SELECT * FROM `cartdetails` WHERE ipaddress='$ip'";
+                        $result = mysqli_query($con, $cart_query);
+						$result_count=mysqli_num_rows($result);
+						if($result_count>0)
+						{
+
+							echo"  <h1 class='head' style='float: left;font-family:Cinzel, sans-serif; font-size: 30px;' > Your Shopping Cart</h1><br>
+            <div class='checkout-right'>
+                <br><br>
+                
+                    <table class='table'><thead>
+                            <tr style='padding-right: 30px;''>
                                 <th>Product Name</th>
                                 <th>Product</th>
                                 <th>Quantity</th>
@@ -254,16 +266,10 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                                 <th>Operations</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody>";
+		
 
-                        <?php
-                        $ip = getIPAddress();
-                        $total = 0;
-
-                        // Fetch cart details for the specific user based on IP address
-                        $cart_query = "SELECT * FROM `cartdetails` WHERE ipaddress='$ip'";
-                        $result = mysqli_query($con, $cart_query);
-
+                        // Loop through the cart items
                         while ($row = mysqli_fetch_array($result)) {
                             $productid = $row['productid'];
                             $quantity = $row['quantity'];
@@ -291,26 +297,36 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                                     <!-- Quantity input, use name as an array with productid as key -->
                                     <td>
                                         <input type="number" name="qty[<?php echo $productid; ?>]" value="<?php echo $quantity; ?>" min="1" style="width: 60px;">
-										<?php
-                // Handle form submission for updating cart
+                                  
+                <?php
+                // Handle cart update and removal logic
                 if (isset($_POST['updatecart'])) {
-                    // Update the quantity for each product in the cart
                     if (isset($_POST['qty'])) {
                         foreach ($_POST['qty'] as $productid => $qty) {
                             // Ensure the quantity is a valid integer
                             $qty = intval($qty);
+
                             if ($qty > 0) {
                                 // Update the cart quantity for the product
                                 $updatecart = "UPDATE `cartdetails` SET quantity = $qty WHERE ipaddress = '$ip' AND productid = '$productid'";
-                                mysqli_query($con, $updatecart) or die(mysqli_error($con)); // For debugging
+                                $result_update = mysqli_query($con, $updatecart);
                             }
                         }
                     }
-				}?>
+					if($result_update)
+			{
+				echo"<script>window.open('cart.php','_self')</script>";
+			}
+                    
+                }
+
+              
+                ?>
+									
 									</td>
 
                                     <td><?php echo $productprice; ?>/-</td>
-                                    <td><input type="checkbox" name="remove[<?php echo $productid; ?>]"></td>
+                                    <td><input type="checkbox" name="removeitem[]" value= "<?php echo $productid; ?>"></td>
 
                                     <td>
                                         <input type="submit" value="UPDATE CART" class='btn btn-primary submit' name="updatecart" style='width:100px;'>
@@ -322,23 +338,88 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                             <?php
                             } // End inner product loop
                         } // End outer cart loop
+					}
+					else{
+						echo" <h1  class='text-center' style='font-family:Cinzel, sans-serif; font-size: 30px;' >Your Cart is Empty</h1>
+						";
+					} 
                         ?>
                         </tbody>
                     </table>
-
+					<p style='font-family:Cinzel, sans-serif; font-size: 27px;'>total amount : <strong><?php echo $total;?>/-</strong></p>
                     <div class="d-flex">
-                        <p style="font-family:Cinzel, sans-serif; font-size: 27px;">CONTINUE TO BASKET : <strong><?php echo $total; ?>/-</strong></p>
-                        <button class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;'>PROCEED</button>
-                        <button class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;'>MAKE PAYMENT</button>
+					<?php
+                        $ip = getIPAddress();  // Fetch the IP address of the user
+                        $total = 0;  // Initialize the total cost of the cart
+
+                        // Fetch cart details for the specific user based on IP address
+                        $cart_query = "SELECT * FROM `cartdetails` WHERE ipaddress='$ip'";
+                        $result = mysqli_query($con, $cart_query);
+						$result_count=mysqli_num_rows($result);
+					
+						if($result_count>0)
+						{
+
+							echo" 
+                        <input type='submit' class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;' value='PROCEED' name='proceed'>";
+						if(isset($_POST['proceed']))
+						{
+							echo"<script>window.open('contact.php','_self')</script>";
+						}
+
+						
+					}
+						else
+						{
+						
+							echo"<input type='submit' class='btn btn-primary submit' style='width:100%; margin:auto; font-size: 22px; height:50px;' value='CONTINUE SHOPPING' name='continueshopping'>";
+						    if(isset($_POST['continueshopping']))
+						{
+							echo"<script>window.open('index.php','_self')</script>";
+						}
+
+						
+						}
+
+						
+						?>
+                        
                     </div>
                 </form>
 
-              
+
+<?php
+function removecartitem()
+{
+	global $con;
+	if(isset($_POST['removecart'])){
+		foreach($_POST['removeitem'] as $removeid){
+			echo $removeid;
+			$delete_query="delete from `cartdetails` where productid=$removeid";
+			$run_delete=mysqli_query($con,$delete_query);
+			if($run_delete)
+			{
+				echo"<script>window.open('cart.php','_self')</script>";
+			}
+		}
+	}
+}
+
+echo $removeitem= removecartitem();
+
+
+
+
+
+
+
+
+?>
+
             </div>
         </div>
     </div>
 </div>
-
 
 	<footer id="footer" class="overflow-hidden ">
       <div class="container-fluid"  >

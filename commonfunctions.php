@@ -68,9 +68,9 @@ function getdetails()
         echo "   <div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men women_two'>
             <div class='product-card  link-effect d-flex flex-wrap'>
         <div class='product-details'>
-            <h1 class='product-name'>$productname</h1>
+          <a href='single-product.php?productid=$productid' >  <h1 class='product-name'>$productname</h1></a>
            
-          <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
+         <a href='single-product.php?productid=$productid' >  <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'></a>
                  
             <div class='cart-info'>
             
