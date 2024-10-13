@@ -3,6 +3,7 @@
 $nameError = '';
 $emailError = '';
 $phoneError = '';
+$addressError = '';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $phone = trim($_POST['phone']);
+	$address = trim($_POST['address']);
 
     // Validate if any field is left empty
     if (empty($name)) {
@@ -21,12 +23,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($phone)) {
         $phoneError = 'Phone is required!';
     }
+	if (empty($addressError)) {
+        $addressError = 'Address is required!';
+    }
 
     // If no errors, proceed with registration logic
-    if (empty($nameError) && empty($emailError) && empty($phoneError)) {
+    if (empty($nameError) && empty($emailError) && empty($phoneError) && empty($addressError)) {
         // Add your registration logic here (e.g., saving to a database)
         echo "<script>alert('Contact details added successfully!');
-		window.location.href = '../payment.html';</script>";
+		window.location.href = 'payment.html';</script>";
         exit(); // Ensure no further code is executed after redirection
     }
 }
@@ -163,40 +168,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				  <div class="offcanvas-body">
 					<ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
 					  <li class="nav-item dropdown">
-						<a class="nav-link me-4" href="index.html">Home</a>
+						<a class="nav-link me-4" href="index.html">Home</a></li>
 	  
 					  <li class="nav-item dropdown me-4">
 						<a class="nav-link me-4" href="shop.html">products</a>
 						
 					  </li>
-					  <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Pages</a>
-						<ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
+						
+						 
 						  
-						  <li>
-							<a href="checkout.html" class="dropdown-item item-anchor">Cart</a>
-						  </li>
-						  
-						  <li>
-							<a href="contact.html" class="dropdown-item item-anchor">Contact </a>
-						  </li>
-						  
-						  <li>
-							<a href="faqs.html" class="dropdown-item item-anchor">FAQs</a>
-						  </li>
-						  <li>
-							<a href="my-account.html" class="dropdown-item item-anchor">My Account </a>
-						  </li>
-						  <li>
-							<a href="order-tracking.html" class="dropdown-item item-anchor">Order Tracking </a>
-						  </li>
-						  <li>
-							<a href="wishlist.html" class="dropdown-item item-anchor">Wishlist </a>
-						  </li>
 						  
 						</ul>
-					  </li>
+					  
 					  <li class="nav-item">
 						<div class="user-items ps-5">
 						  <ul class="d-flex justify-content-end list-unstyled">
@@ -311,6 +294,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                <input type="text" style="margin-bottom: 10px;" placeholder="Phone" id="phone" name="phone" /><br>
             <?php if (!empty($phoneError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $phoneError; ?></div>
+            <?php endif; ?>
+			<input type="text" style="margin-bottom: 10px;" placeholder="Address" id="address" name="address" value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>" /><br>
+            <?php if (!empty($nameError)): ?>
+                <div class="error-message" style="color:red;"><?php echo $addressError; ?></div>
             <?php endif; ?>
                 <button type="submit" class="btn btn-primary">Submit</button>
 					<input type="reset" value="Clear" style="margin: 5px; padding:1px;">

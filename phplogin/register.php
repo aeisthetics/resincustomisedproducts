@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nameError) && empty($emailError) && empty($passwordError)) {
         // Add your login authentication logic here
         echo "<script>alert('Registration successful!');</script>";
-        header("Location: ../index.html");
+        header("Location: ../index.php");
         exit(); // Ensure no further code is executed after redirection
     }
 }
