@@ -1,15 +1,19 @@
 <?php
 // Initialize the error messages
+$nameError='';
 $emailError = '';
 $passwordError = '';
-
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the input values and trim any extra spaces
+    $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
     // Validate if any field is left empty
+    if (empty($name)) {
+        $nameError ='Name is required!';
+    }
     if (empty($email)) {
         $emailError ='Email is required!';
     }
@@ -18,10 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // If no error, proceed with login logic
-    if (empty($emailError) && empty($passwordError)) {
+    if (empty($nameError) && empty($emailError) && empty($passwordError)) {
         // Add your login authentication logic here
-        echo "<script>alert('Login successful!');</script>";
-        header("Location: ../index.html");
+        echo "<script>alert('Registration successful!');</script>";
         exit(); // Ensure no further code is executed after redirection
     }
 }
@@ -40,13 +43,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">    <!-- Form action will point to the same page -->
+    <form action="adminconnection.php" method="post">    <!-- Form action will point to the same page -->
             <h1>Sign in</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
+            <input type="text" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
+            <?php if (!empty($nameError)): ?>
+                <div class="error-message" style="color:red;"><?php echo $nameError; ?></div>
+            <?php endif; ?>
             <input type="email" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" />
 
             <?php if (!empty($emailError)): ?>
@@ -58,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="error-message" style="color:red;"><?php echo $passwordError; ?></div>
             <?php endif; ?>
 
-            <button name="signin" type="submit">Sign In</button>
+            <button name="signup" type="submit">Sign Up</button>
         </form>
     </div>
 
@@ -68,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="overlay-panel overlay-right">
                 <h1>Hello, Friend!</h1>
                 <p>Enter your personal details and start your journey with us</p>
-                <a href="register.php"><button class="ghost" id="signUp">Sign Up</button></a>
+                <a href="adminlogin.php"><button class="ghost" id="signIn">Sign In</button></a>
             </div>
         </div>
     </div>
@@ -86,3 +93,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

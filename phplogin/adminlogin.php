@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($emailError) && empty($passwordError)) {
         // Add your login authentication logic here
         echo "<script>alert('Login successful!');</script>";
-        header("Location: ../index.html");
         exit(); // Ensure no further code is executed after redirection
     }
 }
@@ -40,15 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">    <!-- Form action will point to the same page -->
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post"> <!-- Form action will point to the same page -->
             <h1>Sign in</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <input type="email" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" />
-
+            <input type="text" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" /><br> 
             <?php if (!empty($emailError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $emailError; ?></div>
             <?php endif; ?>
@@ -68,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="overlay-panel overlay-right">
                 <h1>Hello, Friend!</h1>
                 <p>Enter your personal details and start your journey with us</p>
-                <a href="register.php"><button class="ghost" id="signUp">Sign Up</button></a>
+                <a href="adminregister.php"><button class="ghost" id="signUp">Sign Up</button></a>
             </div>
         </div>
     </div>

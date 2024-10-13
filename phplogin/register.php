@@ -1,9 +1,8 @@
 <?php
-// Initialize error messages
-$nameError = '';
+// Initialize the error messages
+$nameError='';
 $emailError = '';
 $passwordError = '';
-
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the input values and trim any extra spaces
@@ -13,25 +12,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate if any field is left empty
     if (empty($name)) {
-        $nameError = 'Name is required!';
+        $nameError ='Name is required!';
     }
     if (empty($email)) {
-        $emailError = 'Email is required!';
+        $emailError ='Email is required!';
     }
     if (empty($password)) {
-        $passwordError = 'Password is required!';
+        $passwordError ='Password is required!';
     }
 
-    // If no errors, proceed with registration logic
+    // If no error, proceed with login logic
     if (empty($nameError) && empty($emailError) && empty($passwordError)) {
-        // Add your registration logic here (e.g., saving to a database)
+        // Add your login authentication logic here
         echo "<script>alert('Registration successful!');</script>";
         header("Location: ../index.html");
         exit(); // Ensure no further code is executed after redirection
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form action="connection.php" method="post"> <!-- Action set to the same page for processing -->
-            <h1>Sign up</h1>
+    <form action="connection.php" method="post">    <!-- Form action will point to the same page -->
+            <h1>Sign in</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
@@ -57,52 +55,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (!empty($nameError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $nameError; ?></div>
             <?php endif; ?>
-            <input type="email" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" /><br>
+            <input type="email" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" />
+
             <?php if (!empty($emailError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $emailError; ?></div>
             <?php endif; ?>
-            <input type="password" placeholder="Password" id="password" name="password" />
+            
+            <input type="password" placeholder="Password" id="password" name="password" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>" /><br>
             <?php if (!empty($passwordError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $passwordError; ?></div>
             <?php endif; ?>
-            <button type="submit">Sign Up</button>
+
+            <button name="signup" type="submit">Sign Up</button>
         </form>
     </div>
 
-    <!-- Login Area -->
+    <!-- Registration Area -->
     <div class="overlay-container">
         <div class="overlay">
             <div class="overlay-panel overlay-right">
                 <h1>Hello, Friend!</h1>
                 <p>Enter your personal details and start your journey with us</p>
-                <a href="login.php"><button class="ghost" id="signIn">Sign in</button></a>
+                <a href="login.php"><button class="ghost" id="signIn">Sign In</button></a>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    // Constant variables
-    const loginForm = document.getElementById('loginForm');
-    const registrationForm = document.getElementById('registrationForm');
-
-    // Hide registration form
-    registrationForm.style.display = "none";
-
-    function showRegistrationForm() {
-        registrationForm.style.display = "";
-        loginForm.style.display = "none";
-    }
-
-    function showLoginForm() {
-        registrationForm.style.display = "none";
-        loginForm.style.display = "";
-    }
-</script>
-
 <!-- Bootstrap Js -->
 <script src="js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+
 <footer id="footer" class="overflow-hidden padding-large">
     <div style="margin-left: -4%;">
         <p style="padding-left: 58px;">aeisthetics © Copyright 2023.</p>
@@ -111,3 +94,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

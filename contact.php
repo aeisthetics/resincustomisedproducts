@@ -1,4 +1,37 @@
+<?php
+// Initialize error messages
+$nameError = '';
+$emailError = '';
+$phoneError = '';
 
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the input values and trim any extra spaces
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $phone = trim($_POST['phone']);
+
+    // Validate if any field is left empty
+    if (empty($name)) {
+        $nameError = 'Name is required!';
+    }
+    if (empty($email)) {
+        $emailError = 'Email is required!';
+    }
+    if (empty($phone)) {
+        $phoneError = 'Phone is required!';
+    }
+
+    // If no errors, proceed with registration logic
+    if (empty($nameError) && empty($emailError) && empty($phoneError)) {
+        // Add your registration logic here (e.g., saving to a database)
+        echo "<script>alert('Contact details added successfully!');
+		window.location.href = '../payment.html';</script>";
+        exit(); // Ensure no further code is executed after redirection
+    }
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -7,7 +40,7 @@
    
 
 	<!-- //custom-theme -->
-  <link rel="stylesheet" type="text/css" href="heh.css">
+  <link rel="stylesheet" type="text/css" href="css/contact.css">
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/shop.css" type="text/css" media="screen" property="" />
 	<link href="css/style7.css" rel="stylesheet" type="text/css" media="all" />
@@ -246,24 +279,44 @@
   
   <!-- //banner -->
 	<!-- top Products -->
+
 	<div class="ads-grid_shop">
 		<div class="shop_inner_inf">
-			<h1 class="head" style="float:left;">Contact us</h1><br>
-			<p class="head_para" style="float: left;">for more infos</p>
+			<h1 class="head" style="float:left;">Contact us</h1><br>			
 			<div class="inner_section_w3ls">
 				<div class="col-md-7 contact_grid_right">
-					<h6>Please fill this form to contact with us.</h6>
-					<form action="#" method="post">
+					<h6>Please fill in your details.</h6>
+					<?php if (!empty($errors)): ?>
+                <div class="alert alert-danger">
+                    <?php foreach ($errors as $error): ?>
+                        <p><?php echo htmlspecialchars($error); ?></p>
+                    <?php endforeach; ?>
+                </div>
+            <?php elseif (isset($successMessage)): ?>
+                <div class="alert alert-success">
+                    <p><?php echo htmlspecialchars($successMessage); ?></p>
+                </div>
+            <?php endif; ?>
+					<form action="resincustomisedproducts/contactconnection.php" method="POST">
 						<div class="col-md-6 col-sm-6 contact_left_grid">
-							<input type="text" name="Name" placeholder="Name" required="">
-							<input type="email" name="Email" placeholder="Email" required="">
-							<input type="text" name="Telephone" placeholder="phone" required="">
-						
-						
-						<input type="submit" value="Submit" style="margin: 20px;">
-						<input type="reset" value="Clear" style="margin: 20px;">
+
+						<input type="text" style="margin-bottom: 10px;" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
+            <?php if (!empty($nameError)): ?>
+                <div class="error-message" style="color:red;"><?php echo $nameError; ?></div>
+            <?php endif; ?>
+                <input type="email" style="margin-bottom: 10px;" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" /><br>
+            <?php if (!empty($emailError)): ?>
+                <div class="error-message" style="color:red;"><?php echo $emailError; ?></div>
+            <?php endif; ?>
+               <input type="text" style="margin-bottom: 10px;" placeholder="Phone" id="phone" name="phone" /><br>
+            <?php if (!empty($phoneError)): ?>
+                <div class="error-message" style="color:red;"><?php echo $phoneError; ?></div>
+            <?php endif; ?>
+                <button type="submit" class="btn btn-primary">Submit</button>
+					<input type="reset" value="Clear" style="margin: 5px; padding:1px;">
 					</div>
 					</form>
+				
 				</div>
 				<div class="col-md-5 contact-left">
 					<h6>Contact Info</h6>
@@ -400,3 +453,4 @@
 </body>
 
 </html>
+

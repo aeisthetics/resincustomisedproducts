@@ -1,4 +1,5 @@
 <?php 
+$name=$_POST['name'];
 $email=$_POST['email'];
 $password=$_POST['password'];
 
@@ -10,14 +11,12 @@ if($conn->connect_error)
     die('Connection failed:'.$conn->connect_error);
 }
 else{
-    $stmt=$conn->prepare("insert into registration(email,password) values(?,?)");
-    $stmt->bind_param("ss",$email,$password);
+    $stmt=$conn->prepare("insert into adminlogin(name,email,password) values(?,?,?)");
+    $stmt->bind_param("sss",$name,$email,$password);
     $stmt->execute();
-    header("Location: ../index.html");
+    echo "<script>alert('Details successfully added!');</script>";
+
     $stmt->close();
     $conn->close();
 }
 ?>  
-
-
-
