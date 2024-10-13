@@ -1,5 +1,4 @@
 <?php
-
 // Initialize error messages
 $nameError = '';
 $emailError = '';
@@ -32,14 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nameError) && empty($emailError) && empty($phoneError) && empty($addressError)) {
         // Add your registration logic here (e.g., saving to a database)
         echo "<script>alert('Contact details added successfully!');
-		window.location.href = 'payment.html';</script>";
+		window.location.href = '../payment.html';</script>";
         exit(); // Ensure no further code is executed after redirection
     }
 }
-
-
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 
 ?>
 
@@ -173,41 +168,15 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 				  <div class="offcanvas-body">
 					<ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
 					  <li class="nav-item dropdown">
-
 						<a class="nav-link me-4" href="index.html">Home</a></li>
-
-						<a class="nav-link me-4" href="index.php">Home</a>
-
 	  
 					  <li class="nav-item dropdown me-4">
-						<a class="nav-link me-4" href="shop.php">products</a>
+						<a class="nav-link me-4" href="shop.html">products</a>
 						
 					  </li>
 						
 						 
 						  
-
-						  <li>
-							<a href="cart.php" class="dropdown-item item-anchor">Cart</a>
-						  </li>
-						  
-						  <li>
-							<a href="contact.html" class="dropdown-item item-anchor">Contact </a>
-						  </li>
-						  
-						  <li>
-							<a href="faqs.html" class="dropdown-item item-anchor">FAQs</a>
-						  </li>
-						  <li>
-							<a href="my-account.html" class="dropdown-item item-anchor">My Account </a>
-						  </li>
-						  <li>
-							<a href="order-tracking.html" class="dropdown-item item-anchor">Order Tracking </a>
-						  </li>
-						  <li>
-							<a href="wishlist.html" class="dropdown-item item-anchor">Wishlist </a>
-						  </li>
-
 						  
 						</ul>
 					  
@@ -227,10 +196,10 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 							  </a>
 							</li>
 							<li>
-							  <a href="cart.php">
+							  <a href="checkout.html">
 								<svg class="cart" width="18" height="18">
 								  <use xlink:href="#cart"></use>
-								</svg><sup><?php cartitem(); ?></sup>
+								</svg>
 							  </a>
 							</li>
 						  </ul>
@@ -246,8 +215,12 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 <div class="banner_top innerpage" id="home">
 	<div class="wrapper_top_w3layouts">
 	  <div class="header_agileits">
+		<div class="logo inner_page_log">
+		  
+		</div>
 		<div class="overlay overlay-contentpush">
 		  <button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
+  
 		  <nav>
 			<ul>
 			  <li><a href="index.html" class="active">Home</a></li>
@@ -260,7 +233,15 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 		</div>
 		
 		<!-- cart details -->
-		
+		<div class="top_nav_right">
+		  <div class="shoecart shoecart2 cart cart box_1">
+			<form action="#" method="post" class="last">
+			  <input type="hidden" name="cmd" value="_cart">
+			  <input type="hidden" name="display" value="1">
+			  
+			</form>
+		  </div>
+		</div>
 	  </div>
 	</div>
 	<!-- //cart details -->
@@ -278,7 +259,6 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 	</div>
 	<!-- //banner_inner -->
   </div>
-
   
   <!-- //banner -->
 	<!-- top Products -->
@@ -300,7 +280,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                     <p><?php echo htmlspecialchars($successMessage); ?></p>
                 </div>
             <?php endif; ?>
-					<form action="resincustomisedproducts/contactconnection.php" method="POST">
+					<form action="contactconnection.php" method="POST">
 						<div class="col-md-6 col-sm-6 contact_left_grid">
 
 						<input type="text" style="margin-bottom: 10px;" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
@@ -448,267 +428,6 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 		  </div>
 		</div>
 	  </footer>
-
-  <div class="ads-grid_shop">
-    <div class="shop_inner_inf">
-        <div class="privacy about">
-		<form action='' method='post'>
-                       
-
-                        <?php
-                        $ip = getIPAddress();  // Fetch the IP address of the user
-                        $total = 0;  // Initialize the total cost of the cart
-
-                        // Fetch cart details for the specific user based on IP address
-                        $cart_query = "SELECT * FROM `cartdetails` WHERE ipaddress='$ip'";
-                        $result = mysqli_query($con, $cart_query);
-						$result_count=mysqli_num_rows($result);
-						if($result_count>0)
-						{
-
-							echo"  <h1 class='head' style='float: left;font-family:Cinzel, sans-serif; font-size: 30px;' > Your Shopping Cart</h1><br>
-            <div class='checkout-right'>
-                <br><br>
-                
-                    <table class='table'><thead>
-                            <tr style='padding-right: 30px;''>
-                                <th>Product Name</th>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Remove</th>
-                                <th>Operations</th>
-                            </tr>
-                        </thead>
-                        <tbody>";
-		
-
-                        // Loop through the cart items
-                        while ($row = mysqli_fetch_array($result)) {
-                            $productid = $row['productid'];
-                            $quantity = $row['quantity'];
-
-                            // Fetch product details for each product in the cart
-                            $selectproducts = "SELECT * FROM `products` WHERE productid='$productid'";
-                            $resultproducts = mysqli_query($con, $selectproducts);
-
-                            while ($rowproductprice = mysqli_fetch_array($resultproducts)) {
-                                $productprice = $rowproductprice['price'];
-                                $producttitle = $rowproductprice['productname'];
-                                $productimage = $rowproductprice['image'];
-
-                                // Calculate the total price of the cart
-                                $total += $productprice * $quantity;
-                                ?>
-
-                                <tr class="">
-                                    <td style="font-family:Cinzel, sans-serif; font-size: 20px;"><?php echo $producttitle; ?></td>
-                                    <td><a href="single-productbracelet.html">
-                                        <img src="./productimages/<?php echo $productimage; ?>" alt=" " class="img-responsive" style="height: 120px; width: 149px; border-radius: 7px;">
-                                        </a>
-                                    </td>
-
-                                    <!-- Quantity input, use name as an array with productid as key -->
-                                    <td>
-                                        <input type="number" name="qty[<?php echo $productid; ?>]" value="<?php echo $quantity; ?>" min="1" style="width: 60px;">
-                                  
-                <?php
-                // Handle cart update and removal logic
-                if (isset($_POST['updatecart'])) {
-                    if (isset($_POST['qty'])) {
-                        foreach ($_POST['qty'] as $productid => $qty) {
-                            // Ensure the quantity is a valid integer
-                            $qty = intval($qty);
-
-                            if ($qty > 0) {
-                                // Update the cart quantity for the product
-                                $updatecart = "UPDATE `cartdetails` SET quantity = $qty WHERE ipaddress = '$ip' AND productid = '$productid'";
-                                $result_update = mysqli_query($con, $updatecart);
-                            }
-                        }
-                    }
-					if($result_update)
-			{
-				echo"<script>window.open('cart.php','_self')</script>";
-			}
-                    
-                }
-
-              
-                ?>
-									
-									</td>
-
-                                    <td><?php echo $productprice; ?>/-</td>
-                                    <td><input type="checkbox" name="removeitem[]" value= "<?php echo $productid; ?>"></td>
-
-                                    <td>
-                                        <input type="submit" value="UPDATE CART" class='btn btn-primary submit' name="updatecart" style='width:100px;'>
-                                        <br>
-                                        <input type="submit" value="REMOVE" class='btn btn-primary submit' name="removecart" style='width:100px;'>
-                                    </td>
-                                </tr>
-
-                            <?php
-                            } // End inner product loop
-                        } // End outer cart loop
-					}
-					else{
-						echo" <h1  class='text-center' style='font-family:Cinzel, sans-serif; font-size: 30px;' >Your Cart is Empty</h1>
-						";
-					} 
-                        ?>
-                        </tbody>
-                    </table>
-					<p style='font-family:Cinzel, sans-serif; font-size: 27px;'>total amount : <strong><?php echo $total;?>/-</strong></p>
-                    <div class="d-flex">
-					<?php
-                        $ip = getIPAddress();  // Fetch the IP address of the user
-                        $total = 0;  // Initialize the total cost of the cart
-
-                        // Fetch cart details for the specific user based on IP address
-                        $cart_query = "SELECT * FROM `cartdetails` WHERE ipaddress='$ip'";
-                        $result = mysqli_query($con, $cart_query);
-						$result_count=mysqli_num_rows($result);
-					
-						if($result_count>0)
-						{
-
-							echo" 
-                        <input type='submit' class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;' value='PROCEED' name='proceed'>";
-						if(isset($_POST['proceed']))
-						{
-							echo"<script>window.open('contact.php','_self')</script>";
-						}
-
-						
-					}
-						else
-						{
-						
-							echo"<input type='submit' class='btn btn-primary submit' style='width:100%; margin:auto; font-size: 22px; height:50px;' value='CONTINUE SHOPPING' name='continueshopping'>";
-						    if(isset($_POST['continueshopping']))
-						{
-							echo"<script>window.open('index.php','_self')</script>";
-						}
-
-						
-						}
-
-						
-						?>
-                        
-                    </div>
-                </form>
-
-
-<?php
-function removecartitem()
-{
-	global $con;
-	if(isset($_POST['removecart'])){
-		foreach($_POST['removeitem'] as $removeid){
-			echo $removeid;
-			$delete_query="delete from `cartdetails` where productid=$removeid";
-			$run_delete=mysqli_query($con,$delete_query);
-			if($run_delete)
-			{
-				echo"<script>window.open('cart.php','_self')</script>";
-			}
-		}
-	}
-}
-
-echo $removeitem= removecartitem();
-
-
-
-
-
-
-
-
-?>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-	<footer id="footer" class="overflow-hidden ">
-      <div class="container-fluid"  >
-        <div class="row">
-          <div class="row d-flex flex-wrap justify-content-between" style="padding-top:70px">
-            <div class="col-lg-3 col-sm-6 pb-3 pe-4">
-              <div class="footer-menu">
-               
-                <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-               <br><br> <p>aeisthetics</p>
-              </div>
-              <div class="copyright">
-                <p>© Copyright 2023. 
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-2 col-sm-6 pb-3">
-              <div class="footer-menu text-uppercase">
-                <h5 class="widget-title pb-2">Quick Links</h5>
-                <ul class="menu-list list-unstyled text-uppercase">
-                  <li class="menu-item pb-2">
-                    <a href="#billboard">Home</a>
-                  </li>
-                  <li class="menu-item pb-2">
-                    <a href="#about-us">About</a>
-                  </li>
-                  <li class="menu-item pb-2">
-                    <a href="#company-services">Services</a>
-                  </li>
-                  <li class="menu-item pb-2">
-                    <a href="#latest-blog">Blogs</a>
-                  </li>
-                  <li class="menu-item pb-2">
-                    <a href="#contact">Contact</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-2 col-sm-6 pb-3">
-              <div class="footer-menu text-uppercase">
-                <h5 class="widget-title pb-2">Social</h5>
-                <div class="social-links">
-                  <ul class="list-unstyled">
-                    <li class="pb-2">
-                      <a href="#">Facebook</a>
-                    </li>
-                    <li class="pb-2">
-                      <a href="#">Twitter</a>
-                    </li>
-                    <li class="pb-2">
-                      <a href="#">Pinterest</a>
-                    </li>
-                    <li class="pb-2">
-                      <a href="https://www.instagram.com/aeisthetics/">Instagram</a>
-                    </li>
-                    <li>
-                      <a href="#">Youtube</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-           <div class="col-lg-3 col-sm-6">
-              <div class="footer-menu contact-item">
-                <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
-                <p><a href="">+91 7594906015</a></p>
-                <p><a href="mailto:">aeistheticsartworks@gmail.com</a></p>
-                <p>Power House Link Road,Palarivattom<br>Ernakulam,kerala<br>682025<br></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
 	  
 	  <script src="js/jquery-1.11.0.min.js"></script>
 	  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -721,4 +440,3 @@ echo $removeitem= removecartitem();
 </body>
 
 </html>
-

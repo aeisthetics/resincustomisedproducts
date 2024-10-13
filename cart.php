@@ -1,42 +1,5 @@
 <?php
 
-// Initialize error messages
-$nameError = '';
-$emailError = '';
-$phoneError = '';
-$addressError = '';
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the input values and trim any extra spaces
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $phone = trim($_POST['phone']);
-	$address = trim($_POST['address']);
-
-    // Validate if any field is left empty
-    if (empty($name)) {
-        $nameError = 'Name is required!';
-    }
-    if (empty($email)) {
-        $emailError = 'Email is required!';
-    }
-    if (empty($phone)) {
-        $phoneError = 'Phone is required!';
-    }
-	if (empty($addressError)) {
-        $addressError = 'Address is required!';
-    }
-
-    // If no errors, proceed with registration logic
-    if (empty($nameError) && empty($emailError) && empty($phoneError) && empty($addressError)) {
-        // Add your registration logic here (e.g., saving to a database)
-        echo "<script>alert('Contact details added successfully!');
-		window.location.href = 'payment.html';</script>";
-        exit(); // Ensure no further code is executed after redirection
-    }
-}
-
 
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
@@ -149,98 +112,97 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 		</div> 
 	
 		
+
 		<header id="header" class="site-header text-black">
-			<nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
-			  <div class="container-fluid">
-				<a class="" href="index.html">
-				  <img src="img/logo1.jpg" style="height: 45px; width: 45px; border-radius: 58px; float: left;">
-				  <h1 style="font-family: Poppins, sans-serif;font-weight:bolder;font-size: 40px; padding-left: 2px; float: left;">aeisthetics</h1>
-				</a>
-				<button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
-				  <svg class="navbar-icon" width="50" height="50">
-					<use xlink:href="#navbar-icon"></use>
-				  </svg>
-				</button>
-				<div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
-				  <div class="offcanvas-header px-4 pb-0">
-					<a class="navbar-brand" href="index.html">
-					  <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-					  <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;">aeisthetics</h1>
-					</a>
-					<button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
-				  </div>
-				  <div class="offcanvas-body">
-					<ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
-					  <li class="nav-item dropdown">
+      <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
+        <div class="container-fluid">
+          <a class="" href="index.html">
+            <img src="img/logo1.jpg" style="height: 45px; width: 45px; border-radius: 58px; float: left;">
+            <h1 style="font-family: Poppins, sans-serif;font-weight:bolder;font-size: 40px; padding-left: 2px; float: left;">aeisthetics</h1>
+          </a>
+          <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="navbar-icon" width="50" height="50">
+              <use xlink:href="#navbar-icon"></use>
+            </svg>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+            <div class="offcanvas-header px-4 pb-0">
+              <a class="navbar-brand" href="index.html">
+                <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
+                <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;">aeisthetics</h1>
+              </a>
+              <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
+                <li class="nav-item dropdown">
+                  <a class="nav-link me-4" href="index.php">Home</a>
+                  </li>
+              
 
-						<a class="nav-link me-4" href="index.html">Home</a></li>
-
-						<a class="nav-link me-4" href="index.php">Home</a>
-
-	  
-					  <li class="nav-item dropdown me-4">
-						<a class="nav-link me-4" href="shop.php">products</a>
-						
-					  </li>
-						
-						 
-						  
-
-						  <li>
-							<a href="cart.php" class="dropdown-item item-anchor">Cart</a>
-						  </li>
-						  
-						  <li>
-							<a href="contact.html" class="dropdown-item item-anchor">Contact </a>
-						  </li>
-						  
-						  <li>
-							<a href="faqs.html" class="dropdown-item item-anchor">FAQs</a>
-						  </li>
-						  <li>
-							<a href="my-account.html" class="dropdown-item item-anchor">My Account </a>
-						  </li>
-						  <li>
-							<a href="order-tracking.html" class="dropdown-item item-anchor">Order Tracking </a>
-						  </li>
-						  <li>
-							<a href="wishlist.html" class="dropdown-item item-anchor">Wishlist </a>
-						  </li>
-
-						  
-						</ul>
-					  
-					  <li class="nav-item">
-						<div class="user-items ps-5">
-						  <ul class="d-flex justify-content-end list-unstyled">
-							<li class="search-item pe-3" data-bs-toggle="collapse" data-bs-target="#search-box" aria-controls="search-box" aria-expanded="false" aria-label="Toggle navigation">
-							  <svg class="search" width="18" height="18">
-								<use xlink:href="#search"></use>
-							  </svg>
-							</li>
-							<li class="pe-3">
-							  <a href="">
-								<svg class="user" width="18" height="18">
-								  <use xlink:href="#user"></use>
-								</svg>
-							  </a>
-							</li>
-							<li>
-							  <a href="cart.php">
-								<svg class="cart" width="18" height="18">
-								  <use xlink:href="#cart"></use>
-								</svg><sup><?php cartitem(); ?></sup>
-							  </a>
-							</li>
-						  </ul>
-						</div>
-					  </li>
-					</ul>
-				  </div>
-				</div>
-			  </div>
-			</nav>    
-		  </header>
+                <li class="nav-item dropdown me-4">
+                  <a class="nav-link me-4" href="shop.php">products</a>
+                  
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">Pages</a>
+                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
+                    
+                    <li>
+                      <a href="cart.php" class="dropdown-item item-anchor">Cart</a>
+                    </li>
+                    
+                    <li>
+                      <a href="contact.html" class="dropdown-item item-anchor">Contact </a>
+                    </li>
+                    
+                    <li>
+                      <a href="faqs.html" class="dropdown-item item-anchor">FAQs</a>
+                    </li>
+                    <li>
+                      <a href="my-account.html" class="dropdown-item item-anchor">My Account </a>
+                    </li>
+                    <li>
+                      <a href="order-tracking.html" class="dropdown-item item-anchor">Order Tracking </a>
+                    </li>
+                    <li>
+                      <a href="wishlist.html" class="dropdown-item item-anchor">Wishlist </a>
+                    </li>
+                    
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <div class="user-items ps-5">
+                    <ul class="d-flex justify-content-end list-unstyled">
+                      <li class="search-item pe-3" data-bs-toggle="collapse" data-bs-target="#search-box" aria-controls="search-box" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg class="search" width="18" height="18">
+                          <use xlink:href="#search"></use>
+                        </svg>
+                      </li>
+                      <li class="pe-3">
+                        <a href="">
+                          <svg class="user" width="18" height="18">
+                            <use xlink:href="#user"></use>
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="cart.php">
+                          <svg class="cart" width="18" height="18">
+                            <use xlink:href="#cart"></use>
+                          </svg><sup><?php cartitem(); ?></sup>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>    
+    </header>
 		<!-- banner -->
 <div class="banner_top innerpage" id="home">
 	<div class="wrapper_top_w3layouts">
@@ -279,174 +241,6 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
   </div>
 
   
-  <!-- //banner -->
-	<!-- top Products -->
-
-	<div class="ads-grid_shop">
-		<div class="shop_inner_inf">
-			<h1 class="head" style="float:left;">Contact us</h1><br>			
-			<div class="inner_section_w3ls">
-				<div class="col-md-7 contact_grid_right">
-					<h6>Please fill in your details.</h6>
-					<?php if (!empty($errors)): ?>
-                <div class="alert alert-danger">
-                    <?php foreach ($errors as $error): ?>
-                        <p><?php echo htmlspecialchars($error); ?></p>
-                    <?php endforeach; ?>
-                </div>
-            <?php elseif (isset($successMessage)): ?>
-                <div class="alert alert-success">
-                    <p><?php echo htmlspecialchars($successMessage); ?></p>
-                </div>
-            <?php endif; ?>
-					<form action="resincustomisedproducts/contactconnection.php" method="POST">
-						<div class="col-md-6 col-sm-6 contact_left_grid">
-
-						<input type="text" style="margin-bottom: 10px;" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
-            <?php if (!empty($nameError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $nameError; ?></div>
-            <?php endif; ?>
-                <input type="email" style="margin-bottom: 10px;" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" /><br>
-            <?php if (!empty($emailError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $emailError; ?></div>
-            <?php endif; ?>
-               <input type="text" style="margin-bottom: 10px;" placeholder="Phone" id="phone" name="phone" /><br>
-            <?php if (!empty($phoneError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $phoneError; ?></div>
-            <?php endif; ?>
-			<input type="text" style="margin-bottom: 10px;" placeholder="Address" id="address" name="address" value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>" /><br>
-            <?php if (!empty($nameError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $addressError; ?></div>
-            <?php endif; ?>
-                <button type="submit" class="btn btn-primary">Submit</button>
-					<input type="reset" value="Clear" style="margin: 5px; padding:1px;">
-					</div>
-					</form>
-				
-				</div>
-				<div class="col-md-5 contact-left">
-					<h6>Contact Info</h6>
-					<div class="visit">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-home" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Visit us</h4>
-							<p>Parma Via Modena,BO, Italy</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="mail-us">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-envelope" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Mail us</h4>
-							<p><a href="mailto:info@example.com">aeistheticsartwork@gmail.com</a></p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="call">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-phone" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Call us</h4>
-							<p>+18044261149</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="visit">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-fax" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Fax</h4>
-							<p>+1804426349</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-
-			</div>
-		</div>
-	</div>
-	
-	<footer id="footer" class="overflow-hidden padding-large">
-		<div class="container-fluid">
-		  <div class="row">
-			<div class="row d-flex flex-wrap justify-content-between">
-			  <div class="col-lg-3 col-sm-6 pb-3 pe-4">
-				<div class="footer-menu">
-				 
-				  <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-				 <br><br><br>
-				  <p>aeisthetics</p>
-				</div>
-				<div class="copyright">
-				  <p>© Copyright 2023. 
-				  </p>
-				</div>
-			  </div>
-			  <div class="col-lg-2 col-sm-6 pb-3">
-				<div class="footer-menu text-uppercase">
-				  <h5 class="widget-title pb-2">Quick Links</h5>
-				  <ul class="menu-list list-unstyled text-uppercase">
-					<li class="menu-item pb-2">
-					  <a href="#billboard">Home</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#about-us">About</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#company-services">Services</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#latest-blog">Blogs</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#contact">Contact</a>
-					</li>
-				  </ul>
-				</div>
-			  </div>
-			  <div class="col-lg-2 col-sm-6 pb-3">
-				<div class="footer-menu text-uppercase">
-				  <h5 class="widget-title pb-2">Social</h5>
-				  <div class="social-links">
-					<ul class="list-unstyled">
-					  <li class="pb-2">
-						<a href="#">Facebook</a>
-					  </li>
-					  <li class="pb-2">
-						<a href="#">Twitter</a>
-					  </li>
-					  <li class="pb-2">
-						<a href="#">Pinterest</a>
-					  </li>
-					  <li class="pb-2">
-						<a href="https://www.instagram.com/aeisthetics/">Instagram</a>
-					  </li>
-					  <li>
-						<a href="#">Youtube</a>
-					  </li>
-					</ul>
-				  </div>
-				</div>
-			  </div>
-			 <div class="col-lg-3 col-sm-6">
-				<div class="footer-menu contact-item">
-				  <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
-				  <p><a href="">+91 7594906015</a></p>
-				  <p><a href="mailto:">aeistheticsartworks@gmail.com</a></p>
-				  <p>Power House Link Road,Palarivattom<br>Ernakulam,kerala<br>682025<br></p>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </footer>
 
   <div class="ads-grid_shop">
     <div class="shop_inner_inf">
