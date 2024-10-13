@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nameError) && empty($emailError) && empty($phoneError) && empty($addressError)) {
         // Add your registration logic here (e.g., saving to a database)
         echo "<script>alert('Contact details added successfully!');
-		window.location.href = 'payment.html';</script>";
+		window.location.href = '../payment.html';</script>";
         exit(); // Ensure no further code is executed after redirection
     }
 }
