@@ -15,7 +15,7 @@ else{
     $stmt->bind_param("sss",$name,$email,$password);
     $stmt->execute();
     echo "<script>alert('Details successfully added!');</script>";
-
+    header("Location: ../adminindex.php");
     $stmt->close();
     $conn->close();
 }
