@@ -1,7 +1,7 @@
 <?php
-// Database connection
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
 
-include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
+
 
 if (isset($_POST['add'])) {
     // Accessing the correct POST keys based on your form's input names
@@ -9,7 +9,11 @@ if (isset($_POST['add'])) {
     $productdescription = mysqli_real_escape_string($con, $_POST['description']);
     $productkeyword = mysqli_real_escape_string($con, $_POST['keywords']);
     $productprice = mysqli_real_escape_string($con, $_POST['price']);
-
+    $custom1 = mysqli_real_escape_string($con, $_POST['custom1']);
+    $custom2 = mysqli_real_escape_string($con, $_POST['custom2']);
+    $custom3 = mysqli_real_escape_string($con, $_POST['custom3']);
+    $custom4 = mysqli_real_escape_string($con, $_POST['custom4']);
+    $custom5 = mysqli_real_escape_string($con, $_POST['custom5']);
     // Check if a file was uploaded
     if (isset($_FILES['productimage']) && $_FILES['productimage']['error'] === UPLOAD_ERR_OK) {
         $productimage = $_FILES['productimage']['name'];
@@ -18,7 +22,7 @@ if (isset($_POST['add'])) {
         // Move the uploaded file to the specified directory
         if (move_uploaded_file($tmpimage, "./productimages/$productimage")) {
             // Insert product into the database
-            $add_products = "INSERT INTO products (productname, description, keywords, image, price) VALUES ('$productname', '$productdescription', '$productkeyword', '$productimage', '$productprice')";
+            $add_products = "INSERT INTO products (productname, description, keywords, image, price,custom1,custom2,custom3,custom4,custom5) VALUES ('$productname', '$productdescription', '$productkeyword', '$productimage', '$productprice','$custom1','$custom2','$custom3','$custom4','$custom5')";
 
             if (mysqli_query($con, $add_products)) {
                 echo "<script>alert('Product inserted successfully')</script>";
@@ -83,6 +87,18 @@ if (isset($_POST['add'])) {
                             <input class="billing-address-name form-control" type="text" name="price" placeholder="Product price" required>
                         </div>
                     </div>
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Customization options</label>
+                            <input class="billing-address-name form-control" type="text" name="custom1" placeholder="Customization option 1" required>
+                            <input class="billing-address-name form-control" type="text" name="custom2" placeholder="Customization option 2">
+                            <input class="billing-address-name form-control" type="text" name="custom3" placeholder="Customization option 3" >
+                            <input class="billing-address-name form-control" type="text" name="custom4" placeholder="Customization option 4" >
+                            <input class="billing-address-name form-control" type="text" name="custom5" placeholder="Customization option 5">
+                           
+                        </div>
+                    </div>
+   
                     <input type="submit" class="submit check_out p-1 my-3" name="add" value="Add item">
                 </div>
             </section>

@@ -1,5 +1,7 @@
 <?php
-include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+
+
 // Function to get and display products
 function getproducts()
 {
@@ -156,7 +158,8 @@ function viewdetails()
         $productid = $row['productid'];
         $productname = $row['productname'];
         $productdescription = isset($row['description']) ? $row['description'] : 'No description available';
-        $productprice = isset($row['price']) ? $row['price'] : 'Price not available';
+        $productprice = ($row['price']);
+        $custom1 = ($row['custom1']);
         $productimage = $row['image'];
 
         echo " <div class='flexslider' style='display: flex; align-items: center;'>
@@ -175,9 +178,17 @@ function viewdetails()
             <p class='product-description'>$productdescription</p>
             <h2 class='product-price'>Price: $productprice /-</h2>
         </div>
+       
          
-    </div>
    
+     </div>
+    <div class='first-row form-group'>
+                        <div class='controls'>
+                            <label class='control-label'>CUSTOMIZE YOUR PRODUCT</label><br>
+                             <label class='control-label'>$custom1</label>
+                            <input class='billing-address-name form-control' type='text' name='' placeholder='eg. gold,silver' required>
+                        </div>
+                    </div>
    
          <a href='single-product.php?addtocart=$productid' ><button class='btn btn-primary submit' style='width:100%;  font-family: FontAwesome; border-radius: 14px;   font-size: 22px; height:50px;' >ADD TO CART</button></a>
 
