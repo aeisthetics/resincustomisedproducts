@@ -370,7 +370,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         <input type='submit' class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;' value='PROCEED' name='proceed'>";
 						if(isset($_POST['proceed']))
 						{
-							echo"<script>window.open('contact.php','_self')</script>";
+							echo"<script>window.open('customisation.php','_self')</script>";
 						}
 
 						

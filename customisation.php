@@ -2,7 +2,24 @@
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
 include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 
-
+if(isset($_GET['addtocart'])){
+    global $con;
+    $ip = getIPAddress();  
+    $getproductid=$_GET['addtocart'];
+    $select_query="select * from `cartdetails` where ipaddress='$ip'and productid=$getproductid";
+    $result_query=mysqli_query($con,$select_query);
+    $numofrows=mysqli_num_rows($result_query);
+    if($numofrows>0){
+        echo "<script>alert('this item is present in db')</script>";
+        echo "<script>window.open('cart.php','_self')</script>";
+    }
+    else{
+    $insert_query="Insert into `cartdetails` (productid,ipaddress,quantity) values ($getproductid,'$ip',0)";
+    $result_query=mysqli_query($con,$insert_query);
+    echo "<script>alert('item is added to cart')</script>";
+    echo "<script>window.open('cart.php','_self')</script>";
+    }
+}
 
 if (isset($_POST['add'])) {
     // Accessing the correct POST keys based on your form's input names
@@ -18,7 +35,7 @@ if (isset($_POST['add'])) {
         // Move the uploaded file to the specified directory
         if (move_uploaded_file($tmpimage, "./productimages/$productimage")) {
             // Insert product into the database
-            $add_products = "INSERT INTO customisations ( image, customise1,customise2) VALUES ( '$productimage', '$custom1','$custom2')";
+            $add_products = "INSERT INTO customisations (ipaddress, image, customise1,customise2) VALUES ( '$ip','$productimage', '$custom1','$custom2')";
 
             if (mysqli_query($con, $add_products)) {
                 echo "<script>alert('Product inserted successfully')</script>";
@@ -57,7 +74,7 @@ if (isset($_POST['add'])) {
                 <div class="information-wrapper">
                 <?php
                 customoptions();
-cart();
+                cart();
    
    
     ?>
