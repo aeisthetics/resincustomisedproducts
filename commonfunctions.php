@@ -325,7 +325,7 @@ function customoptions()
        
             <div class='first-row form-group'>
                         <div class='controls'>
-                            <label for='productimage' class='control-label'>Product Image</label>
+                            <label for='productimage' class='control-label'>UPLOAD ANY REFERENCE IMAGE</label>
                             <input class='form-control' type='file' name='productimage' required>
                         </div>
                     </div>
@@ -355,7 +355,7 @@ function customoptions()
                         </div>
                     </div>
                        <input type='submit' class='submit check_out p-1 my-3' name='add' value='Add customizations'>
-                        <a href='cart.php?productid=$productid' >proceed</a>
+                       
                             
                         </div>
         </div>
