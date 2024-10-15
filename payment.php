@@ -1,40 +1,6 @@
 <?php
-// Initialize error messages
-$nameError = '';
-$emailError = '';
-$phoneError = '';
-$addressError = '';
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the input values and trim any extra spaces
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $phone = trim($_POST['phone']);
-	$address = trim($_POST['address']);
-
-    // Validate if any field is left empty
-    if (empty($name)) {
-        $nameError = 'Name is required!';
-    }
-    if (empty($email)) {
-        $emailError = 'Email is required!';
-    }
-    if (empty($phone)) {
-        $phoneError = 'Phone is required!';
-    }
-	if (empty($addressError)) {
-        $addressError = 'Address is required!';
-    }
-
-    // If no errors, proceed with registration logic
-    if (empty($nameError) && empty($emailError) && empty($phoneError) && empty($addressError)) {
-        // Add your registration logic here (e.g., saving to a database)
-        echo "<script>alert('Contact details added successfully!');
-		window.location.href = '../payment.html';</script>";
-        exit(); // Ensure no further code is executed after redirection
-    }
-}
+include('./paymentprocess.php');
+include('./commonfunctions.php');
 
 ?>
 
@@ -45,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
 
 	<!-- //custom-theme -->
-  <link rel="stylesheet" type="text/css" href="css/contact.css">
+  <link rel="stylesheet" type="text/css" href="/css/contact.css">
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/shop.css" type="text/css" media="screen" property="" />
 	<link href="css/style7.css" rel="stylesheet" type="text/css" media="all" />
@@ -74,6 +40,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+	<style>
+        .payment-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .payment-option {
+            display: none;
+        }
+    </style>
+    <script>
+      function showPaymentOption(option) {
+    document.querySelectorAll('.payment-option').forEach(function (el) {
+        el.style.display = 'none';
+    });
+    document.getElementById(option).style.display = 'block';
+}
+
+    </script>
     <!-- script
     ================================================== -->
     <script src="js/modernizr.js"></script>
@@ -148,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<header id="header" class="site-header text-black">
 			<nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
 			  <div class="container-fluid">
-				<a class="" href="index.php">
+				<a class="" href="index.html">
 				  <img src="img/logo1.jpg" style="height: 45px; width: 45px; border-radius: 58px; float: left;">
 				  <h1 style="font-family: Poppins, sans-serif;font-weight:bolder;font-size: 40px; padding-left: 2px; float: left;">aeisthetics</h1>
 				</a>
@@ -159,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				</button>
 				<div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
 				  <div class="offcanvas-header px-4 pb-0">
-					<a class="navbar-brand" href="index.php">
+					<a class="navbar-brand" href="index.html">
 					  <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
 					  <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;">aeisthetics</h1>
 					</a>
@@ -168,18 +155,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				  <div class="offcanvas-body">
 					<ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
 					  <li class="nav-item dropdown">
-						<a class="nav-link me-4" href="index.html">Home</a></li>
+						<a class="nav-link me-4" href="index.html">Home</a>
 	  
 					  <li class="nav-item dropdown me-4">
 						<a class="nav-link me-4" href="shop.html">products</a>
 						
 					  </li>
-						
-						 
-						  
-						  
-						</ul>
-					  
+					 
 					  <li class="nav-item">
 						<div class="user-items ps-5">
 						  <ul class="d-flex justify-content-end list-unstyled">
@@ -252,8 +234,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  <div class="inner_breadcrumb_agileits_w3">
 		
 		<ul class="short">
-		  <li><a href="index.html">Home</a><i>|</i></li>
-		  <li>contact</li>
+		  <li><a href="index.html">Home</a><i>|</i></li> <li><a href="shop.html">product</a><i>|</i></li> <li><a href="checkout.html">Cart</a><i>|</i></li>
+		  <li>payment</li>
 		</ul>
 	  </div>
 	</div>
@@ -262,97 +244,89 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
   <!-- //banner -->
 	<!-- top Products -->
+	
 
-	<div class="ads-grid_shop">
-		<div class="shop_inner_inf">
-			<h1 class="head" style="float:left;">Contact us</h1><br>			
-			<div class="inner_section_w3ls">
-				<div class="col-md-7 contact_grid_right">
-					<h6>Please fill in your details.</h6>
-					<?php if (!empty($errors)): ?>
-                <div class="alert alert-danger">
-                    <?php foreach ($errors as $error): ?>
-                        <p><?php echo htmlspecialchars($error); ?></p>
-                    <?php endforeach; ?>
-                </div>
-            <?php elseif (isset($successMessage)): ?>
-                <div class="alert alert-success">
-                    <p><?php echo htmlspecialchars($successMessage); ?></p>
-                </div>
-            <?php endif; ?>
-					<form action="contactconnection.php" method="POST">
-						<div class="col-md-6 col-sm-6 contact_left_grid">
 
-						<input type="text" style="margin-bottom: 10px;" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
-            <?php if (!empty($nameError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $nameError; ?></div>
-            <?php endif; ?>
-                <input type="email" style="margin-bottom: 10px;" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" /><br>
-            <?php if (!empty($emailError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $emailError; ?></div>
-            <?php endif; ?>
-               <input type="text" style="margin-bottom: 10px;" placeholder="Phone" id="phone" name="phone" /><br>
-            <?php if (!empty($phoneError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $phoneError; ?></div>
-            <?php endif; ?>
-			<input type="text" style="margin-bottom: 10px;" placeholder="Address" id="address" name="address" value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>" /><br>
-            <?php if (!empty($nameError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $addressError; ?></div>
-            <?php endif; ?>
-                <button type="submit" class="btn btn-primary">Submit</button>
-					<input type="reset" value="Clear" style="margin: 5px; padding:1px;">
-					</div>
-					</form>
-				
-				</div>
-				<div class="col-md-5 contact-left">
-					<h6>Contact Info</h6>
-					<div class="visit">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-home" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Visit us</h4>
-							<p>Parma Via Modena,BO, Italy</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="mail-us">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-envelope" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Mail us</h4>
-							<p><a href="mailto:info@example.com">aeistheticsartwork@gmail.com</a></p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="call">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-phone" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Call us</h4>
-							<p>+18044261149</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="visit">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-fax" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Fax</h4>
-							<p>+1804426349</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
+
+<body>
+	<!-- payment form -->
+	<h1 style="margin-left: 20px;margin-top: 20px;">payment</h1>
+	<div class="payment-form">
+        <form action="paymentprocess.php" method="POST" id="payment-form">
+            <!-- User Details -->
+			<div class="form-group">
+                <label for="order_amount">Order Amount:</label>
+				<p style='font-family:Cinzel, sans-serif; font-size: 27px;'>total amount : <strong><?php echo totalcartprice() ;?>/-</strong></p>
 
 			</div>
-		</div>
-	</div>
+            
+
+            <!-- Choose Payment Method -->
+            <div class="form-group">
+                <label>Select Payment Method:</label>
+                <select style="padding: 3px; margin-left :2px;" name="payment_method" id="payment_method" onchange="showPaymentOption(this.value)" required>
+                    <option value="">--Select--</option>
+                    <option value="cod">Cash on Delivery</option>
+                    <option value="net_banking">Net Banking</option>
+                    <option value="card">Credit/Debit Card</option>
+                    <option value="upi">UPI Payment</option>
+                </select>
+            </div>
+
+            <!-- Cash on Delivery Option -->
+            <div id="cod" class="payment-option">
+                <p><strong>Cash on Delivery</strong>: Pay with cash when your product is delivered.</p>
+            </div>
+
+            <!-- Net Banking Option -->
+            <div id="net_banking" class="payment-option">
+                <div class="form-group">
+                    <label for="bank_name">Choose Bank:</label>
+                    <select name="bank_name" id="bank">
+                        <option>Canara Bank</option>
+                        <option>State Bank of India</option>
+                        <option>HDFC Bank</option>
+						<option>ICICI Bank</option>
+						<option>Yes Bank</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Credit/Debit Card Option -->
+            <div id="card" class="payment-option">
+                <div class="form-group">
+                    <label for="card_number">Card Number:</label>
+                    <input type="text" name="card_number" id="card_number" maxlength="16">
+                </div>
+                <div class="form-group">
+                    <label for="exp_date">Expiration Date (MM/YY):</label>
+                    <input type="text" name="exp_date" id="exp_date" maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" name="cvv" id="cvv" maxlength="3">
+                </div>
+            </div>
+
+            <!-- UPI Payment Option -->
+            <div id="upi" class="payment-option">
+                <div class="form-group">
+                    <label for="upi_id">UPI ID:</label>
+                    <input type="text" name="upi_id" id="upi_id" placeholder="e.g., user@upi">
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+			 <div style="margin: 60px;">
+				<button type="submit" style="margin-bottom: 30px; padding-left: 4px;padding-right: 4px;padding-top: 4px;padding-bottom: 4px;border-radius: 3px;font-size: 14px;font-weight: 400;display: block;margin-left:80px;">Proceed to Pay</button><br>
+			 </div>
+        </form>
+    </div>
+
+
+
+		<!-- //payment -->
+
 	
 	<footer id="footer" class="overflow-hidden padding-large">
 		<div class="container-fluid">
@@ -428,6 +402,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		  </div>
 		</div>
 	  </footer>
+	  
 	  
 	  <script src="js/jquery-1.11.0.min.js"></script>
 	  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
