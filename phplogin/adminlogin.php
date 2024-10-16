@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Add your login authentication logic here
         echo "<script>alert('Login successful!');</script>";
         header("Location: ../adminindex.php");
-
         exit(); // Ensure no further code is executed after redirection
     }
 }
