@@ -231,8 +231,8 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 	  <div class="inner_breadcrumb_agileits_w3">
 		
 		<ul class="short">
-		  <li><a href="index.html">Home</a><i>|</i></li>
-		  <li>contact</li>
+		  <li><a href="index.php">Home</a><i>|</i></li>
+		  <li>cart</li>
 		</ul>
 	  </div>
 	</div>
