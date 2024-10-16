@@ -1,7 +1,8 @@
 <?php
-include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
-include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -90,7 +91,7 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
     <header id="header" class="site-header text-black">
       <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
         <div class="container-fluid">
-          <a class="" href="index.html">
+          <a class="" href="index.php">
             <img src="img/logo1.jpg" style="height: 45px; width: 45px; border-radius: 58px; float: left;">
             <h1 style="font-family: Poppins, sans-serif;font-weight:bolder;font-size: 40px; padding-left: 2px; float: left;">aeisthetics</h1>
           </a>
@@ -101,7 +102,7 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
           </button>
           <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
             <div class="offcanvas-header px-4 pb-0">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="index.php">
                 <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
                 <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;">aeisthetics</h1>
               </a>
@@ -109,45 +110,13 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
             </div>
             <div class="offcanvas-body">
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
-                <li class="nav-item dropdown">
-                  <a class="nav-link me-4" href="index.php">Home</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link me-4" href="#about-us">about us</a>
-                    </li>
-
-                <li class="nav-item dropdown me-4">
-                  <a class="nav-link me-4" href="shop.php">products</a>
-                  
-                </li>
                 
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">Pages</a>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
-                    <li>
-                      <a href="contact.html" class="dropdown-item item-anchor">Contact </a>
-                    </li>
-                    
-                    <li>
-                      <a href="faqs.html" class="dropdown-item item-anchor">FAQs</a>
-                    </li>
-                    <li>
-                      <a href="my-account.html" class="dropdown-item item-anchor">My Account </a>
-                    </li>
-                    <li>
-                      <a href="order-tracking.html" class="dropdown-item item-anchor">Order Tracking </a>
-                    </li>
-                    <li>
-                      <a href="wishlist.html" class="dropdown-item item-anchor">Wishlist </a>
-                    </li>
-                    
-                  </ul>
-                </li>
                 <li class="nav-item">
                   <div class="user-items ps-5">
                     <ul class="d-flex justify-content-end list-unstyled">
-                      <li class="search-item pe-3" data-bs-toggle="collapse" data-bs-target="#search-box" aria-controls="search-box" aria-expanded="false" aria-label="Toggle navigation">
+                    
+                   
+                    <li class="search-item pe-3" data-bs-toggle="collapse" data-bs-target="#search-box" aria-controls="search-box" aria-expanded="false" aria-label="Toggle navigation">
                         <svg class="search" width="18" height="18">
                           <use xlink:href="#search"></use>
                         </svg>
@@ -175,54 +144,21 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
         </div>
       </nav>    
     </header>
+   
 
-    <section id="billboard" class="overflow-hidden">
+    <section id="billboard" class="overflow-hidden col-lg-12  " >
       <img src="img/mix2.jpg" style="width: 70%;margin-left: 200px;border-radius: 10px;">
     </section>
-
-    <section id="company-services" class="padding-large">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 pb-3">
-            <div class="icon-box d-flex align-items-center">
-              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
-                <svg class="shipping-fast">
-                  <use xlink:href="#shipping-fast" />
-                </svg>
-              </div>
-              <div class="icon-box-content ps-3">
-                <h3 class="card-title text-uppercase text-dark">free delivery</h3>
-              </div>
-            </div>
+    <div class="display-header pb-3 d-flex justify-content-between flex-wrap col-md-12" style="  margin-top:60px;">
+            <h3 class="display-2 text-dark text-uppercase">VIEW OUR PRODUCTS</h3> 
+            <a href="shop.php" class="btn btn-medium btn-arrow btn-normal position-relative">
+              <span class="text-uppercase">Shop Now</span>            
+              <svg class="arrow-right position-absolute" width="18" height="20">
+                <use xlink:href="#arrow-right"></use>
+              </svg>
+            </a>
           </div>
-          <div class="col-lg-3 col-md-6 pb-3">
-            <div class="icon-box d-flex align-items-center">
-              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
-                <svg class="shopping-cart">
-                  <use xlink:href="#shopping-cart" />
-                </svg>
-              </div>
-              <div class="icon-box-content ps-3">
-                <h3 class="card-title text-uppercase text-dark">customization   </h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 pb-3">
-            <div class="icon-box d-flex align-items-center">
-              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
-                <svg class="gift">
-                  <use xlink:href="#gift" />
-                </svg>
-              </div>
-              <div class="icon-box-content ps-3">
-                <h3 class="card-title text-uppercase text-dark">Special Packaging</h3>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
+  
 
     <section >
       <div class="container-fluid">
@@ -246,11 +182,11 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
                   At Aeisthetics, we believe that every piece of resin craft is more than just an object; it's a piece of art with a story. Our crafts are created with love, attention to detail, and an unwavering commitment to quality.</p>
                 <p><h2>Our Promise</h2>
 
-                  At Aeisthetics, we are committed to providing our customers with an exceptional shopping experience. We take pride in our craftsmanship, and our creations are a testament to our dedication to producing high-quality, handmade resin crafts. We understand the importance of making your spaces beautiful and your gifts memorable, and we're here to help you achieve that with our unique pieces.
+                  At Aeisthetics, we are committed to providing our customers with an exceptional shopping experience. We take pride in our craftsmanship, and our creations are a testament to our dedication to producing high-quality, handmade resin crafts. We understand the importance of making your spaces beautiful and your gifts memorable, and we're here to help you achieve that with our unique pieces.</p>
                   
                   <h2>Contact Us</h2>
                   
-                  We are thrilled to share our passion for resin crafts with you. Whether you're looking for a personal keepsake, a special gift, or something to adorn your living spaces, we're here to make your creative dreams a reality. If you have any questions, inquiries, or would like to discuss custom orders, please don't hesitate to get in touch with us. We look forward to being a part of your artistic journey.
+                 <p>  We are thrilled to share our passion for resin crafts with you. Whether you're looking for a personal keepsake, a special gift, or something to adorn your living spaces, we're here to make your creative dreams a reality. If you have any questions, inquiries, or would like to discuss custom orders, please don't hesitate to get in touch with us. We look forward to being a part of your artistic journey.
                   
                   Thank you for choosing Aeisthetics </p>
                 
@@ -307,13 +243,54 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
       </div>      
       <div class="swiper-pagination text-center position-absolute"></div>
     </section>
-
-   
-
-    <footer id="footer" class="overflow-hidden padding-large">
-      <div class="container-fluid">
+    <section id="company-services" class="padding-large">
+      <div class="container-fluid " style="  margin-top:60px;">
         <div class="row">
-          <div class="row d-flex flex-wrap justify-content-between">
+          <div class="col-lg-3 col-md-6 pb-3">
+            <div class="icon-box d-flex align-items-center">
+              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+                <svg class="shipping-fast">
+                  <use xlink:href="#shipping-fast" />
+</svg>
+              </div>
+              <div class="icon-box-content ps-3">
+                <h3 class="card-title text-uppercase text-dark">free delivery </h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 pb-3">
+            <div class="icon-box d-flex align-items-center">
+              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+                <svg class="shopping-cart">
+                  <use xlink:href="#shopping-cart" />
+                </svg>
+              </div>
+              <div class="icon-box-content ps-3">
+                <h3 class="card-title text-uppercase text-dark">customization   </h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 pb-3" style="    margin-left: 76px;">
+            <div class="icon-box d-flex align-items-center">
+              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+                <svg class="gift">
+                  <use xlink:href="#gift" />
+                </svg>
+              </div>
+              <div class="icon-box-content ps-3">
+                <h3 class="card-title text-uppercase text-dark">Special Packaging</h3>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer" class="overflow-hidden ">
+      <div class="container-fluid"  >
+        <div class="row">
+          <div class="row d-flex flex-wrap justify-content-between" style="padding-top:70px">
             <div class="col-lg-3 col-sm-6 pb-3 pe-4">
               <div class="footer-menu">
                
@@ -336,13 +313,11 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
                     <a href="#about-us">About</a>
                   </li>
                   <li class="menu-item pb-2">
-                    <a href="#company-services">Services</a>
+                    <a href="shop.php">Products</a>
                   </li>
+                 
                   <li class="menu-item pb-2">
-                    <a href="#latest-blog">Blogs</a>
-                  </li>
-                  <li class="menu-item pb-2">
-                    <a href="#contact">Contact</a>
+                    <a href="ontact.php">Contact</a>
                   </li>
                 </ul>
               </div>
@@ -383,6 +358,9 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
         </div>
       </div>
     </footer>
+   
+
+   
 
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

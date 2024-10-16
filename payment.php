@@ -253,12 +253,19 @@ include('./commonfunctions.php');
 	<div class="payment-form">
         <form action="paymentprocess.php" method="POST" id="payment-form">
             <!-- User Details -->
+<<<<<<< HEAD
 			
 			<div class="form-group">
 			<label >Order amount:</label>
             <input type="number" name="order_amount" style="margin-left: 77px;">
 
 				
+=======
+			<div class="form-group">
+                <label for="order_amount">Order Amount:</label>
+				<p style='font-family:Cinzel, sans-serif; font-size: 27px;'>total amount : <strong><?php echo totalcartprice() ;?>/-</strong></p>
+
+>>>>>>> feature
 			</div>
             
 

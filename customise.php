@@ -1,7 +1,7 @@
 <?php
-// Database connection
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
 
-include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
+
 
 if (isset($_POST['add'])) {
     // Accessing the correct POST keys based on your form's input names
@@ -9,7 +9,8 @@ if (isset($_POST['add'])) {
     $productdescription = mysqli_real_escape_string($con, $_POST['description']);
     $productkeyword = mysqli_real_escape_string($con, $_POST['keywords']);
     $productprice = mysqli_real_escape_string($con, $_POST['price']);
-
+   
+   
     // Check if a file was uploaded
     if (isset($_FILES['productimage']) && $_FILES['productimage']['error'] === UPLOAD_ERR_OK) {
         $productimage = $_FILES['productimage']['name'];
@@ -18,7 +19,8 @@ if (isset($_POST['add'])) {
         // Move the uploaded file to the specified directory
         if (move_uploaded_file($tmpimage, "./productimages/$productimage")) {
             // Insert product into the database
-            $add_products = "INSERT INTO products (productname, description, keywords, image, price) VALUES ('$productname', '$productdescription', '$productkeyword', '$productimage', '$productprice')";
+            $add_products = "INSERT INTO products (productname, description, keywords, image, price) VALUES 
+            ('$productname', '$productdescription', '$productkeyword', '$productimage', '$productprice')";
 
             if (mysqli_query($con, $add_products)) {
                 echo "<script>alert('Product inserted successfully')</script>";
@@ -83,6 +85,7 @@ if (isset($_POST['add'])) {
                             <input class="billing-address-name form-control" type="text" name="price" placeholder="Product price" required>
                         </div>
                     </div>
+                    
                     <input type="submit" class="submit check_out p-1 my-3" name="add" value="Add item">
                 </div>
             </section>

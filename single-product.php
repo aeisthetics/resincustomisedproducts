@@ -1,6 +1,6 @@
 <?php
-include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
-include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 ?>
 
 
@@ -113,7 +113,7 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
     <header id="header" class="site-header text-black">
       <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
         <div class="container-fluid">
-          <a class="" href="index.html">
+          <a class="" href="index.php">
             <img src="img/logo1.jpg" style="height: 45px; width: 45px; border-radius: 58px; float: left;">
             <h1 style="font-family: Poppins, sans-serif;font-weight:bolder;font-size: 40px; padding-left: 2px; float: left;">aeisthetics</h1>
           </a>
@@ -124,7 +124,7 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
           </button>
           <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
             <div class="offcanvas-header px-4 pb-0">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="index.php">
                 <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
                 <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;">aeisthetics</h1>
               </a>
@@ -239,8 +239,8 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
     <div class="inner_breadcrumb_agileits_w3">
       
       <ul class="short">
-        <li><a href="index.html">Home</a><i>|</i></li>
-        <li>pendant necklace</li>
+        <li><a href=""></a><i></i></li>
+        <li></li>
       </ul>
     </div>
   </div>
@@ -256,6 +256,7 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
  <?php
  
  viewdetails();
+ 
  cart();
  ?>
  
