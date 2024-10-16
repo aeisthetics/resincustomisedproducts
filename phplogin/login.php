@@ -47,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <input type="email" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" />
+            <input required  type="email" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" />
 
             <?php if (!empty($emailError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $emailError; ?></div>
             <?php endif; ?>
             
-            <input type="password" placeholder="Password" id="password" name="password" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>" /><br>
+            <input required  type="password" placeholder="Password" id="password" name="password" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>" /><br>
             <?php if (!empty($passwordError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $passwordError; ?></div>
             <?php endif; ?>

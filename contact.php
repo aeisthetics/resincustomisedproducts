@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nameError) && empty($emailError) && empty($phoneError) && empty($addressError)) {
         // Add your registration logic here (e.g., saving to a database)
         echo "<script>alert('Contact details added successfully!');
-		window.location.href = '../payment.html';</script>";
+		window.location.href = 'C:\Users\apurv\resincustomisedproducts\payment.php';</script>";
         exit(); // Ensure no further code is executed after redirection
     }
 }
@@ -283,19 +283,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<form action="contactconnection.php" method="POST">
 						<div class="col-md-6 col-sm-6 contact_left_grid">
 
-						<input type="text" style="margin-bottom: 10px;" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
+						<input required  type="text" style="margin-bottom: 10px;" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
             <?php if (!empty($nameError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $nameError; ?></div>
             <?php endif; ?>
-                <input type="email" style="margin-bottom: 10px;" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" /><br>
+                <input required type="email" style="margin-bottom: 10px;" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" /><br>
             <?php if (!empty($emailError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $emailError; ?></div>
             <?php endif; ?>
-               <input type="text" style="margin-bottom: 10px;" placeholder="Phone" id="phone" name="phone" /><br>
+               <input required  type="text" style="margin-bottom: 10px;" placeholder="Phone" id="phone" name="phone" /><br>
             <?php if (!empty($phoneError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $phoneError; ?></div>
             <?php endif; ?>
-			<input type="text" style="margin-bottom: 10px;" placeholder="Address" id="address" name="address" value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>" /><br>
+			<input required  type="text" style="margin-bottom: 10px;" placeholder="Address" id="address" name="address" value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>" /><br>
             <?php if (!empty($nameError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $addressError; ?></div>
             <?php endif; ?>
@@ -440,3 +440,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+

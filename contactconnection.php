@@ -14,7 +14,7 @@ else{
     $stmt=$conn->prepare("insert into contact(name,email,phone,address) values(?,?,?,?)");
     $stmt->bind_param("ssss",$name,$email,$phone,$address);
     $stmt->execute();
-    header("Location: ../payment.html");
+    header("Location: payment.php");
     $stmt->close();
     $conn->close();
 }

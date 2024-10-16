@@ -4,6 +4,7 @@ include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
 include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -155,22 +156,10 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
                     </li>
                     
                     <li>
-                      <a href="contact.html" class="dropdown-item item-anchor">Contact </a>
+                      <a href="contact.php" class="dropdown-item item-anchor">Contact </a>
                     </li>
                     
-                    <li>
-                      <a href="faqs.html" class="dropdown-item item-anchor">FAQs</a>
-                    </li>
-                    <li>
-                      <a href="my-account.html" class="dropdown-item item-anchor">My Account </a>
-                    </li>
-                    <li>
-                      <a href="order-tracking.html" class="dropdown-item item-anchor">Order Tracking </a>
-                    </li>
-                    <li>
-                      <a href="wishlist.html" class="dropdown-item item-anchor">Wishlist </a>
-                    </li>
-                    
+                   
                   </ul>
                 </li>
                 <li class="nav-item">
@@ -212,11 +201,9 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
 		  <button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
 		  <nav>
 			<ul>
-			  <li><a href="index.html" class="active">Home</a></li>
-			  <li><a href="about.html">About</a></li>
-			  <li><a href="404.html">Team</a></li>
-			  <li><a href="shop.html">Shop Now</a></li>
-			  <li><a href="contact.html">Contact</a></li>
+			  <li><a href="index.php" class="active">Home</a></li>
+			  <li><a href="shop.php">Shop Now</a></li>
+			  <li><a href="contact.php">Contact</a></li>
 			</ul>
 		  </nav>
 		</div>
@@ -233,7 +220,7 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
 	  <div class="inner_breadcrumb_agileits_w3">
 		
 		<ul class="short">
-		  <li><a href="index.html">Home</a><i>|</i></li>
+		  <li><a href="index.php">Home</a><i>|</i></li>
 		  <li>contact</li>
 		</ul>
 	  </div>
@@ -278,6 +265,7 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
 		
 
                         // Loop through the cart items
+                        
                         while ($row = mysqli_fetch_array($result)) {
                             $productid = $row['productid'];
                             $quantity = $row['quantity'];
@@ -354,7 +342,7 @@ include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
                         ?>
                         </tbody>
                     </table>
-					<p style='font-family:Cinzel, sans-serif; font-size: 27px;'>total amount : <strong><?php echo $total;?>/-</strong></p>
+					<p style='font-family:Cinzel, sans-serif; font-size: 27px;'>total amount : <?php echo $total;?>/-</p>
                     <div class="d-flex">
 					<?php
                         $ip = getIPAddress();  // Fetch the IP address of the user

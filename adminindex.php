@@ -77,7 +77,7 @@
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?customise">ADD ITEM</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?viewdetails">VIEW ITEM</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="">ALL ORDERS</a></button>
-       <button style="font-family: Cinzel, sans-serif;"><a href="">ALL PAYMENTS</a></button>
+       <button style="font-family: Cinzel, sans-serif;"><a href="paymentdetails.php">ALL PAYMENTS</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="">LIST USERS</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="">LOG OUT</a></button>
         </div>
@@ -94,6 +94,11 @@
       include('display.php');
       
     }
+    if(isset($_GET['payment'])){
+      include('payment.php');
+      
+    }
+    
     ?>
    </div>
    
