@@ -126,7 +126,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
             <div class="offcanvas-header px-4 pb-0">
               <a class="navbar-brand" href="index.php">
                 <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-                <h1 style="font-family: 'Poppins', sans-serif ; padding-left: 2px;">aeisthetics</h1>
+                <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;">aeisthetics</h1>
               </a>
               <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
             </div>
@@ -134,36 +134,13 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                 <li class="nav-item dropdown">
                   <a class="nav-link me-4" href="index.php">Home</a>
-                
+
+                <li class="nav-item dropdown me-4">
+                  <a class="nav-link me-4" href="shop.php">products</a>
+                  
                 </li>
-            
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">Pages</a>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
-                    
-                    <li>
-                      <a href="checkout.html" class="dropdown-item item-anchor">Cart </a>
-                    </li>
-                    
-                    <li>
-                      <a href="contact.html" class="dropdown-item item-anchor">Contact </a>
-                    </li>
-                   
-                    <li>
-                      <a href="faqs.html" class="dropdown-item item-anchor">FAQs</a>
-                    </li>
-                    <li>
-                      <a href="my-account.html" class="dropdown-item item-anchor">My Account</a>
-                    </li>
-                    <li>
-                      <a href="order-tracking.html" class="dropdown-item item-anchor">Order Tracking</a>
-                    </li>
-                    <li>
-                      <a href="wishlist.html" class="dropdown-item item-anchor">Wishlist </a>
-                    </li>
-                    
-                  </ul>
+               
+                 
                 </li>
                 <li class="nav-item">
                   <div class="user-items ps-5">
@@ -174,7 +151,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         </svg>
                       </li>
                       <li class="pe-3">
-                        <a href="#">
+                        <a href="">
                           <svg class="user" width="18" height="18">
                             <use xlink:href="#user"></use>
                           </svg>

@@ -173,12 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					  <li class="nav-item dropdown me-4">
 						<a class="nav-link me-4" href="shop.html">products</a>
 						
-					  </li>
-						
-						 
-						  
-						  
-						</ul>
+					
 					  
 					  <li class="nav-item">
 						<div class="user-items ps-5">

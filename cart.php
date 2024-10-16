@@ -115,7 +115,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 		<header id="header" class="site-header text-black">
       <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
         <div class="container-fluid">
-          <a class="" href="index.html">
+          <a class="" href="index.php">
             <img src="img/logo1.jpg" style="height: 45px; width: 45px; border-radius: 58px; float: left;">
             <h1 style="font-family: Poppins, sans-serif;font-weight:bolder;font-size: 40px; padding-left: 2px; float: left;">aeisthetics</h1>
           </a>
@@ -126,7 +126,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
           </button>
           <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
             <div class="offcanvas-header px-4 pb-0">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="index.php">
                 <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
                 <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;">aeisthetics</h1>
               </a>
@@ -136,28 +136,13 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                 <li class="nav-item dropdown">
                   <a class="nav-link me-4" href="index.php">Home</a>
-                  </li>
-              
 
                 <li class="nav-item dropdown me-4">
                   <a class="nav-link me-4" href="shop.php">products</a>
                   
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">Pages</a>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
-                    
-                    <li>
-                      <a href="cart.php" class="dropdown-item item-anchor">Cart</a>
-                    </li>
-                    
-                    <li>
-                      <a href="contact.php" class="dropdown-item item-anchor">Contact </a>
-                    </li>
-                    
-                   
-                  </ul>
+               
+                 
                 </li>
                 <li class="nav-item">
                   <div class="user-items ps-5">
@@ -175,7 +160,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         </a>
                       </li>
                       <li>
-                        <a href="cart.php">
+                      <a href="cart.php">
                           <svg class="cart" width="18" height="18">
                             <use xlink:href="#cart"></use>
                           </svg><sup><?php cartitem(); ?></sup>
@@ -217,7 +202,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 	  <div class="inner_breadcrumb_agileits_w3">
 		
 		<ul class="short">
-		  <li><a href="index.php">Home</a><i>|</i></li>
+    <li><a href="index.php">Home</a><i>|</i></li> <li><a href="shop.php">shop all</a><i>|</i></li>
 		  <li>cart</li>
 		</ul>
 	  </div>
