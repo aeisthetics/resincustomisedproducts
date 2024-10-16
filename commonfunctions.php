@@ -225,13 +225,13 @@ if(isset($_GET['addtocart'])){
     $numofrows=mysqli_num_rows($result_query);
     if($numofrows>0){
         echo "<script>alert('this item is present in db')</script>";
-        echo "<script>window.open('shop.php','_self')</script>";
+        echo "<script>window.open('cart.php','_self')</script>";
     }
     else{
     $insert_query="Insert into `cartdetails` (productid,ipaddress,quantity) values ($getproductid,'$ip',0)";
     $result_query=mysqli_query($con,$insert_query);
     echo "<script>alert('item is added to cart')</script>";
-    echo "<script>window.open('shop.php','_self')</script>";
+    echo "<script>window.open('cart.php','_self')</script>";
     }
 }
 }
@@ -283,6 +283,9 @@ function cartitem()
 
 
 
+
+    
+    
 
 
 ?>

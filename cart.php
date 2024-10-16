@@ -244,7 +244,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
   <div class="ads-grid_shop">
     <div class="shop_inner_inf">
         <div class="privacy about">
-		<form action='' method='post'>
+		<form action='' method='post' enctype="multipart/form-data">
                        
 
                         <?php
@@ -264,21 +264,25 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                 
                     <table class='table'><thead>
                             <tr style='padding-right: 30px;''>
+                             <th></th>
                                 <th>Product Name</th>
                                 <th>Product</th>
                                 <th>Quantity</th>
+                                <th>Customise</th>
+                                <th>UPLOAD ANY REFERENCE IMAGE</th>
                                 <th>Price</th>
-                                <th>Remove</th>
-                                <th>Operations</th>
+                               
                             </tr>
                         </thead>
-                        <tbody>";
+                        <tbody>
+                        ";
 		
 
                         // Loop through the cart items
                         while ($row = mysqli_fetch_array($result)) {
                             $productid = $row['productid'];
                             $quantity = $row['quantity'];
+                            $quantity1 = $row['quantity1'];
 
                             // Fetch product details for each product in the cart
                             $selectproducts = "SELECT * FROM `products` WHERE productid='$productid'";
@@ -294,9 +298,10 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                                 ?>
 
                                 <tr class="">
+                                <td><input type="checkbox" name="removeitem[]" value= "<?php echo $productid; ?>"></td>
                                     <td style="font-family:Cinzel, sans-serif; font-size: 20px;"><?php echo $producttitle; ?></td>
-                                    <td><a href="single-productbracelet.html">
-                                        <img src="./productimages/<?php echo $productimage; ?>" alt=" " class="img-responsive" style="height: 120px; width: 149px; border-radius: 7px;">
+                                    <td><a href="">
+                                        <img src="./productimages/<?php echo $productimage; ?>" alt=" " class="img-responsive" style="height: 120px; width: 149px; border-radius: 7px; object-fit:contain;">
                                         </a>
                                     </td>
 
@@ -330,17 +335,92 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                 ?>
 									
 									</td>
+                  
+                  <td>
+<input type="text" name="qty1[<?php echo $productid; ?>]" value="<?php echo $quantity1; ?>" style="width: 160px;height:60px;" placeholder="enter your customisation details">
+
+<?php
+// Handle cart update and removal logic
+if (isset($_POST['updatecart'])) {
+    if (isset($_POST['qty1'])) {
+        foreach ($_POST['qty1'] as $productid => $qty) {
+            // Allow both text and number inputs by removing integer validation
+            $qty = mysqli_real_escape_string($con, $qty);  // Escape the input to prevent SQL injection
+            
+            if (!empty($qty)) {
+                // Update the cart quantity (or text) for the product
+                $updatecart = "UPDATE `cartdetails` SET quantity1 = '$qty' WHERE ipaddress = '$ip' AND productid = '$productid'";
+                $result_update = mysqli_query($con, $updatecart);
+            }
+        }
+    }
+
+    if ($result_update) {
+        echo "<script>window.open('cart.php', '_self')</script>";
+    }
+}
+?>
+</td>
+
+<td>
+<div class='first-row form-group' style="width: 200px; ">
+    <div class='controls'>
+        <label for='custom_image' class='control-label'></label>
+        <input class='form-control' type='file' name='custom_image[<?php echo $productid; ?>]'  >
+    </div>
+</div>
+
+<?php
+// Handle cart update and image upload logic
+if (isset($_POST['updatecart'])) {
+    if (isset($_FILES['custom_image'])) {
+        foreach ($_FILES['custom_image']['name'] as $productid => $filename) {
+            // Check if a file was uploaded
+            if (isset($_FILES['custom_image']) && $_FILES['custom_image']['error'][$productid] === UPLOAD_ERR_OK) {
+                $uploadedImageName = $_FILES['custom_image']['name'][$productid];
+                $temporaryImagePath = $_FILES['custom_image']['tmp_name'][$productid];
+
+                // Generate a unique name for the uploaded file
+                $uniqueImageName = $uploadedImageName;
+                $uploadDirectory = "./uploads/";
+
+                // Move the uploaded file to the specified directory
+                if (move_uploaded_file($temporaryImagePath, $uploadDirectory . $uniqueImageName)) {
+                    // Update the product image in the database
+                    $updateImageQuery = "UPDATE `cartdetails` SET productimage = '$uniqueImageName' WHERE ipaddress = '$ip' AND productid = '$productid'";
+
+                    if (mysqli_query($con, $updateImageQuery)) {
+                        echo "<script>alert('Image uploaded successfully')</script>";
+                    } else {
+                        echo "<script>alert('Database error: " . mysqli_error($con) . "')</script>";
+                    }
+                } else {
+                    echo "<script>alert('Error moving the uploaded file.')</script>";
+                }
+            } else {
+                echo "<script>alert('File upload error: " . ($_FILES['custom_image']['error'][$productid] ?? 'No file uploaded.') . "')</script>";
+            }
+        }
+    }
+
+    // Check if the update was successful
+
+}
+?>
+</td>
+
+
+
 
                                     <td><?php echo $productprice; ?>/-</td>
-                                    <td><input type="checkbox" name="removeitem[]" value= "<?php echo $productid; ?>"></td>
-
-                                    <td>
-                                        <input type="submit" value="UPDATE CART" class='btn btn-primary submit' name="updatecart" style='width:100px;'>
-                                        <br>
-                                        <input type="submit" value="REMOVE" class='btn btn-primary submit' name="removecart" style='width:100px;'>
-                                    </td>
+                                  
                                 </tr>
-
+                               
+                               
+       
+                    
+                       
+                                    
                             <?php
                             } // End inner product loop
                         } // End outer cart loop
@@ -349,11 +429,19 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 						echo" <h1  class='text-center' style='font-family:Cinzel, sans-serif; font-size: 30px;' >Your Cart is Empty</h1>
 						";
 					} 
+          
                         ?>
-                        </tbody>
-                    </table>
-					<p style='font-family:Cinzel, sans-serif; font-size: 27px;'>total amount : <strong><?php echo $total;?>/-</strong></p>
-                    <div class="d-flex">
+                        
+                     
+        </tbody>
+                        
+                        </table>
+                        
+                       <br>
+					
+                       <div class='d-flex'>
+        <p style='font-family:Cinzel, sans-serif; font-size: 27px;'>total amount : <strong><?php echo $total;?>/-</strong></p>
+                    </div>  <br>
 					<?php
                         $ip = getIPAddress();  // Fetch the IP address of the user
                         $total = 0;  // Initialize the total cost of the cart
@@ -367,10 +455,21 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 						{
 
 							echo" 
-                        <input type='submit' class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;' value='PROCEED' name='proceed'>";
+               <div class='d-flex'>
+                                        <input type='submit' value='UPDATE CART' class='btn btn-primary submit' name='updatecart' style='width:179px; margin:auto; font-size: 22px; height:50px;'>
+                                     
+                                        <input type='submit' value='REMOVE' class='btn btn-primary submit' name='removecart' style='width:179px; margin:auto; font-size: 22px; height:50px;background: #981212;'>
+        </div>
+        <br>
+      
+                      
+                        
+                          <div class='d-flex'>
+                          <input type='submit' class='btn btn-primary submit' style='width:20%; margin:auto; font-size: 22px; height:50px;' value='PROCEED' name='proceed'>";
+                         
 						if(isset($_POST['proceed']))
 						{
-							echo"<script>window.open('customisation.php','_self')</script>";
+							echo"<script>window.open('contact.php','_self')</script>";
 						}
 
 						
@@ -378,7 +477,9 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 						else
 						{
 						
-							echo"<input type='submit' class='btn btn-primary submit' style='width:100%; margin:auto; font-size: 22px; height:50px;' value='CONTINUE SHOPPING' name='continueshopping'>";
+							echo"
+            
+              <input type='submit' class='btn btn-primary submit' style='width:100%; margin:auto; font-size: 22px; height:50px;' value='CONTINUE SHOPPING' name='continueshopping'>";
 						    if(isset($_POST['continueshopping']))
 						{
 							echo"<script>window.open('index.php','_self')</script>";
@@ -390,7 +491,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
 						
 						?>
                         
-                    </div>
+                  
                 </form>
 
 
