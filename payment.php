@@ -155,10 +155,10 @@ include('./commonfunctions.php');
 				  <div class="offcanvas-body">
 					<ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
 					  <li class="nav-item dropdown">
-						<a class="nav-link me-4" href="index.html">Home</a>
+						<a class="nav-link me-4" href="index.php">Home</a>
 	  
 					  <li class="nav-item dropdown me-4">
-						<a class="nav-link me-4" href="shop.html">products</a>
+						<a class="nav-link me-4" href="shop.php">products</a>
 						
 					  </li>
 					 
@@ -286,7 +286,7 @@ while ($row = mysqli_fetch_array($result)) {
 
 // Display the total price
 echo "<div class='form-group'>
-<label style='font-family:Cinzel, sans-serif; font-size: 27px;'>Total amoun:</label>
+<label style='font-family:Cinzel, sans-serif; font-size: 27px;'>Total amount:</label>
 
 <input type='number' name='order_amount' style='margin-left: 77px;' value='{$total}' readonly>
       </div>";

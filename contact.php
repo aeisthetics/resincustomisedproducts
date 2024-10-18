@@ -168,10 +168,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				  <div class="offcanvas-body">
 					<ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
 					  <li class="nav-item dropdown">
-						<a class="nav-link me-4" href="index.html">Home</a></li>
+						<a class="nav-link me-4" href="index.php">Home</a></li>
 	  
 					  <li class="nav-item dropdown me-4">
-						<a class="nav-link me-4" href="shop.html">products</a>
+						<a class="nav-link me-4" href="shop.php">products</a>
 						
 					
 					  

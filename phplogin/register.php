@@ -46,11 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="form-container sign-in-container">
     <form action="connection.php" method="post">    <!-- Form action will point to the same page -->
             <h1>Sign in</h1>
-            <div class="social-container">
-                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+           
             <input required  type="text" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
             <?php if (!empty($nameError)): ?>
                 <div class="error-message" style="color:red;"><?php echo $nameError; ?></div>
