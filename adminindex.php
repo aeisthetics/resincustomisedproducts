@@ -76,9 +76,9 @@
        
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?customise">ADD ITEM</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?viewdetails">VIEW ITEM</a></button>
-       <button style="font-family: Cinzel, sans-serif;"><a href="">ALL ORDERS</a></button>
-       <button style="font-family: Cinzel, sans-serif;"><a href="paymentdetails.php">ALL PAYMENTS</a></button>
-       <button style="font-family: Cinzel, sans-serif;"><a href="">LIST USERS</a></button>
+       <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?allorder">ALL ORDERS</a></button>
+       <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?payment">ALL PAYMENTS</a></button>
+       <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?users">LIST USERS</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="">LOG OUT</a></button>
         </div>
       </div>      
@@ -90,12 +90,21 @@
     if(isset($_GET['customise'])){
       include('customise.php');
     }
+  
     if(isset($_GET['viewdetails'])){
       include('display.php');
       
     }
+    if(isset($_GET['allorder'])){
+      include('allorders.php');
+      
+    }
+    if(isset($_GET['users'])){
+      include('users.php');
+      
+    }
     if(isset($_GET['payment'])){
-      include('payment.php');
+      include('allpayments.php');
       
     }
     

@@ -281,9 +281,121 @@ function cartitem()
        echo $total;
     }
 
+    function cartdetails()
+    {
+        global $con;
+        
+        if(!isset($_GET['categories'])){
+            if(!isset($_GET['products'])){
+                
+        $select_query = "SELECT * FROM `cartdetails` ";
+        $result_query = mysqli_query($con, $select_query);
+    
+        while ($row = mysqli_fetch_assoc($result_query)) {
+            $productid = $row['productid'];
+            $ip = $row['ipaddress'];
+            $qty = $row['quantity'];
+            $qty1 = $row['quantity1'];
+            $productimage = $row['productimage'];
+    
+            echo " 
+           
+                        <tbody> 
+                        
+                            <tr style='padding-right: 30px;''>
+                             <th></th>
+                             <th>$ip</th>
+                              <td>$productid</td>
+                               <td>$qty</td>
+                                <td>$qty1</td>
+                                 <td>  <img src='./uploads/$productimage'  style='width: 70px; height: 70px;'></td>
+                                
+                               
+                          
+                        </tbody>
+                        ";
+        }
+            
+    }
+        }
+    }
+    
 
+    function listusers()
+    {
+        global $con;
+        
+        if(!isset($_GET['categories'])){
+            if(!isset($_GET['products'])){
+                
+        $select_query = "SELECT * FROM `login` ";
+        $result_query = mysqli_query($con, $select_query);
+    
+        while ($row = mysqli_fetch_assoc($result_query)) {
+            $id = $row['id'];
+            $name = $row['name'];
+            $email = $row['email'];
+           
+    
+            echo " 
+                        <tbody> 
+                        
+                            <tr style='padding-right: 30px;''>
+                             <th></th>
+                             <th>$id</th>
+                              <td>$name</td>
+                               <td>$email</td>
+                                
+                                
+                               
+                          
+                        </tbody>";
+        }
+            
+    }
+        }
+    }
+    
+    function allpayment()
+    {
+        global $con;
+        
+        if(!isset($_GET['categories'])){
+            if(!isset($_GET['products'])){
+                
+        $select_query = "SELECT * FROM `payment` ";
+        $result_query = mysqli_query($con, $select_query);
+    
+        while ($row = mysqli_fetch_assoc($result_query)) {
+            $id = $row['id'];
+            $method = $row['payment_method'];
+            $name = $row['bank_name'];
+            $cardno = $row['card_number'];
+            $exp = $row['exp_date'];
+            $upi = $row['upi_id'];
+            $amount = $row['order_amount'];
+            $status = $row['payment_status'];
 
-
+    
+            echo " 
+                        <tbody> 
+                        
+                            <tr style='padding-right: 30px;''>
+                             <th></th>
+                             <th>$id</th>
+                              <td>$method</td>
+                               <td>$amount</td>
+                               <td>$status</td>
+                                
+                                
+                               
+                          
+                        </tbody>";
+        }
+            
+    }
+        }
+    }
     
     
 
