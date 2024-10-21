@@ -114,8 +114,8 @@ function searchproducts()
                 <div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 product-men m-auto'>
                     <div class='product-card link-effect d-flex flex-wrap'>
                         <div class='product-details'>
-                            <h1 class='product-name'>$productname</h1>
-                            <a href='single-product.php?productid=<?php echo $productid; ?>'>
+                            <a href='single-product.php?productid= $productid'> <h1 class='product-name'>$productname</h1></a>
+                            <a href='single-product.php?productid= $productid'>
                             <img src='./productimages/$productimage' alt='$productname' style='width: 100%; height: auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease-in-out;'>
                      
                             </a>
@@ -367,7 +367,7 @@ function cartitem()
         $result_query = mysqli_query($con, $select_query);
     
         while ($row = mysqli_fetch_assoc($result_query)) {
-            $id = $row['id'];
+            $id = $row['ip_address'];
             $method = $row['payment_method'];
             $name = $row['bank_name'];
             $cardno = $row['card_number'];

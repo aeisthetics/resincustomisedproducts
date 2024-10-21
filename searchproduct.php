@@ -87,6 +87,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
       </div>
     </div> 
 
+    
     <header id="header" class="site-header text-black">
       <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
         <div class="container-fluid">
@@ -111,42 +112,13 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                 <li class="nav-item dropdown">
                   <a class="nav-link me-4" href="index.php">Home</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link me-4" href="#about-us">about us</a>
-                    </li>
 
                 <li class="nav-item dropdown me-4">
                   <a class="nav-link me-4" href="shop.php">products</a>
                   
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">Pages</a>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
-                    
-                    <li>
-                      <a href="cart.php" class="dropdown-item item-anchor">Cart</a>
-                    </li>
-                    
-                    <li>
-                      <a href="contact.html" class="dropdown-item item-anchor">Contact </a>
-                    </li>
-                    
-                    <li>
-                      <a href="faqs.html" class="dropdown-item item-anchor">FAQs</a>
-                    </li>
-                    <li>
-                      <a href="my-account.html" class="dropdown-item item-anchor">My Account </a>
-                    </li>
-                    <li>
-                      <a href="order-tracking.html" class="dropdown-item item-anchor">Order Tracking </a>
-                    </li>
-                    <li>
-                      <a href="wishlist.html" class="dropdown-item item-anchor">Wishlist </a>
-                    </li>
-                    
-                  </ul>
+               
+                 
                 </li>
                 <li class="nav-item">
                   <div class="user-items ps-5">
@@ -164,7 +136,7 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         </a>
                       </li>
                       <li>
-                        <a href="cart.php">
+                      <a href="cart.php">
                           <svg class="cart" width="18" height="18">
                             <use xlink:href="#cart"></use>
                           </svg><sup><?php cartitem(); ?></sup>
