@@ -3,7 +3,8 @@
 require_once 'paymentprocess.php'; // This should contain your DB connection logic
 
 // Query to fetch payment details from your database
-$sql = "SELECT payment_method, order_amount, payment_status from payment";
+
+$sql = "SELECT  ip_address, payment_method, order_amount, payment_status from payment";
 
 $result = $conn->query($sql);
 
@@ -57,7 +58,7 @@ $result = $conn->query($sql);
         <table>
             <thead>
                 <tr>
-                   
+                    <th>IP address</th>
                     <th>Payment Method</th>
                     <th>Order Amount</th>
                     <th>Payment Status</th>
@@ -66,6 +67,7 @@ $result = $conn->query($sql);
             <tbody>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
+                        <td><?php echo htmlspecialchars($row['ip_address']); ?></td>
                         <td><?php echo htmlspecialchars($row['payment_method']); ?></td>
                         <td><?php echo htmlspecialchars($row['order_amount']); ?></td>
                         <td class="<?php echo strtolower($row['payment_status']); ?>">

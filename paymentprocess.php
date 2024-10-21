@@ -80,25 +80,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $card_number = password_hash($card_number, PASSWORD_DEFAULT);
     }
 
+    // Capture the client's IP address
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+
     // Insert the payment data into the database
-    $stmt = $conn->prepare("INSERT INTO payment (payment_method, bank_name, card_number, exp_date, upi_id, order_amount, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssds", $payment_method, $bank_name, $card_number, $exp_date, $upi_id, $order_amount, $payment_status);
+    $stmt = $conn->prepare("INSERT INTO payment (ip_address, payment_method, bank_name, card_number, exp_date, upi_id, order_amount, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    
+    // Bind the parameters
+    $stmt->bind_param("ssssssds", $ip_address, $payment_method, $bank_name, $card_number, $exp_date, $upi_id, $order_amount, $payment_status);
 
-
-
-    // Execute and check for success
+    // Execute and check for success    
     if ($stmt->execute()) {
         header("Location: paymentsuccess.html");
-        }
-    
-    else {
+        exit;
+    } else {
         echo "<p>Error: " . $stmt->error . "</p>";
     }
 
     // Close the statement and connection
     $stmt->close();
     $conn->close();
-} 
-
-
-
+}
+?>
