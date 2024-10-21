@@ -1,5 +1,5 @@
 <?php
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
+include('./includes/connect.php');
 
 // Function to get and display products
 function getproducts()

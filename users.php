@@ -1,8 +1,7 @@
 <?php
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
+include('./includes/connect.php');
+include('./commonfunctions.php');
 ?>
-
 
 
 <!DOCTYPE html>
