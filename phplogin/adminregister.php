@@ -1,7 +1,7 @@
 <?php
 
 // Initialize error messages
-$errors = ['email' => '', 'password' => ''];
+$errors = ['name' => '', 'email' => '', 'password' => ''];
 
 // Database connection
 $conn = new mysqli('localhost', 'root', '', 'aeisthetics');
@@ -12,10 +12,14 @@ if ($conn->connect_error) {
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the input values and trim extra spaces
+    $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
     // Validate required fields
+    if (empty($name)) {
+        $errors['name'] = 'Name is required!';
+    }
     if (empty($email)) {
         $errors['email'] = 'Email is required!';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -29,31 +33,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if no errors are present
     if (!array_filter($errors)) {
-        // Check if the email exists in the database
-        $sql = "SELECT password FROM adminlogin WHERE email = ?";
-        $stmt = $conn->prepare($sql);
+        // Check if email already exists
+        $emailCheckQuery = "SELECT email FROM adminlogin WHERE email = ?";
+        $stmt = $conn->prepare($emailCheckQuery);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            // Email exists, now verify the password
-            $stmt->bind_result($hashedPassword);
-            $stmt->fetch();
+            echo "<script>alert('Email already exists. Please use a different email.');</script>";
+        } else {
+            // Hash the password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            // Verify the entered password with the hashed password in the database
-            if (password_verify($password, $hashedPassword)) {
-                // Password is correct, proceed to login
-                echo "<script>alert('Login successful!');</script>";
-                header("Location: ../adminindex.php");  // Redirect to the dashboard or homepage
+            // Insert user data into the database
+            $sql = "INSERT INTO adminlogin (name, email, password) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sss", $name, $email, $hashedPassword);
+
+            if ($stmt->execute()) {
+                echo "<script>alert('Registration successful!');</script>";
+                header("Location: ../adminindex.php");
                 exit();
             } else {
-                // Password does not match
-                $errors['password'] = 'Incorrect password!';
+                echo "<script>alert('Failed to register user. Please try again.');</script>";
             }
-        } else {
-            // Email does not exist in the database
-            $errors['email'] = 'Email not found. Please register first!';
         }
 
         // Close the statement
@@ -82,35 +86,37 @@ $conn->close();
 <div class="container" id="container">
     <div class="form-container sign-in-container">
         <form action="" method="post">  <!-- Form action is set to the current page -->
-            <h1>Sign in</h1>
+            <h1>Sign Up</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
 
+            <!-- Name Input -->
+            <input type="text" placeholder="Name" name="name" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required>
+            <div style="color:red;"><?= $errors['name'] ?></div>
+
             <!-- Email Input -->
             <input type="email" placeholder="Email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
-            <div style="color:red; font-size:13px;"><?= $errors['email'] ?></div>
+            <div style="color:red;"><?= $errors['email'] ?></div>
 
             <!-- Password Input -->
             <input type="password" placeholder="Password" name="password" value="<?= htmlspecialchars($_POST['password'] ?? '') ?>" required>
-            <div style="color:red;font-size:13px;"><?= $errors['password'] ?></div><br>
+            <div style="color:red;"><?= $errors['password'] ?></div>
 
             <!-- Submit Button -->
-            <button name="signin" type="submit">Sign In</button>
-            <!-- Add a "Forgot Password?" link below the Sign In button -->
-
+            <button name="signup" type="submit">Sign Up</button>
         </form>
     </div>
 
-    <!-- Registration Area -->
+    <!-- Login Area -->
     <div class="overlay-container">
         <div class="overlay">
             <div class="overlay-panel overlay-right">
                 <h1>Hello, Friend!</h1>
                 <p>Enter your personal details and start your journey with us</p>
-                <a href="adminregister.php"><button class="ghost">Sign Up</button></a>
+                <a href="adminlogin.php"><button class="ghost">Sign In</button></a>
             </div>
         </div>
     </div>

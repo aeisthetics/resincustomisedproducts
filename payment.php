@@ -178,7 +178,7 @@ include('./commonfunctions.php');
 							  </a>
 							</li>
 							<li>
-							  <a href="checkout.html">
+							  <a href="cart.php">
 								<svg class="cart" width="18" height="18">
 								  <use xlink:href="#cart"></use>
 								</svg>
@@ -255,8 +255,9 @@ include('./commonfunctions.php');
         <form action="paymentprocess.php" method="POST" id="payment-form">
             <!-- User Details -->
 			<?php
-$ip = getIPAddress();  // Fetch the IP address of the user
+$ip = getIPAddress(); // Fetch the IP address of the user
 $total = 0;  // Initialize the total cost of the cart
+
 
 // Fetch cart details for the specific user based on IP address
 $cart_query = "SELECT * FROM `cartdetails` WHERE ipaddress='$ip'";
@@ -287,8 +288,7 @@ while ($row = mysqli_fetch_array($result)) {
 // Display the total price
 echo "<div class='form-group'>
 <label style='font-family:Cinzel, sans-serif; font-size: 27px;'>Total amount:</label>
-
-<input type='number' name='order_amount' style='margin-left: 77px;' value='{$total}' readonly>
+<input type='number' name='order_amount' style='margin-left:77px;' value='{$total}' readonly>
       </div>";
 ?>
             
