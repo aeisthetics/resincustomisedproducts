@@ -85,11 +85,7 @@ $conn->close();
     <div class="form-container sign-in-container">
         <form action="" method="post">  <!-- Form action is set to the current page -->
             <h1>Sign in</h1>
-            <div class="social-container">
-                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+           
 
             <!-- Email Input -->
             <input type="email" placeholder="Email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
