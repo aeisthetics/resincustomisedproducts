@@ -298,9 +298,9 @@ if ($stmt_orders->num_rows === 0): ?>
             <?php while ($stmt_orders->fetch()): ?>
             <tr style="background-color: #fff; color: #555;">
                 <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($productname) ?></td>
-                <td style="padding: 12px; border-bottom: 1px solid #ddd;">$<?= htmlspecialchars($price) ?></td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($price) ?></td>
                 <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($quantity) ?></td>
-                <td style="padding: 12px; border-bottom: 1px solid #ddd;">$<?= htmlspecialchars($price * $quantity) ?></td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($price * $quantity) ?></td>
             </tr>
             <?php endwhile; ?>
         </tbody>
@@ -309,6 +309,7 @@ if ($stmt_orders->num_rows === 0): ?>
 
 <!-- Close orders statement -->
 <?php $stmt_orders->close(); ?>
+
 
     <!-- Update Password and Address Form -->
     <h1 style="margin-left: 85px; text-decoration: underline;">Update Account Information</h1><br>
