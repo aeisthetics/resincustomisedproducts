@@ -1,8 +1,14 @@
 <?php
+<<<<<<< HEAD
 session_start(); // This should be at the very top of your index.php file
 include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
 include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
+=======
+include('./includes/connect.php');
+include('./commonfunctions.php');
+>>>>>>> 7d515472d15ba7545687fc108444011f7c3cee99
 ?>
+
 
 
 <!DOCTYPE html>
