@@ -267,20 +267,14 @@ $stmt_orders->store_result(); // Store result to count rows
   <!-- //banner -->
 	<!-- top Products -->
 	<body>
-
-    <!-- User Information -->
-    <h1 style="text-align: center;">Welcome, <?= htmlspecialchars($name) ?></h1>
-    <p style="margin-left: 85px;">Email: <?= htmlspecialchars($email) ?></p>
-    <p style="margin-left: 85px;">Phone: <?= htmlspecialchars($phone) ?></p>
-    <p style="margin-left: 85px;">Address: <?= htmlspecialchars($address) ?></p>
-
+	<h1 style="text-align: center;">Welcome, <?= htmlspecialchars($name) ?></h1>
     <!-- User Orders -->
     <h1 style="margin-left: 85px;margin-top: 20px; text-decoration: underline;">Your Orders</h1><br>
 
 <?php
 // Check if cart is empty
 if ($stmt_orders->num_rows === 0): ?>
-    <p style="margin-left: 85px; color: #333;">Your cart is empty.</p>
+    <p style="margin-left: 85px; color: #333;">NO ORDERS.</p>
 <?php else:
     // Bind results if there are items in the cart
     $stmt_orders->bind_result($productid, $productname, $price, $quantity);
@@ -306,6 +300,11 @@ if ($stmt_orders->num_rows === 0): ?>
         </tbody>
     </table>
 <?php endif; ?>
+ <!-- User Information -->
+ <h1 style="margin-left: 85px;margin-top: 20px; text-decoration: underline;">Your Account informations</h1><br>
+    <p style="margin-left: 85px;">Email: <?= htmlspecialchars($email) ?></p>
+    <p style="margin-left: 85px;">Phone: <?= htmlspecialchars($phone) ?></p>
+    <p style="margin-left: 85px;">Address: <?= htmlspecialchars($address) ?></p>
 
 <!-- Close orders statement -->
 <?php $stmt_orders->close(); ?>
