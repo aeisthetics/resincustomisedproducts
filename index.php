@@ -1,6 +1,7 @@
 <?php
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\includes\connect.php');
-include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
+session_start(); // This should be at the very top of your index.php file
+include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
+include('C:\Users\apurv\resincustomisedproducts\commonfunctions.php');
 ?>
 
 
@@ -122,7 +123,8 @@ include('C:\Users\ancyj\Desktop\resincustomisedproducts\commonfunctions.php');
                         </svg>
                       </li>
                       <li class="pe-3">
-                        <a href="">
+                        
+                        <a href="my_account.php">
                           <svg class="user" width="18" height="18">
                             <use xlink:href="#user"></use>
                           </svg>

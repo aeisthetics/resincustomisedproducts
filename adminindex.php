@@ -79,7 +79,6 @@
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?allorder">ALL ORDERS</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?payment">ALL PAYMENTS</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?users">LIST USERS</a></button>
-       <button style="font-family: Cinzel, sans-serif;"><a href="">LOG OUT</a></button>
         </div>
       </div>      
     </section>

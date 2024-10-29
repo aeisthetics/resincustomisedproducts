@@ -1,44 +1,53 @@
 <?php
-// Initialize error messages
-$nameError = '';
-$emailError = '';
-$phoneError = '';
-$addressError = '';
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the input values and trim any extra spaces
-	$name = htmlspecialchars(trim($_POST['name']));
-	$email = htmlspecialchars(trim($_POST['email']));
-	$phone = htmlspecialchars(trim($_POST['phone']));
-	$address = htmlspecialchars(trim($_POST['address']));
-	
-
-    // Validate if any field is left empty
-    if (empty($name)) {
-        $nameError = 'Name is required!';
-    }
-    if (empty($email)) {
-        $emailError = 'Email is required!';
-    }
-    if (empty($phone)) {
-        $phoneError = 'Phone is required!';
-    }
-	if (empty($address)) {
-		$addressError = 'Address is required!';
-	}
-	
-    // If no errors, proceed with registration logic
-    if (empty($nameError) && empty($emailError) && empty($phoneError) && empty($addressError)) {
-        // Add your registration logic here (e.g., saving to a database)
-		echo "<script>alert('Contact details added successfully!');
-		window.location.href = '/payment.php';</script>";		
-        exit(); // Ensure no further code is executed after redirection
-    }
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('Location: /phplogin/login.php');
+    exit();
 }
 
-?>
+// Get the logged-in user's email from the session
+$email = $_SESSION['email'];
 
+// Establish connection to the database
+$conn = new mysqli('localhost', 'root', '', 'aeisthetics');
+if ($conn->connect_error) {
+    die('Connection failed: ' . $conn->connect_error);
+}
+
+
+
+// Fetch user details from the login table
+$sql_user = "SELECT name, email FROM login WHERE email = ?";
+$stmt_user = $conn->prepare($sql_user);
+$stmt_user->bind_param("s", $email);
+$stmt_user->execute();
+$stmt_user->bind_result($name, $email);
+$stmt_user->fetch();
+$stmt_user->close();
+
+// Fetch payment details (phone, address)
+$sql_payment = "SELECT phone, address FROM contact WHERE email = ?";
+$stmt_payment = $conn->prepare($sql_payment);
+$stmt_payment->bind_param("s", $email);
+$stmt_payment->execute();
+$stmt_payment->bind_result($phone, $address);
+$stmt_payment->fetch();
+$stmt_payment->close();
+
+// Fetch user orders from cartdetails and products tables
+$ipaddress = $_SERVER['REMOTE_ADDR']; // User IP address (for tracking the cart)
+$sql_orders = "SELECT c.productid, p.productname, p.price, c.quantity 
+               FROM cartdetails c 
+               JOIN products p ON c.productid = p.productid 
+               WHERE c.ipaddress = ?";
+$stmt_orders = $conn->prepare($sql_orders);
+$stmt_orders->bind_param("s", $ipaddress);
+$stmt_orders->execute();
+$stmt_orders->store_result(); // Store result to count rows
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -46,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
 
 	<!-- //custom-theme -->
-  <link rel="stylesheet" type="text/css" href="css/contact.css">
+  <link rel="stylesheet" type="text/css" href="/css/contact.css">
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/shop.css" type="text/css" media="screen" property="" />
 	<link href="css/style7.css" rel="stylesheet" type="text/css" media="all" />
@@ -75,8 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <!-- script
-    ================================================== -->
+	
     <script src="js/modernizr.js"></script>
   </head>
 	<body class="bg-body" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
@@ -149,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<header id="header" class="site-header text-black">
 			<nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
 			  <div class="container-fluid">
-				<a class="" href="index.php">
+				<a class="" href="index.html">
 				  <img src="img/logo1.jpg" style="height: 45px; width: 45px; border-radius: 58px; float: left;">
 				  <h1 style="font-family: Poppins, sans-serif;font-weight:bolder;font-size: 40px; padding-left: 2px; float: left;">aeisthetics</h1>
 				</a>
@@ -160,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				</button>
 				<div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
 				  <div class="offcanvas-header px-4 pb-0">
-					<a class="navbar-brand" href="index.php">
+					<a class="navbar-brand" href="index.html">
 					  <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
 					  <h1 style="font-family: Poppins, sans-serif;font-weight:bolder; padding-left: 2px;">aeisthetics</h1>
 					</a>
@@ -169,13 +177,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				  <div class="offcanvas-body">
 					<ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
 					  <li class="nav-item dropdown">
-						<a class="nav-link me-4" href="index.php">Home</a></li>
+						<a class="nav-link me-4" href="index.php">Home</a>
 	  
 					  <li class="nav-item dropdown me-4">
 						<a class="nav-link me-4" href="shop.php">products</a>
 						
-					
-					  
+					  </li>
+					 
 					  <li class="nav-item">
 						<div class="user-items ps-5">
 						  <ul class="d-flex justify-content-end list-unstyled">
@@ -192,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							  </a>
 							</li>
 							<li>
-							  <a href="checkout.html">
+							  <a href="cart.php">
 								<svg class="cart" width="18" height="18">
 								  <use xlink:href="#cart"></use>
 								</svg>
@@ -248,8 +256,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  <div class="inner_breadcrumb_agileits_w3">
 		
 		<ul class="short">
-		  <li><a href="index.html">Home</a><i>|</i></li>
-		  <li>contact</li>
+		  <li><a href="index.php">Home</a><i>|</i></li> <li><a href="shop.php">product</a><i>|</i></li> <li><a href="cart.php">Cart</a><i>|</i></li>
+		  <li>My Account</li>
 		</ul>
 	  </div>
 	</div>
@@ -258,99 +266,80 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
   <!-- //banner -->
 	<!-- top Products -->
+	<body>
 
-	<div class="ads-grid_shop">
-		<div class="shop_inner_inf">
-			<h1 class="head" style="float:left;">Contact us</h1><br>			
-			<div class="inner_section_w3ls">
-				<div class="col-md-7 contact_grid_right">
-					<h6>Please fill in your details.</h6>
-					<?php if (!empty($errors)): ?>
-                <div class="alert alert-danger">
-                    <?php foreach ($errors as $error): ?>
-                        <p><?php echo htmlspecialchars($error); ?></p>
-                    <?php endforeach; ?>
-                </div>
-            <?php elseif (isset($successMessage)): ?>
-                <div class="alert alert-success">
-                    <p><?php echo htmlspecialchars($successMessage); ?></p>
-                </div>
-            <?php endif; ?>
-					<form action="contactconnection.php" method="POST">
-						<div class="col-md-6 col-sm-6 contact_left_grid">
+    <!-- User Information -->
+    <h1 style="text-align: center;">Welcome, <?= htmlspecialchars($name) ?></h1>
+    <p style="margin-left: 85px;">Email: <?= htmlspecialchars($email) ?></p>
+    <p style="margin-left: 85px;">Phone: <?= htmlspecialchars($phone) ?></p>
+    <p style="margin-left: 85px;">Address: <?= htmlspecialchars($address) ?></p>
 
-						<input required  type="text" style="margin-bottom: 10px;" placeholder="Name" id="name" name="name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" /><br>
-            <?php if (!empty($nameError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $nameError; ?></div>
-            <?php endif; ?>
-                <input required type="email" style="margin-bottom: 10px;" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" /><br>
-            <?php if (!empty($emailError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $emailError; ?></div>
-            <?php endif; ?>
-               <input required  type="text" style="margin-bottom: 10px;" placeholder="Phone" id="phone" name="phone" /><br>
-            <?php if (!empty($phoneError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $phoneError; ?></div>
-            <?php endif; ?>
-			<input required  type="text" style="margin-bottom: 10px;" placeholder="Address" id="address" name="address" value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>" /><br>
-            <?php if (!empty($nameError)): ?>
-                <div class="error-message" style="color:red;"><?php echo $addressError; ?></div>
-            <?php endif; ?>
-                <button type="submit" class="btn btn-primary">Submit</button>
-					<input type="reset" value="Clear" style="margin: 5px; padding:1px;">
-					</div>
-					</form>
-				
-				</div>
-				<div class="col-md-5 contact-left">
-					<h6>Contact Info</h6>
-					<div class="visit">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-home" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Visit us</h4>
-							<p>Parma Via Modena,BO, Italy</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="mail-us">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-envelope" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Mail us</h4>
-							<p><a href="mailto:info@example.com">aeistheticsartwork@gmail.com</a></p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="call">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-phone" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Call us</h4>
-							<p>+18044261149</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="visit">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-fax" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Fax</h4>
-							<p>+1804426349</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
+    <!-- User Orders -->
+    <h1 style="margin-left: 85px;margin-top: 20px; text-decoration: underline;">Your Orders</h1><br>
 
-			</div>
-		</div>
-	</div>
+<?php
+// Check if cart is empty
+if ($stmt_orders->num_rows === 0): ?>
+    <p style="margin-left: 85px; color: #333;">Your cart is empty.</p>
+<?php else:
+    // Bind results if there are items in the cart
+    $stmt_orders->bind_result($productid, $productname, $price, $quantity);
+?>
+    <table border="2" style="margin-left: 85px; margin-bottom: 40px; border-collapse: collapse; width: 80%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <thead>
+            <tr style="background-color: #f2f2f2; color: #333;">
+                <th style="padding: 12px; font-weight: bold; text-align: left; border-bottom: 2px solid #ddd;">Product Name</th>
+                <th style="padding: 12px; font-weight: bold; text-align: left; border-bottom: 2px solid #ddd;">Price</th>
+                <th style="padding: 12px; font-weight: bold; text-align: left; border-bottom: 2px solid #ddd;">Quantity</th>
+                <th style="padding: 12px; font-weight: bold; text-align: left; border-bottom: 2px solid #ddd;">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($stmt_orders->fetch()): ?>
+            <tr style="background-color: #fff; color: #555;">
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($productname) ?></td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">$<?= htmlspecialchars($price) ?></td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($quantity) ?></td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">$<?= htmlspecialchars($price * $quantity) ?></td>
+            </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
+
+<!-- Close orders statement -->
+<?php $stmt_orders->close(); ?>
+
+    <!-- Update Password and Address Form -->
+    <h1 style="margin-left: 85px; text-decoration: underline;">Update Account Information</h1><br>
+    <form action="update_account.php" method="POST">
+        <label for="new_password" style="margin-left: 85px;">New Password:</label>
+        <input style="margin-left: 70px; margin-bottom: 10px;" type="password" name="new_password" minlength="6"><br>
+
+        <label for="new_address" style="margin-left: 85px;">New Address:</label>
+        <input style="margin-left: 83px; margin-bottom: 10px" type="text" name="new_address" value="<?= htmlspecialchars($address) ?>"><br>
+
+        <label for="new_phone" style="margin-left: 85px;">New Phone:</label>
+        <input style="margin-left: 98px; margin-bottom: 10px" type="text" name="new_phone" value="<?= htmlspecialchars($phone) ?>"><br>
+
+        <button type="submit" style="margin-left: 85px; margin-top: 18px; border-radius: 4px;">Update Info</button><br>
+    </form>
+
+    <!-- Logout Option -->
+    <button style="margin-left: 85px; margin-top: 18px; border-radius: 4px;"><a href="logout.php">Logout</a></button>
+
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
+
+
+
+
 	
-	<footer id="footer" class="overflow-hidden padding-large">
+	<footer id="footer" class="overflow-hidden padding-large" style="margin-top: 65px;">
 		<div class="container-fluid">
 		  <div class="row">
 			<div class="row d-flex flex-wrap justify-content-between">
@@ -425,6 +414,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</div>
 	  </footer>
 	  
+	  
 	  <script src="js/jquery-1.11.0.min.js"></script>
 	  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 	  <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
@@ -436,4 +426,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
+
+
+
+
 

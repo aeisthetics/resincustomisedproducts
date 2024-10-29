@@ -1,4 +1,5 @@
 <?php
+session_start(); // Start the session
 
 // Initialize error messages
 $errors = ['email' => '', 'password' => ''];
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verify the entered password with the hashed password in the database
             if (password_verify($password, $hashedPassword)) {
                 // Password is correct, proceed to login
-                echo "<script>alert('Login successful!');</script>";
+                $_SESSION['email'] = $email;  // Store the user's email in the session
                 header("Location: ../index.php");  // Redirect to the dashboard or homepage
                 exit();
             } else {
@@ -58,16 +59,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Close the statement
         $stmt->close();
-
-       
     }
 }
 
 // Close the connection
 $conn->close();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,8 +98,6 @@ $conn->close();
 
             <!-- Submit Button -->
             <button name="signin" type="submit">Sign In</button>
-            <!-- Add a "Forgot Password?" link below the Sign In button -->
-
         </form>
     </div>
 
@@ -110,7 +105,7 @@ $conn->close();
     <div class="overlay-container">
         <div class="overlay">
             <div class="overlay-panel overlay-right">
-                <h1>Hello, Friend!</h1>
+                <h1>Hello, Friend!</h1>                     
                 <p>Enter your personal details and start your journey with us</p>
                 <a href="register.php"><button class="ghost">Sign Up</button></a>
             </div>
