@@ -1,6 +1,5 @@
 <?php
 session_start(); // This should be at the very top of your index.php file
-
 include('./includes/connect.php');
 include('./commonfunctions.php');
 ?>

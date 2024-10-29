@@ -310,6 +310,7 @@ if ($stmt_orders->num_rows === 0): ?>
 <!-- Close orders statement -->
 <?php $stmt_orders->close(); ?>
 
+
     <!-- Update Password and Address Form -->
     <h1 style="margin-left: 85px; text-decoration: underline;">Update Account Information</h1><br>
     <form action="update_account.php" method="POST">
