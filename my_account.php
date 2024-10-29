@@ -144,12 +144,12 @@ $stmt_orders->store_result(); // Store result to count rows
 				<use xlink:href="#close"></use>
 			  </svg>
 			</div>
-			<form id="search-form" class="text-center pt-3" action="" method="">
-			  <input type="text" class="search-input fs-5 p-4 bg-transparent" placeholder="Search...">
-			  <svg class="search" width="22" height="22">
-				<use xlink:href="#search"></use>
-			  </svg>
-			</form>
+			<form id="search-form" class="text-center pt-3" action="searchproduct.php" method="get">
+          <input type="text" class="search-input fs-5 p-4 bg-transparent" placeholder="Search..." name="searchdata">
+          <button input type="submit" class="search" value="search"  name="searchdataproduct"><svg style="width:20px; height:20px;">
+            <use xlink:href="#search"></use>
+          </svg>
+       </button>
 		  </div>
 		</div> 
 	
@@ -187,13 +187,13 @@ $stmt_orders->store_result(); // Store result to count rows
 					  <li class="nav-item">
 						<div class="user-items ps-5">
 						  <ul class="d-flex justify-content-end list-unstyled">
-							<li class="search-item pe-3" data-bs-toggle="collapse" data-bs-target="#search-box" aria-controls="search-box" aria-expanded="false" aria-label="Toggle navigation">
-							  <svg class="search" width="18" height="18">
-								<use xlink:href="#search"></use>
-							  </svg>
-							</li>
+						  <li class="search-item pe-3" data-bs-toggle="collapse" data-bs-target="#search-box" aria-controls="search-box" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg class="search" width="18" height="18">
+                          <use xlink:href="#search"></use>
+                        </svg>
+                      </li>
 							<li class="pe-3">
-							  <a href="">
+							<a href="my_account.php">
 								<svg class="user" width="18" height="18">
 								  <use xlink:href="#user"></use>
 								</svg>
@@ -298,9 +298,9 @@ if ($stmt_orders->num_rows === 0): ?>
             <?php while ($stmt_orders->fetch()): ?>
             <tr style="background-color: #fff; color: #555;">
                 <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($productname) ?></td>
-                <td style="padding: 12px; border-bottom: 1px solid #ddd;">$<?= htmlspecialchars($price) ?></td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($price) ?>/-</td>
                 <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($quantity) ?></td>
-                <td style="padding: 12px; border-bottom: 1px solid #ddd;">$<?= htmlspecialchars($price * $quantity) ?></td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($price * $quantity) ?>/-</td>
             </tr>
             <?php endwhile; ?>
         </tbody>

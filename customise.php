@@ -1,11 +1,5 @@
 <?php
-<<<<<<< HEAD
-include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
-
-
-=======
 include('./includes/connect.php');
->>>>>>> 7d515472d15ba7545687fc108444011f7c3cee99
 
 if (isset($_POST['add'])) {
     // Accessing the correct POST keys based on your form's input names

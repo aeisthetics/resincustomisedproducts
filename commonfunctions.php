@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-include('C:\Users\apurv\resincustomisedproducts\includes\connect.php');
-=======
 include('./includes/connect.php');
->>>>>>> 7d515472d15ba7545687fc108444011f7c3cee99
 
 // Function to get and display products
 function getproducts()
