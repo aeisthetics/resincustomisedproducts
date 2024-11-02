@@ -91,7 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute and check for success    
     if ($stmt->execute()) {
-        header("Location: paymentsuccess.html");
+        // Redirect to allorders.php after successful payment
+        header("Location: allorders.php");
         exit;
     } else {
         echo "<p>Error: " . $stmt->error . "</p>";
@@ -101,4 +102,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conn->close();
 }
+
 ?>

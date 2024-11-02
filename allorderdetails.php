@@ -51,74 +51,8 @@ include('./commonfunctions.php');
        
        
        <!-- fetching products-->
-       <table class='table'><thead>
-                            <tr style='padding-right: 30px;''>
-                             <th></th>
-                             <th>CUSTOMER ID</th>
-                                <th>PRODUCT ID</th>
-                                <th>QUANTITY</th>
-                                <th>CUSTOMISE</th>
-                                <th>REFERENCE IMAGE</th>
-                                
-                               
-                            </tr>
-                    </thead>
  <?php
-if(isset($_GET['userid']))
- {
-  $userid=$_GET['userid'];
-  echo $userid;
- }
-
- $ip=getIPAddress();
- $total=0;
-$cart_query_price="select * from `cartdetails` where ipaddress='$ip'";
-$result=mysqli_query($con,$cart_query_price);
-$invoice=mt_rand();
-$status='pending';
-$count=mysqli_num_rows($result);
-while($rowprice=mysqli_fetch_array($result))
-{
-  $productid=$rowprice['productid'];
-  $select_query="select * from `products` where productid=$productid";
-  $resultprice=mysqli_query($con,$select_query);
-  while($row_product_price=mysqli_fetch_array($resultprice)){
-    $productprice=array($row_product_price['price']);
-    $productvalues=array_sum($productprice);
-    $total+=$productvalues;
-  }
-}
-//getting quantity
-$get_cart="select * from `cartdetails`";
-$run_cart=mysqli_query($con,$get_cart);
-$getitemcart=mysqli_fetch_array($run_cart);
-$qty=$getitemcart['quantity'];
-$qty1=$getitemcart['quantity1'];
-
-if($qty==0)
-{
-  $qty=1;
-  $subtotal=$total;
-
-}
-else
-{
-  $qty=$qty;
-  $subtotal=$total*$qty;
-}
-
-
-$insertorders="Insert into `userorders`(amount,invoice,totalproducts,orderdate,orderstatus) values (  $subtotal,$invoice,$count,NOW(),'$status')";
- $resultquery=mysqli_query($con,$insertorders);
- if($resultquery)
- {
-  echo"<script>alert('orders are submitted successfully')</script>";
-  echo"<script>window.open('my_account.php','_self')</script>";
- }
-
- //deleting items
- $emptycart="delete from `cartdetails`where ipaddress='$ip'";
- $resultdelete=mysqli_query($con,$emptycart);
+allorders();
  ?>
  
        

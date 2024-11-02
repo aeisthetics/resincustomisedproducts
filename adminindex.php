@@ -95,7 +95,7 @@
       
     }
     if(isset($_GET['allorder'])){
-      include('allorders.php');
+      include('allorderdetails.php');
       
     }
     if(isset($_GET['users'])){
