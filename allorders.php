@@ -120,7 +120,7 @@ if (!file_exists('uploads')) {
 
         if ($resultquery) {
             echo "<script>alert('Orders are submitted successfully')</script>";
-            echo "<script>window.open('my_account.php', '_self')</script>";
+            echo "<script>window.open('paymentsuccess.html', '_self')</script>";
         }
 
         // Deleting items from cart
