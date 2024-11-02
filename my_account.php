@@ -257,7 +257,7 @@ $stmt_orders->store_result(); // Store result to count rows
 		
 		<ul class="short">
 		  <li><a href="index.php">Home</a><i>|</i></li> <li><a href="shop.php">product</a><i>|</i></li> <li><a href="cart.php">Cart</a><i>|</i></li>
-		  <li>My Account</li>
+		  <li>Account Settings</li>
 		</ul>
 	  </div>
 	</div>
@@ -269,37 +269,7 @@ $stmt_orders->store_result(); // Store result to count rows
 	<body>
 	<h1 style="text-align: center;">Welcome, <?= htmlspecialchars($name) ?></h1>
     <!-- User Orders -->
-    <h1 style="margin-left: 85px;margin-top: 20px; text-decoration: underline;">Your Orders</h1><br>
-
-<?php
-// Check if cart is empty
-if ($stmt_orders->num_rows === 0): ?>
-    <p style="margin-left: 85px; color: #333;">NO ORDERS.</p>
-<?php else:
-    // Bind results if there are items in the cart
-    $stmt_orders->bind_result($productid, $productname, $price, $quantity);
-?>
-    <table border="2" style="margin-left: 85px; margin-bottom: 40px; border-collapse: collapse; width: 80%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <thead>
-            <tr style="background-color: #f2f2f2; color: #333;">
-                <th style="padding: 12px; font-weight: bold; text-align: left; border-bottom: 2px solid #ddd;">Product Name</th>
-                <th style="padding: 12px; font-weight: bold; text-align: left; border-bottom: 2px solid #ddd;">Price</th>
-                <th style="padding: 12px; font-weight: bold; text-align: left; border-bottom: 2px solid #ddd;">Quantity</th>
-                <th style="padding: 12px; font-weight: bold; text-align: left; border-bottom: 2px solid #ddd;">Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($stmt_orders->fetch()): ?>
-            <tr style="background-color: #fff; color: #555;">
-                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($productname) ?></td>
-                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($price) ?>/-</td>
-                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($quantity) ?></td>
-                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><?= htmlspecialchars($price * $quantity) ?>/-</td>
-            </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
-<?php endif; ?>
+   
  <!-- User Information -->
  <h1 style="margin-left: 85px;margin-top: 20px; text-decoration: underline;">Your Account informations</h1><br>
     <p style="margin-left: 85px;">Email: <?= htmlspecialchars($email) ?></p>
