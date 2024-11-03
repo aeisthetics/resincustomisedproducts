@@ -60,7 +60,6 @@ if (!file_exists('uploads')) {
         $cart_query_price = "SELECT * FROM `cartdetails` WHERE ipaddress='$ip'";
         $result = mysqli_query($con, $cart_query_price);
         $invoice = mt_rand();
-        $status = 'pending';
         $count = mysqli_num_rows($result);
         
         $customization_details = []; // Array to hold customization details
@@ -115,8 +114,8 @@ if (!file_exists('uploads')) {
         $images_string = !empty($product_images) ? implode("; ", $product_images) : '';
 
         // Inserting the order details into userorders
-        $insertorders = "INSERT INTO `userorders` (ipaddress,amount, invoice, totalproducts, orderdate, orderstatus, customization_details, product_images, quantity) 
-                         VALUES ('$ipaddress',$subtotal, $invoice, $count, NOW(), '$status', '$customization_string', '$images_string', '$qty_string')";
+        $insertorders = "INSERT INTO `userorders` (ipaddress,amount, invoice, totalproducts, orderdate,  customization_details, product_images, quantity) 
+                         VALUES ('$ipaddress',$subtotal, $invoice, $count, NOW(),  '$customization_string', '$images_string', '$qty_string')";
         $resultquery = mysqli_query($con, $insertorders);
 
         if ($resultquery) {

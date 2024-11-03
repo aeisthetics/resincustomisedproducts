@@ -277,6 +277,7 @@ $stmt_orders->store_result(); // Store result to count rows
     <p style="margin-left: 85px;">Address: <?= htmlspecialchars($address) ?></p>
 
 <!-- Close orders statement -->
+ <!-- <--orders-->
 <?php $stmt_orders->close(); ?>
 
 
