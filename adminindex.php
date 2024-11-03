@@ -79,6 +79,7 @@
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?allorder">ALL ORDERS</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?payment">ALL PAYMENTS</a></button>
        <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?users">LIST USERS</a></button>
+       <button style="font-family: Cinzel, sans-serif;"><a href="adminindex.php?userdetails">USER DETAILS</a></button>
         </div>
       </div>      
     </section>
@@ -104,6 +105,11 @@
     }
     if(isset($_GET['payment'])){
       include('allpayments.php');
+      
+    }
+    
+    if(isset($_GET['userdetails'])){
+      include('userdetails.php');
       
     }
     

@@ -74,6 +74,7 @@ if (!file_exists('uploads')) {
             
             while ($row_product_price = mysqli_fetch_array($resultprice)) {
                 $productprice = $row_product_price['price'];
+                $ipaddress=$rowprice['ipaddress']; 
                 $qty = $rowprice['quantity']; 
                 $qty1 = $rowprice['quantity1'];  // Get quantity1 (customization details)
                 $product_image = $rowprice['productimage'];  // Assuming 'image' is the column name for product images
@@ -105,7 +106,7 @@ if (!file_exists('uploads')) {
         if ($count == 0) {
             $subtotal = 0;
         } else {
-            $subtotal = $total; // Total cost for the order
+            $subtotal = $total*$qty; // Total cost for the order
         }
 
         // Convert arrays to strings only if they have items
@@ -114,8 +115,8 @@ if (!file_exists('uploads')) {
         $images_string = !empty($product_images) ? implode("; ", $product_images) : '';
 
         // Inserting the order details into userorders
-        $insertorders = "INSERT INTO `userorders` (amount, invoice, totalproducts, orderdate, orderstatus, customization_details, product_images, quantity) 
-                         VALUES ($subtotal, $invoice, $count, NOW(), '$status', '$customization_string', '$images_string', '$qty_string')";
+        $insertorders = "INSERT INTO `userorders` (ipaddress,amount, invoice, totalproducts, orderdate, orderstatus, customization_details, product_images, quantity) 
+                         VALUES ('$ipaddress',$subtotal, $invoice, $count, NOW(), '$status', '$customization_string', '$images_string', '$qty_string')";
         $resultquery = mysqli_query($con, $insertorders);
 
         if ($resultquery) {

@@ -49,10 +49,22 @@ include('./commonfunctions.php');
        
   <div class="product-swiper col-md-12">
        
-       
-       <!-- fetching products-->
+  <table class='table'><thead>
+                            <tr style='padding-right: 30px;''>
+                             <th></th>
+                             <th>CUSTOMER ID</th>
+                                <th>CUSTOMER NAME</th>
+                                <th>EMAIL ID</th>
+                                <th>PHONE NUMBER</th>
+                                <th>ADDRESS</th>
+                               
+                                
+                               
+                            </tr>
+                    </thead>
  <?php
-allordersdetails();
+
+ showaddress();
  ?>
  
        

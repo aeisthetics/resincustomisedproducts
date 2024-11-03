@@ -355,6 +355,44 @@ function cartitem()
     }
         }
     }
+    function showaddress()
+    {
+        global $con;
+        
+        if(!isset($_GET['categories'])){
+            if(!isset($_GET['products'])){
+                
+        $select_query = "SELECT * FROM `contact` ";
+        $result_query = mysqli_query($con, $select_query);
+    
+        while ($row = mysqli_fetch_assoc($result_query)) {
+            $id = $row['id'];
+            $name = $row['name'];
+            $email = $row['email'];
+            $phone = $row['phone'];
+            $address= $row['address'];
+           
+    
+            echo " 
+                        <tbody> 
+                        
+                            <tr style='padding-right: 30px;''>
+                             <th></th>
+                             <th>$id</th>
+                              <td>$name</td>
+                               <td>$email</td>
+                                <td>$phone</td>
+                                <td>$address</td>
+                                
+                                
+                               
+                          
+                        </tbody>";
+        }
+            
+    }
+        }
+    }
     
     function allpayment()
     {
@@ -401,59 +439,6 @@ function cartitem()
 
     
    
-    function allorders()
-    {
-        global $con;
-        
-        // Ensure we're not filtering by categories or products
-        if (!isset($_GET['categories']) && !isset($_GET['products'])) {
-            
-            // SQL query to select all orders from userorders
-            $select_query = "SELECT * FROM userorders";
-            $result_query = mysqli_query($con, $select_query);
-    
-            // Check if any orders exist
-            if (mysqli_num_rows($result_query) > 0) {
-                echo "<div class='table-responsive'>";
-                echo "<table class='table'>";
-                echo "<thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Invoice number</th>
-                            <th>Total Products</th>
-                            <th>Order Date</th>
-                            <th>Order Status</th>
-                             <th>Amount</th>
-                             <th>quantity</th>
-                            <th>Customization Details</th>
-                            <th>Product Images</th>
-                        </tr>
-                      </thead>
-                      <tbody>";
-    
-                // Loop through each order and display its details
-                while ($row = mysqli_fetch_assoc($result_query)) {
-                    echo "<tr>
-                            <td>{$row['orderid']}</td>
-                            <td>{$row['invoice']}</td>
-                            <td>{$row['totalproducts']}</td>
-                            <td>{$row['orderdate']}</td>
-                            <td>{$row['orderstatus']}</td>
-                             <td>{$row['amount']}</td>
-                              <td>{$row['quantity']}</td>
-                            <td>{$row['customization_details']}</td>
-                            <td>{$row['product_images']}</td>
-                          </tr>";
-                }
-                echo "</tbody></table>";
-                echo "</div>";
-            } else {
-                echo "<p>No orders found.</p>";
-            }
-        }
-    }
-    
-
     function allordersdetails()
     {
         global $con;
@@ -472,10 +457,11 @@ function cartitem()
                 echo "<thead>
                         <tr>
                             <th>Order ID</th>
+                             <th>Customer ID</th>
                             <th>Invoice number</th>
                             <th>Total Products</th>
                             <th>Order Date</th>
-                            <th>Order Status</th>
+                            
                              <th>Amount</th>
                              <th>quantity</th>
                             <th>Customization Details</th>
@@ -488,10 +474,11 @@ function cartitem()
                 while ($row = mysqli_fetch_assoc($result_query)) {
                     echo "<tr>
                             <td>{$row['orderid']}</td>
+                            <td>{$row['ipaddress']}</td>
                             <td>{$row['invoice']}</td>
                             <td>{$row['totalproducts']}</td>
                             <td>{$row['orderdate']}</td>
-                            <td>{$row['orderstatus']}</td>
+                           
                              <td>{$row['amount']}</td>
                               <td>{$row['quantity']}</td>
                             <td>{$row['customization_details']}</td>
