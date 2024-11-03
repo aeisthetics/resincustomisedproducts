@@ -251,8 +251,6 @@ include('./commonfunctions.php');
 </div>
 <!-- //top products -->
     
-
- 
 <footer id="footer" class="overflow-hidden ">
       <div class="container-fluid"  >
         <div class="row">
@@ -279,13 +277,11 @@ include('./commonfunctions.php');
                     <a href="#about-us">About</a>
                   </li>
                   <li class="menu-item pb-2">
-                    <a href="#company-services">Services</a>
+                    <a href="shop.php">Products</a>
                   </li>
+                 
                   <li class="menu-item pb-2">
-                    <a href="#latest-blog">Blogs</a>
-                  </li>
-                  <li class="menu-item pb-2">
-                    <a href="#contact">Contact</a>
+                    <a href="contact.php">Contact</a>
                   </li>
                 </ul>
               </div>
@@ -326,6 +322,7 @@ include('./commonfunctions.php');
         </div>
       </div>
     </footer>
+   
 
 <script src="js/jquery-1.11.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

@@ -166,7 +166,7 @@ searchproducts();
 
    
 
-    <footer id="footer" class="overflow-hidden ">
+      <footer id="footer" class="overflow-hidden ">
       <div class="container-fluid"  >
         <div class="row">
           <div class="row d-flex flex-wrap justify-content-between" style="padding-top:70px">
@@ -192,13 +192,11 @@ searchproducts();
                     <a href="#about-us">About</a>
                   </li>
                   <li class="menu-item pb-2">
-                    <a href="#company-services">Services</a>
+                    <a href="shop.php">Products</a>
                   </li>
+                 
                   <li class="menu-item pb-2">
-                    <a href="#latest-blog">Blogs</a>
-                  </li>
-                  <li class="menu-item pb-2">
-                    <a href="#contact">Contact</a>
+                    <a href="contact.php">Contact</a>
                   </li>
                 </ul>
               </div>
@@ -239,7 +237,7 @@ searchproducts();
         </div>
       </div>
     </footer>
-
+   
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>

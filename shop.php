@@ -252,7 +252,6 @@ cart();
     
 
  
-
 <footer id="footer" class="overflow-hidden ">
       <div class="container-fluid"  >
         <div class="row">
@@ -279,13 +278,11 @@ cart();
                     <a href="#about-us">About</a>
                   </li>
                   <li class="menu-item pb-2">
-                    <a href="#company-services">Services</a>
+                    <a href="shop.php">Products</a>
                   </li>
+                 
                   <li class="menu-item pb-2">
-                    <a href="#latest-blog">Blogs</a>
-                  </li>
-                  <li class="menu-item pb-2">
-                    <a href="#contact">Contact</a>
+                    <a href="contact.php">Contact</a>
                   </li>
                 </ul>
               </div>
@@ -326,6 +323,7 @@ cart();
         </div>
       </div>
     </footer>
+   
 
     
     <script src="js/jquery-1.11.0.min.js"></script>

@@ -350,80 +350,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</div>
 	</div>
 	
-	<footer id="footer" class="overflow-hidden padding-large">
-		<div class="container-fluid">
-		  <div class="row">
-			<div class="row d-flex flex-wrap justify-content-between">
-			  <div class="col-lg-3 col-sm-6 pb-3 pe-4">
-				<div class="footer-menu">
-				 
-				  <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
-				 <br><br><br>
-				  <p>aeisthetics</p>
-				</div>
-				<div class="copyright">
-				  <p>© Copyright 2023. 
-				  </p>
-				</div>
-			  </div>
-			  <div class="col-lg-2 col-sm-6 pb-3">
-				<div class="footer-menu text-uppercase">
-				  <h5 class="widget-title pb-2">Quick Links</h5>
-				  <ul class="menu-list list-unstyled text-uppercase">
-					<li class="menu-item pb-2">
-					  <a href="#billboard">Home</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#about-us">About</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#company-services">Services</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#latest-blog">Blogs</a>
-					</li>
-					<li class="menu-item pb-2">
-					  <a href="#contact">Contact</a>
-					</li>
-				  </ul>
-				</div>
-			  </div>
-			  <div class="col-lg-2 col-sm-6 pb-3">
-				<div class="footer-menu text-uppercase">
-				  <h5 class="widget-title pb-2">Social</h5>
-				  <div class="social-links">
-					<ul class="list-unstyled">
-					  <li class="pb-2">
-						<a href="#">Facebook</a>
-					  </li>
-					  <li class="pb-2">
-						<a href="#">Twitter</a>
-					  </li>
-					  <li class="pb-2">
-						<a href="#">Pinterest</a>
-					  </li>
-					  <li class="pb-2">
-						<a href="https://www.instagram.com/aeisthetics/">Instagram</a>
-					  </li>
-					  <li>
-						<a href="#">Youtube</a>
-					  </li>
-					</ul>
-				  </div>
-				</div>
-			  </div>
-			 <div class="col-lg-3 col-sm-6">
-				<div class="footer-menu contact-item">
-				  <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
-				  <p><a href="">+91 7594906015</a></p>
-				  <p><a href="mailto:">aeistheticsartworks@gmail.com</a></p>
-				  <p>Power House Link Road,Palarivattom<br>Ernakulam,kerala<br>682025<br></p>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </footer>
+	<footer id="footer" class="overflow-hidden ">
+      <div class="container-fluid"  >
+        <div class="row">
+          <div class="row d-flex flex-wrap justify-content-between" style="padding-top:70px">
+            <div class="col-lg-3 col-sm-6 pb-3 pe-4">
+              <div class="footer-menu">
+               
+                <img src="img/logo2.jpg" style="height: 47px;width: 47px;border-radius: 50px; float: left;" class="logo" >
+               <br><br> <p>aeisthetics</p>
+              </div>
+              <div class="copyright">
+                <p>© Copyright 2023. 
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 pb-3">
+              <div class="footer-menu text-uppercase">
+                <h5 class="widget-title pb-2">Quick Links</h5>
+                <ul class="menu-list list-unstyled text-uppercase">
+                  <li class="menu-item pb-2">
+                    <a href="#billboard">Home</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="#about-us">About</a>
+                  </li>
+                  <li class="menu-item pb-2">
+                    <a href="shop.php">Products</a>
+                  </li>
+                 
+                  <li class="menu-item pb-2">
+                    <a href="contact.php">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 pb-3">
+              <div class="footer-menu text-uppercase">
+                <h5 class="widget-title pb-2">Social</h5>
+                <div class="social-links">
+                  <ul class="list-unstyled">
+                    <li class="pb-2">
+                      <a href="#">Facebook</a>
+                    </li>
+                    <li class="pb-2">
+                      <a href="#">Twitter</a>
+                    </li>
+                    <li class="pb-2">
+                      <a href="#">Pinterest</a>
+                    </li>
+                    <li class="pb-2">
+                      <a href="https://www.instagram.com/aeisthetics/">Instagram</a>
+                    </li>
+                    <li>
+                      <a href="#">Youtube</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+           <div class="col-lg-3 col-sm-6">
+              <div class="footer-menu contact-item">
+                <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
+                <p><a href="">+91 7594906015</a></p>
+                <p><a href="mailto:">aeistheticsartworks@gmail.com</a></p>
+                <p>Power House Link Road,Palarivattom<br>Ernakulam,kerala<br>682025<br></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+   
 	  
 	  <script src="js/jquery-1.11.0.min.js"></script>
 	  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

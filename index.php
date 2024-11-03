@@ -320,7 +320,7 @@ include('./commonfunctions.php');
                   </li>
                  
                   <li class="menu-item pb-2">
-                    <a href="ontact.php">Contact</a>
+                    <a href="contact.php">Contact</a>
                   </li>
                 </ul>
               </div>
